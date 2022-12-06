@@ -1,6 +1,7 @@
 import { component$, 
   // useStylesScoped$
  } from '@builder.io/qwik';
+import { Content } from '@builder.io/qwik-city';
 
 export default component$(() => {
 
@@ -10,28 +11,36 @@ export default component$(() => {
         <h1 class='w-11/12 font-bold text-4xl text-center mt-4 mb-6'>Gas Pos System</h1>
       </div>
       <ul class='w-11/12'>
-        <li class='h-14 bg-white'>
-          <a href='/'>
-            Fuel
-          </a>
+        <li class='h-14 bg-white mb-8'>
+          <AnchorItem content='Fuel' linkto='/'/>
         </li>
-        <li class='h-14 bg-white'>
-          <a href='/food-drinks'>
-            Food & Drinks
-          </a>
+        <li class='h-14 bg-white mb-8'>
+          <AnchorItem content='Food & Drinks' linkto='/food-drinks'/>
         </li>
-        <li class='h-14 bg-white'>
-          <a href='/settings'>
-            Settings
-          </a>
+        <li class='h-14 bg-white mb-8'>
+          <AnchorItem content='Settings' linkto='/settings'/>
         </li>
       </ul>
-      <div class='h-14 w-11/12 bg-white'>
+      <div class='h-14 w-11/12 bg-white mb-8'>
         sync status
       </div>
       <div class='h-14 w-11/12 bg-white'>
-        Cashier
+        <AnchorItem content='Cashier - name' linkto='/'/>
       </div>
     </header>
   );
+  
 });
+
+interface linkProps{
+  linkto:string,
+  content:string
+}
+
+export const AnchorItem = ((props:linkProps)=>{
+  return(
+      <a class='flex w-full h-full justify-center items-center' href={props.linkto}>
+        {props.content}
+      </a>
+  )
+})

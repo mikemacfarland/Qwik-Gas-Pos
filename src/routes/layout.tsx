@@ -4,7 +4,7 @@ import Header from '../components/header/header';
 export default component$(() => {
   return (
     <>
-      <main class='flex flex-row justify-between bg-neutral-200'>
+      <main class='flex flex-row justify-between bg-neutral-100'>
         <section class='w-1/5 border-2 border-solid border-red-500'>
           <Header />
         </section>
