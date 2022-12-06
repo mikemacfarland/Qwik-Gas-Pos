@@ -8,7 +8,7 @@ export default component$(() => {
         <section class='w-1/5 border-2 border-solid border-red-500'>
           <Header />
         </section>
-        <section class='w-3/4 border-2 border-solid border-red-500'>
+        <section class='w-3/4 m-8 rounded-3xl bg-white'>
           <Slot />
         </section>
       </main>
