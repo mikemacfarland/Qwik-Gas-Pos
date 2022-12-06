@@ -2,50 +2,81 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 // import { Link } from '@builder.io/qwik-city';
 import { GasSvg } from '../img/gasPump'
+import PieChart from '../components/pieChart'
 
 export default component$(() => {
   return (
-    <div class='flex flex-col'>
-      <GasItem fill='#fcc482'/>
-      <GasItem fill='#63c993'/>
-      <GasItem fill='#6492ec'/>
-      <div class='flex-row'>
-        <p>Total Pay</p>
-        <p>$125.98</p>
+    <div class='flex flex-row w-full justify-between'>
+      <div class='flex flex-col rounded-3xl bg-white mr-8 w-4/6'>
+        <GasItem mt='mt-8' mb='mb-4' fill='#fcc482' gasOctane={87} gasType='UNLEADED'/>
+        <GasItem mt='' mb='' fill='#63c993' gasOctane={89} gasType='MID-GRADE'/>
+        <GasItem mt='mt-4' mb='mb-8' fill='#6492ec' gasOctane={91} gasType='SUPER'/>
+        <div class='flex flex-row justify-between mx-8 my-4'>
+          <p>Total Pay</p>
+          <p class='font-bold'>$125.98</p>
+        </div>
+
+        <div class='flex flex-row justify-between mx-8 my-4'>
+          <p >Discount</p>
+          <p class='font-bold text-unl-yellow'>$3.13</p>
+        </div>
+
+        <div class='flex flex-row justify-between m-8'>
+          <button class='flex h-10 mr-4 w-full justify-center items-center border-2 bg-mid-green rounded-xl border-mid-green text-white' >Confirm</button>
+          <button class='flex h-10 ml-4 w-full justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>
+            <img src="" alt="" />
+            Clear  
+          </button>
+        </div>
       </div>
 
-      <div class='flex-row'>
-        <p>Discount</p>
-        <p>$3.13</p>
-      </div>
+      <div class='flex flex-col justify-between rounded-3xl w-2/6'>
 
-      <div class='flex-row'>
-        <button>Confirm</button>
-        <button>
-          <img src="" alt="" />
-          Clear  
-        </button>
-      </div>
+        <div class='flex flex-col justify-center items-center rounded-3xl bg-white w-full h-1/2 mb-8'>
+          {/* pie chart */}
+          <PieChart/>
+          <div>
+            <div></div>
+            <p>UNLEADED<strong>40%</strong></p>
+          </div>
+          <div>
+            <div></div>
+            <p>MID-GRADE<strong>15%</strong></p>
+          </div>
+          <div>
+            <div></div>
+            <p>SUPER<strong>27%</strong></p>
+          </div>
+        </div>
+        
+        <div class='rounded-3xl bg-white w-full h-2/5'></div>
+          {/*  bar chart */}
+        </div>
+
     </div>
   );
 });
 
 interface gasItemProps{
+  mt: string
+  mb: string
   fill: string
+  gasType: string
+  gasOctane: number
 }
 
 export const GasItem = ((props: gasItemProps)=>{
  return(
-  <div class='flex-row'>
+  <div class={`flex flex-row justify-between mx-8 ${props.mt ? props.mt : ''} ${props.mb ? props.mb : ''} p-4 border-2 rounded-xl`}>
         <GasSvg fill={props.fill}/>
-        <div class='flex flex-col'>
-          <p>87</p>
-          <p>UNLEADED</p>
+        <div class='flex flex-col w-1/4'>
+          <p class='font-bold text-3xl'>{props.gasOctane}</p>
+          <p class='text-slate-400'>{props.gasType}</p>
         </div>
-        <div class='flex flex-row'>
-          <button>-</button>
-          <p>0</p>
-          <button>+</button>
+        <div class='flex flex-row items-center'>
+          <button class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green' >-</button>
+          <p class='flex justify-center items-center font-bold text-xl mx-4'>0</p>
+          <button class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>
         </div>
       </div>
  )

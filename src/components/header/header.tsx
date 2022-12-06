@@ -1,16 +1,15 @@
 import { component$, 
   // useStylesScoped$
  } from '@builder.io/qwik';
-import { Content } from '@builder.io/qwik-city';
 
 export default component$(() => {
 
   return (
-    <header class='flex flex-col h-screen items-center'>
+    <header class='flex flex-col h-screen items-center mt-8 mb-8 ml-8'>
       <div class='rounded-2xl'>
-        <h1 class='w-11/12 font-bold text-4xl text-center mt-8 mb-6'>Gas Pos System</h1>
+        <h1 class='w-11/12 font-bold text-4xl text-center mb-6'>Gas Pos System</h1>
       </div>
-      <ul class='w-11/12'>
+      <ul class='w-full'>
         <li class='h-14 mb-8'>
           <AnchorItem content='Fuel' linkto='/'/>
         </li>
@@ -39,7 +38,7 @@ interface linkProps{
 
 export const AnchorItem = ((props:linkProps)=>{
   return(
-      <a class='flex w-full h-full justify-center items-center bg-white rounded-2xl' href={props.linkto}>
+      <a class='flex w-full h-full justify-left items-center p-5 font-bold bg-white rounded-2xl' href={props.linkto}>
         {props.content}
       </a>
   )
