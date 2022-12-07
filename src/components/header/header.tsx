@@ -1,7 +1,9 @@
-import { component$} from '@builder.io/qwik';
+import { component$, JSXNode} from '@builder.io/qwik';
 import { Settings } from '../icons/settings'
 import { Food } from '../icons/food'
 import { GasSvg } from '../icons/gasPump';
+import { User } from '../icons/user'
+import { Help } from '../icons/help'
 
 export default component$(() => {
 
@@ -12,23 +14,30 @@ export default component$(() => {
       </div>
       <ul class='w-full'>
         <li class='h-14 mb-8'>
-          <AnchorItem content='Fuel' linkto='/'/>
-          <GasSvg fill='#63c99e' height='16px' width='16px'/>
+          <AnchorItem content='Fuel' icon={<GasSvg fill='#63c99e' height='16px' width='16px'/>} linkto='/'/>
         </li>
         <li class='h-14 mb-8'>
-          <AnchorItem content='Food & Drinks' linkto='/food-drinks'/>
-          <Food/>
+          <AnchorItem content='Food & Drinks' icon={<Food/>} linkto='/food-drinks'/>
         </li>
         <li class='h-14 mb-8'>
-          <AnchorItem content='Settings' linkto='/settings'/>
-          <Settings/>
+          <AnchorItem content='Settings' icon={<Settings/>} linkto='/settings'/>
         </li>
       </ul>
-      <div class='h-14 w-11/12 mb-8'>
-        sync status
+      <div class='flex flex-row justify-left items-center h-20 w-full mb-8'>
+        <a href="/" class='flex flex-col justify-center items-center h-20 w-20 border-2 rounded-2xl'> 
+          <Help/>
+          <p>Help</p> 
+        </a>
+        <div class='ml-8'>
+          <p class='text-slate-400'>Last sync</p>
+          <div class='flex flex-row items-center'>
+            <div class='w-3 h-3 rounded-full bg-mid-green mr-2'></div>
+            <p>1 Min ago</p>
+          </div>
+        </div>
       </div>
-      <div class='h-14 w-11/12'>
-        <AnchorItem content='Cashier - name' linkto='/'/>
+      <div class='h-14 w-full'>
+        <AnchorItem content='Cashier - name'  icon={<User/>} linkto='/'/>
       </div>
     </header>
   );
@@ -37,13 +46,15 @@ export default component$(() => {
 
 interface linkProps{
   linkto:string,
-  content:string
+  content:string,
+  icon:JSXNode
 }
 
 export const AnchorItem = ((props:linkProps)=>{
   return(
-      <a class='flex w-full h-full justify-left items-center p-5 font-bold bg-white rounded-2xl' href={props.linkto}>
+      <a class='flex flex-row w-full h-full justify-between items-center p-5 font-bold bg-white rounded-2xl' href={props.linkto}>
         {props.content}
+        {props.icon}
       </a>
   )
 })
