@@ -2,10 +2,10 @@ import { component$ } from "@builder.io/qwik";
 
 export default component$(()=>{
 
-
+    // dummy data for week of sales
     const gasSales = [
         {day:'mon',
-        super: 400,
+        super: 602,
         midGrade: 930,
         unleaded: 2560
         },
@@ -44,11 +44,11 @@ export default component$(()=>{
     const gasSalesChartData = ()=>{
         const dayTotals = gasSales.map(day=>{
             const dayTotal = day.midGrade + day.super + day.unleaded
-            
             return dayTotal
         })
         const highest = Math.max(...dayTotals)
         const gasSalesChartData = gasSales.map(day=>{
+            // @TODO check/correct structure of this object and gasSalesChartData array
             return {
                 day:day,
                 unleaded: Math.floor((day.unleaded / highest) * 100),
@@ -56,11 +56,8 @@ export default component$(()=>{
                 super: Math.floor((day.super / highest) * 100)
             }
         })
-
         return gasSalesChartData
     }
-
-
 
     return(
         <div class='my-8 mx-8'>
@@ -97,9 +94,9 @@ export const DayData = ((props:dayDataProps)=>{
         <div>
             <div class='flex flex-col justify-end items-center relative h-20'>
                 <div class='absolute left-1/2 -translate-x-1/2 rounded-full h-full w-1 bg-slate-200 z-0'></div>
-                <div style={`height:${props.superHeight}%;`} class='w-2 bg-sup-blue z-10 rounded-full'></div>
-                <div style={`height:${props.midGradeHeight}%;`} class='w-2 bg-mid-green z-10 rounded-full mt-1' ></div>
-                <div style={`height:${props.unleadedHeight}%;`} class='w-2 bg-unl-yellow z-10 rounded-full mt-1'></div>
+                <div style={`height:${props.superHeight}%;`} class='w-1.5 bg-sup-blue z-10 rounded-full'></div>
+                <div style={`height:${props.midGradeHeight}%;`} class='w-1.5 bg-mid-green z-10 rounded-full mt-1' ></div>
+                <div style={`height:${props.unleadedHeight}%;`} class='w-1.5 bg-unl-yellow z-10 rounded-full mt-1'></div>
             </div>
             <p class='mt-1' >{props.day}</p>
         </div>

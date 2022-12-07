@@ -1,12 +1,16 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useContext } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 // import { Link } from '@builder.io/qwik-city';
 import { GasSvg } from '../components/icons/gasPump'
 import { ClearSvg } from '../components/icons/clear'
 import PieChart from '../components/charts/pieChart'
 import BarChart from '~/components/charts/barChart';
+import { GasContext } from '~/root';
+
+
 
 export default component$(() => {
+  const gasContext = useContext(GasContext)
   return (
     <div class='flex flex-row w-full justify-between'>
       <div class='flex flex-col rounded-3xl bg-white mr-8 w-4/6'>
@@ -15,12 +19,12 @@ export default component$(() => {
         <GasItem mt='mt-4' mb='mb-8' fill='#6492ec' gasOctane={91} gasType='SUPER'/>
         <div class='flex flex-row justify-between mx-8 my-4'>
           <p>Total Pay</p>
-          <p class='font-bold'>$125.98</p>
+          <p class='font-bold'>{gasContext.price ? gasContext.price : '0.00'}$</p>
         </div>
 
         <div class='flex flex-row justify-between mx-8 my-4'>
           <p >Discount</p>
-          <p class='font-bold text-unl-yellow'>$3.13</p>
+          <p class='font-bold text-unl-yellow'>{gasContext.discount ? gasContext.discount : '0.00'}$</p>
         </div>
 
         <div class='flex flex-row justify-between m-8'>
