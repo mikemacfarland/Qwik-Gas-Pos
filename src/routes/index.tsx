@@ -1,7 +1,8 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 // import { Link } from '@builder.io/qwik-city';
-import { GasSvg } from '../img/gasPump'
+import { GasSvg } from '../components/icons/gasPump'
+import { ClearSvg } from '../components/icons/clear'
 import PieChart from '../components/pieChart'
 import BarChart from '~/components/barChart';
 
@@ -25,8 +26,8 @@ export default component$(() => {
         <div class='flex flex-row justify-between m-8'>
           <button class='flex h-10 mr-4 w-full justify-center items-center border-2 bg-mid-green rounded-xl border-mid-green text-white' >Confirm</button>
           <button class='flex h-10 ml-4 w-full justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>
-            <img src="" alt="" />
-            Clear  
+            <ClearSvg/>
+            <p class='ml-2'>Clear</p>
           </button>
         </div>
       </div>
@@ -56,8 +57,8 @@ interface gasItemProps{
 
 export const GasItem = ((props: gasItemProps)=>{
  return(
-  <div class={`flex flex-row justify-between mx-8 ${props.mt ? props.mt : ''} ${props.mb ? props.mb : ''} p-4 border-2 rounded-xl`}>
-        <GasSvg fill={props.fill}/>
+  <div class={`flex flex-row justify-between items-center mx-8 ${props.mt ? props.mt : ''} ${props.mb ? props.mb : ''} p-4 border-2 rounded-xl`}>
+        <GasSvg fill={props.fill} height='100%' width='40px'/>
         <div class='flex flex-col w-1/4'>
           <p class='font-bold text-3xl'>{props.gasOctane}</p>
           <p class='text-slate-400'>{props.gasType}</p>

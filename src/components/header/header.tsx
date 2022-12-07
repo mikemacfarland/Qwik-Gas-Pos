@@ -1,6 +1,7 @@
-import { component$, 
-  // useStylesScoped$
- } from '@builder.io/qwik';
+import { component$} from '@builder.io/qwik';
+import { Settings } from '../icons/settings'
+import { Food } from '../icons/food'
+import { GasSvg } from '../icons/gasPump';
 
 export default component$(() => {
 
@@ -12,12 +13,15 @@ export default component$(() => {
       <ul class='w-full'>
         <li class='h-14 mb-8'>
           <AnchorItem content='Fuel' linkto='/'/>
+          <GasSvg fill='#63c99e' height='16px' width='16px'/>
         </li>
         <li class='h-14 mb-8'>
           <AnchorItem content='Food & Drinks' linkto='/food-drinks'/>
+          <Food/>
         </li>
         <li class='h-14 mb-8'>
           <AnchorItem content='Settings' linkto='/settings'/>
+          <Settings/>
         </li>
       </ul>
       <div class='h-14 w-11/12 mb-8'>
