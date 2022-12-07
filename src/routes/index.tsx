@@ -32,21 +32,9 @@ export default component$(() => {
 
       <div class='flex flex-col justify-between rounded-3xl w-2/6'>
 
-        <div class='flex flex-col justify-center items-center rounded-3xl bg-white w-full h-1/2 mb-8'>
+        <div class='flex flex-col justify-center items-center rounded-3xl bg-white w-full h-content mb-8'>
           {/* pie chart */}
           <PieChart/>
-          <div>
-            <div></div>
-            <p>UNLEADED<strong>40%</strong></p>
-          </div>
-          <div>
-            <div></div>
-            <p>MID-GRADE<strong>15%</strong></p>
-          </div>
-          <div>
-            <div></div>
-            <p>SUPER<strong>27%</strong></p>
-          </div>
         </div>
         
         <div class='rounded-3xl bg-white w-full h-2/5'></div>
@@ -81,6 +69,8 @@ export const GasItem = ((props: gasItemProps)=>{
       </div>
  )
 })
+
+
 
 export const head: DocumentHead = {
   title: 'Welcome to Qwik',
