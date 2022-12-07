@@ -12,9 +12,9 @@ export default component$(()=>{
 
   //based on 20k gal tanks? idk.. 
   const gasLevels ={
-    unleaded: 20000,
-    midGrade: 20000,
-    super: 20000
+    unleaded: 17453,
+    midGrade: 10523,
+    super: 8234
   }
 
   const singleLvl = (grade:number, percentage:number)=>{

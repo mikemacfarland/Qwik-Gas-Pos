@@ -5,43 +5,62 @@ export default component$(()=>{
 
     const gasSales = [
         {day:'mon',
-        super: 40,
-        midGrade: 93,
-        unleaded: 256
+        super: 400,
+        midGrade: 930,
+        unleaded: 2560
         },
         {day: 'tue',
-        super: 62,
-        midGrade: 154,
-        unleaded: 325
+        super: 620,
+        midGrade: 1540,
+        unleaded: 3250
         },
         {day: 'wed',
-        super: 70,
-        midGrade: 190,
-        unleaded: 380
+        super: 700,
+        midGrade: 1900,
+        unleaded: 3800
         },
         {day: 'thu',
-        super: 60,
-        midGrade: 180,
-        unleaded: 312
+        super: 600,
+        midGrade: 1800,
+        unleaded: 3120
         },
         {day: 'fri',
-        super: 112,
-        midGrade: 230,
-        unleaded: 412
+        super: 1120,
+        midGrade: 2300,
+        unleaded: 4120
         },
         {day: 'sat',
-        super: 100,
-        midGrade: 242,
-        unleaded: 402
+        super: 1000,
+        midGrade: 2420,
+        unleaded: 4020
         },
         {day: 'sun',
-        super: 46,
-        midGrade: 82,
-        unleaded: 109
+        super: 1700,
+        midGrade: 1600,
+        unleaded: 2600
         }
     ]
 
-    
+    const gasSalesChartData = ()=>{
+        const dayTotals = gasSales.map(day=>{
+            const dayTotal = day.midGrade + day.super + day.unleaded
+            
+            return dayTotal
+        })
+        const highest = Math.max(...dayTotals)
+        const gasSalesChartData = gasSales.map(day=>{
+            return {
+                day:day,
+                unleaded: Math.floor((day.unleaded / highest) * 100),
+                midGrade: Math.floor((day.midGrade / highest) * 100),
+                super: Math.floor((day.super / highest) * 100)
+            }
+        })
+
+        return gasSalesChartData
+    }
+
+
 
     return(
         <div class='my-8 mx-8'>
@@ -49,10 +68,15 @@ export default component$(()=>{
                 <p>Sales</p>
                 <div>This week</div>
             </div>
-            <div class='flex flex-row justify-between '>
+            <div class='flex flex-row justify-between mt-2'>
                 {
-                gasSales.map((data)=>{
-                    return (<DayData day={data.day}/>)
+                gasSalesChartData().map(data=>{
+                    return (<DayData 
+                        day={data.day.day}
+                        superHeight={data.super}
+                        midGradeHeight={data.midGrade}
+                        unleadedHeight={data.unleaded}
+                    />)
                 })
                 }
             </div>
@@ -62,19 +86,22 @@ export default component$(()=>{
 
 interface dayDataProps{
     day: string
+    unleadedHeight: number
+    midGradeHeight: number
+    superHeight: number
 }
 
 export const DayData = ((props:dayDataProps)=>{
     // use this component to create bars within barchart
     return(
-        <div >
+        <div>
             <div class='flex flex-col justify-end items-center relative h-20'>
                 <div class='absolute left-1/2 -translate-x-1/2 rounded-full h-full w-1 bg-slate-200 z-0'></div>
-                <div class='w-2 h-4 bg-sup-blue z-10 rounded-full' ></div>
-                <div class='w-2 h-5 bg-mid-green z-10 rounded-full mt-1' ></div>
-                <div class='w-2 h-2 bg-unl-yellow z-10 rounded-full mt-1'></div>
+                <div style={`height:${props.superHeight}%;`} class='w-2 bg-sup-blue z-10 rounded-full'></div>
+                <div style={`height:${props.midGradeHeight}%;`} class='w-2 bg-mid-green z-10 rounded-full mt-1' ></div>
+                <div style={`height:${props.unleadedHeight}%;`} class='w-2 bg-unl-yellow z-10 rounded-full mt-1'></div>
             </div>
-            <p>{props.day}</p>
+            <p class='mt-1' >{props.day}</p>
         </div>
     )
 })
