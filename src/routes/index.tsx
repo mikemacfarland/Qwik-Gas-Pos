@@ -3,6 +3,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 // import { Link } from '@builder.io/qwik-city';
 import { GasSvg } from '../img/gasPump'
 import PieChart from '../components/pieChart'
+import BarChart from '~/components/barChart';
 
 export default component$(() => {
   return (
@@ -31,16 +32,16 @@ export default component$(() => {
       </div>
 
       <div class='flex flex-col justify-between rounded-3xl w-2/6'>
-
         <div class='flex flex-col justify-center items-center rounded-3xl bg-white w-full h-content mb-8'>
           {/* pie chart */}
           <PieChart/>
         </div>
         
-        <div class='rounded-3xl bg-white w-full h-2/5'></div>
+        <div class='rounded-3xl bg-white w-full h-2/5'>
           {/*  bar chart */}
-        </div>
-
+          <BarChart/>
+        </div>  
+      </div>
     </div>
   );
 });
