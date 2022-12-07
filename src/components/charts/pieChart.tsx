@@ -18,7 +18,7 @@ export default component$(()=>{
   }
 
   const singleLvl = (grade:number, percentage:number)=>{
-    const percentageOfTotal = Math.floor((grade / (gasLevels.unleaded + gasLevels.midGrade + gasLevels.super)) * percentage)
+    const percentageOfTotal = (grade / (gasLevels.unleaded + gasLevels.midGrade + gasLevels.super)) * percentage
     return percentageOfTotal
   }
 
@@ -45,9 +45,9 @@ export default component$(()=>{
             </div>
 
             <div class='mt-4'>
-            <GasStat title='UNLEADED' color='bg-unl-yellow' remainder={singleLvl(gasLevels.unleaded,100)}/>
-            <GasStat title='MID-GRADE' color='bg-mid-green' remainder={singleLvl(gasLevels.midGrade,100)}/>
-            <GasStat title='SUPER' color='bg-sup-blue' remainder={singleLvl(gasLevels.super,100)}/>
+            <GasStat title='UNLEADED' color='bg-unl-yellow' remainder={Math.floor(singleLvl(gasLevels.unleaded,100))}/>
+            <GasStat title='MID-GRADE' color='bg-mid-green' remainder={Math.floor(singleLvl(gasLevels.midGrade,100))}/>
+            <GasStat title='SUPER' color='bg-sup-blue' remainder={Math.floor(singleLvl(gasLevels.super,100))}/>
             </div>
         </div>
     )
