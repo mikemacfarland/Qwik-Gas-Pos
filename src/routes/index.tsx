@@ -3,8 +3,8 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 // import { Link } from '@builder.io/qwik-city';
 import { GasSvg } from '../components/icons/gasPump'
 import { ClearSvg } from '../components/icons/clear'
-import PieChart from '../components/pieChart'
-import BarChart from '~/components/barChart';
+import PieChart from '../components/charts/pieChart'
+import BarChart from '~/components/charts/barChart';
 
 export default component$(() => {
   return (
