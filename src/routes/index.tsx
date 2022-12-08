@@ -18,9 +18,9 @@ export default component$(() => {
   return (
     <div class='flex flex-row w-full justify-between'>
       <div class='flex flex-col rounded-3xl bg-white mr-8 w-4/6'>
-        <GasItem mt='mt-8' mb='mb-4' fill='#fcc482' gasType={gasContext.gasTypes.unleaded}/>
-        <GasItem mt='' mb='' fill='#63c993' gasType={gasContext.gasTypes.midGrade}/>
-        <GasItem mt='mt-4' mb='mb-8' fill='#6492ec' gasType={gasContext.gasTypes.super}/>
+        <GasItem mt='mt-8' mb='mb-4' fill='#fcc482' gasType={gasContext.gasTypes[0]}/>
+        <GasItem mt='' mb='' fill='#63c993' gasType={gasContext.gasTypes[1]}/>
+        <GasItem mt='mt-4' mb='mb-8' fill='#6492ec' gasType={gasContext.gasTypes[2]}/>
         <div class='flex flex-row justify-between mx-8 my-4'>
           <p>Total Pay</p>
           <p class='font-bold'>{gasContext.total ? gasContext.total : '0.00'}$</p>

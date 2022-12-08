@@ -32,7 +32,7 @@ import globalStyles from './global.css?inline';
 
 interface GasStore{
   // @TODO interface needs adittional descriptor for gastypes objects
-  gasTypes: {name:string,price:number,qty:number,octane:number}
+  gasTypes: Array<{name:string,price:number,qty:number,octane:number}>
   gasQty: number
   total: number
   discount: number
@@ -43,12 +43,12 @@ export default component$(()=>{
 useStyles$(globalStyles);
 
 const GasStore = useStore({
-    gasTypes:{
-        unleaded:{name:'unleaded', price:4.23, qty:0, octane:87},
-        midGrade:{name:'mid-grade', price:4.82, qty:0, octane:89},
-        super:{name:'super', price:5.42, qty:0, octane:91}
-    },
-    total:0,
+    gasTypes:[
+        {name:'unleaded', price:4.23, qty:0, octane:87},
+        {name:'mid-grade', price:4.82, qty:0, octane:89},
+        {name:'super', price:5.43, qty:0, octane:91}
+    ],
+    total:12.00,
     gasQty: 0,
     discount:0,
   },{recursive:true})
