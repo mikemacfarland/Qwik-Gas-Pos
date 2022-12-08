@@ -1,28 +1,65 @@
-import { component$, useContextProvider, useContext, createContext, useStore, useStyles$} from '@builder.io/qwik';
+import { component$, useContextProvider, createContext, useStore, useContext, useStyles$} from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 import globalStyles from './global.css?inline';
 
+// export const GasContext = createContext('gascontext')
+//   // @TODO set prices  of gas in settings
+// export default component$(()=>{
+  
+//   interface GasStore{
+//     gasTypes: object
+//     gasQty: number
+//     total: number
+//     discount: number
+//   }
+
+//   const GasStore = useStore({
+          
+//           gasTypes:{
+//           unleaded:{name:'unleaded', price:4.23, qty:0, octane:87},
+//           midGrade:{name:'mid-grade', price:4.82, qty:0, octane:89},
+//           super:{name:'super', price:5.42, qty:0, octane:91}
+//           },
+//           total:23.32,
+//           gasQty: 0,
+//           discount:0.05,
+//         },{recursive: true}
+//         )
+
+//   useContextProvider(GasContext,GasStore)
+//   useStyles$(globalStyles);
 
 interface GasStore{
-    price: number
-    discount:number
-  }
+  // @TODO interface needs adittional descriptor for gastypes objects
+  gasTypes: {name:string,price:number,qty:number,octane:number}
+  gasQty: number
+  total: number
+  discount: number
+}
 
 export const GasContext = createContext<GasStore>('GasContext')
 export default component$(()=>{
-  useStyles$(globalStyles);
+useStyles$(globalStyles);
+
+const GasStore = useStore({
+    gasTypes:{
+        unleaded:{name:'unleaded', price:4.23, qty:0, octane:87},
+        midGrade:{name:'mid-grade', price:4.82, qty:0, octane:89},
+        super:{name:'super', price:5.42, qty:0, octane:91}
+    },
+    total:0,
+    gasQty: 0,
+    discount:0,
+  },{recursive:true})
+
   useContextProvider(
-    GasContext,
-    useStore<GasStore>({
-      price:23.32,
-      discount:0
-    })
-  )  
+    GasContext,GasStore)
 
   return (
     <QwikCityProvider>
       <head>
+        <div>{}</div>
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -37,3 +74,5 @@ export default component$(()=>{
     </QwikCityProvider>
   );
 });
+
+

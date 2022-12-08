@@ -95,8 +95,8 @@ export const DayData = ((props:dayDataProps)=>{
             <div class='flex flex-col justify-end items-center relative h-20'>
                 <div class='absolute left-1/2 -translate-x-1/2 rounded-full h-full w-1 bg-slate-200 z-0'></div>
                 <div style={`height:${props.superHeight}%;`} class='w-1.5 bg-sup-blue z-10 rounded-full'></div>
-                <div style={`height:${props.midGradeHeight}%;`} class='w-1.5 bg-mid-green z-10 rounded-full mt-1' ></div>
-                <div style={`height:${props.unleadedHeight}%;`} class='w-1.5 bg-unl-yellow z-10 rounded-full mt-1'></div>
+                <div style={`height:${props.midGradeHeight}%;`} class='w-1.5 bg-mid-green z-10 rounded-full mt-0.5' ></div>
+                <div style={`height:${props.unleadedHeight}%;`} class='w-1.5 bg-unl-yellow z-10 rounded-full mt-0.5'></div>
             </div>
             <p class='mt-1' >{props.day}</p>
         </div>
