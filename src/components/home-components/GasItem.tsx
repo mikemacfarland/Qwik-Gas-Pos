@@ -15,13 +15,16 @@ import { GasContext } from "~/root"
 
     const decrement = $(()=>{
         props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
+        //@TODO make this a reusable function ?
         gasContext.total = gasContext.gasTypes.map((grade)=>{
-            const gradeTotal = grade.price * grade.qty
-            return gradeTotal
-            }).reduce((a,b)=>{
-                const sum = a + b
-                return sum
-            })
+          const gradeTotal = grade.price * grade.qty
+          return gradeTotal
+          })
+          .reduce((a,b)=>{
+              const sum = parseFloat((a + b).toFixed(2))
+              
+              return sum
+          })
 
         console.log(gasContext.total)
     })
@@ -30,10 +33,13 @@ import { GasContext } from "~/root"
         gasContext.total = gasContext.gasTypes.map((grade)=>{
             const gradeTotal = grade.price * grade.qty
             return gradeTotal
-            }).reduce((a,b)=>{
-                const sum = a + b
+            })
+            .reduce((a,b)=>{
+                const sum = parseFloat((a + b).toFixed(2))
+                
                 return sum
             })
+
 
         console.log(gasContext.total)
     })

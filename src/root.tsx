@@ -48,7 +48,7 @@ const GasStore = useStore({
         {name:'mid-grade', price:4.82, qty:0, octane:89},
         {name:'super', price:5.43, qty:0, octane:91}
     ],
-    total:12.00,
+    total:0,
     gasQty: 0,
     discount:0,
   },{recursive:true})

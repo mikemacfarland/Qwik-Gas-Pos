@@ -33,7 +33,7 @@ export default component$(() => {
 
         <div class='flex flex-row justify-between m-8'>
           <button class='flex h-10 mr-4 w-full justify-center items-center border-2 bg-mid-green rounded-xl border-mid-green text-white' >Confirm</button>
-          <button  onClick$={$(()=>{gasContext.discount = 0.00, gasContext.total = 0.00})} class='flex h-10 ml-4 w-full justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>
+          <button  onClick$={$(()=>{gasContext.gasTypes.forEach(type=>{type.qty = 0}), gasContext.total = 0, gasContext.discount = 0})} class='flex h-10 ml-4 w-full justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>
             <ClearSvg/>
             <p class='ml-2'>Clear</p>
           </button>
