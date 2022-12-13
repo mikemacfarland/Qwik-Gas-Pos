@@ -44,16 +44,15 @@ interface gasItemProps{
     })
 
    return(
-    <div class={`flex flex-row justifyleft items-center md:mx-4 lg:mx-8 lg:text-sm p-4 border-2 rounded-xl ${props.class}`}>
-          {/* @TODO issue with fill not working on gasSVG */}
-          <GasSvg class={`md:hidden lg:block h-full ${props.fill} `}/>
-          <div class='flex flex-col w-1/4 lg:ml-7'>
+    <div class={`flex flex-row justify-left items-center md:mx-4 lg:mx-8 lg:text-sm p-4 border-2 rounded-xl ${props.class}`}>
+          <GasSvg class={`md:hidden lg:block h-12 fill-${props.fill} `}/>
+          <div class='flex flex-col w-1/4 lg:ml-7 mr-auto'>
             <p class='font-bold md:text-2xl xl:text-3xl'>{props.gasType.octane}</p>
             <p class='text-slate-400'>{(props.gasType.name).toUpperCase()}</p>
           </div>
-          <p class=' md:mr-4 xl:mr-10 text-xl font-bold'>{props.gasType.price}$</p>
-          <div class='flex flex-row mr-auto cursor-pointer justify-center items-center h-10 px-4 border-mid-green border-2 rounded-xl '>
-            <p class='mr-3'>Pump</p>
+          <p class='mr-2 text-xl font-bold'>{props.gasType.price}$</p>
+          <div class='flex flex-row mr-2 cursor-pointer justify-center items-center h-10 px-4 border-mid-green border-2 rounded-xl '>
+            <p class='mr-1'>Pump</p>
             <DownSvg/>
           </div>
           {/* @TODO add pump # selection HERE */}

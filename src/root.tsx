@@ -23,7 +23,7 @@ useStyles$(globalStyles);
 const GasStore = useStore({
     gasTypes:[
         {name:'unleaded', price:4.23, qty:0, octane:87},
-        {name:'mid-grade', price:4.82, qty:0, octane:89},
+        {name:'midgrade', price:4.82, qty:0, octane:89},
         {name:'super', price:5.43, qty:0, octane:91}
     ],
     settings:{
