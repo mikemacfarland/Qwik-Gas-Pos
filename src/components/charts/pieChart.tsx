@@ -30,21 +30,21 @@ export default component$(()=>{
 
 
     return(
-        <div class='my-8'>
+        <div class='my-8 md:mx-4 lg:mx-6 xl:mx-8'>
             <div 
-            class='flex justify-center items-center w-52 h-52 rounded-full' 
+            class='flex justify-center items-center md:w-48 md:h-48 xl:w-52 xl:h-52 rounded-full' 
             style={`background: conic-gradient(#fcc482 0% ${singleLvl(gasLevels.unleaded,totalFuel())}%, 
             #63c99e ${singleLvl(gasLevels.unleaded,totalFuel())}% ${singleLvl(gasLevels.unleaded,totalFuel()) + singleLvl(gasLevels.midGrade,totalFuel())}%, 
             #6492ec ${singleLvl(gasLevels.midGrade,totalFuel())}% ${singleLvl(gasLevels.unleaded,totalFuel()) + singleLvl(gasLevels.midGrade,totalFuel()) + singleLvl(gasLevels.super,totalFuel())}%, 
             white ${singleLvl(gasLevels.unleaded,totalFuel()) + singleLvl(gasLevels.midGrade,totalFuel()) + singleLvl(gasLevels.super,totalFuel())}% ${100.00}%);`}>
                 
-                <div class='flex flex-col justify-center items-center w-40 h-40 bg-white rounded-full z-20' >
+                <div class='flex flex-col justify-center items-center md:w-36 md:h-36 xl:w-40 xl:h-40 bg-white rounded-full z-20' >
                     <p class='text-3xl font-bold'>{totalFuel()}%</p>
                     <p class='text-slate-400' >Fuel Left</p>
                 </div>
             </div>
 
-            <div class='mt-4'>
+            <div class='mt-4  lg:text-sm xl:text-base '>
             <GasStat title='UNLEADED' color='bg-unl-yellow' remainder={Math.floor(singleLvl(gasLevels.unleaded,100))}/>
             <GasStat title='MID-GRADE' color='bg-mid-green' remainder={Math.floor(singleLvl(gasLevels.midGrade,100))}/>
             <GasStat title='SUPER' color='bg-sup-blue' remainder={Math.floor(singleLvl(gasLevels.super,100))}/>

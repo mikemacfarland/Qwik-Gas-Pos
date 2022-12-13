@@ -60,7 +60,7 @@ export default component$(()=>{
     }
 
     return(
-        <div class='my-8 mx-8'>
+        <div class='my-8 md:mx-4 lg:mx-6 xl:mx-8'>
             <div class='flex flex-row justify-between'>
                 <p>Sales</p>
                 <div>This week</div>
@@ -98,7 +98,7 @@ export const DayData = ((props:dayDataProps)=>{
                 <div style={`height:${props.midGradeHeight}%;`} class='w-1.5 bg-mid-green z-10 rounded-full mt-0.5' ></div>
                 <div style={`height:${props.unleadedHeight}%;`} class='w-1.5 bg-unl-yellow z-10 rounded-full mt-0.5'></div>
             </div>
-            <p class='mt-1' >{props.day}</p>
+            <p class='mt-1 md:text-sm lg-text-base' >{props.day}</p>
         </div>
     )
 })
