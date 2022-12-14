@@ -43,9 +43,24 @@ interface gasItemProps{
         console.log(gasContext.total)
     })
 
+    const inputChange = $((e:any)=>{
+      props.gasType.qty = parseInt(e.target.value)
+
+      const newGasTotals = gasContext.gasTypes.map((type)=>{
+        return (type.qty * type.price)
+      }).reduce((a,b)=>{
+        return parseFloat((a + b).toFixed(2))
+      })
+
+    
+      console.log(newGasTotals)
+
+      gasContext.total = newGasTotals
+    })
+
    return(
     <div class={`flex flex-row justify-left items-center md:mx-4 lg:mx-8 lg:text-sm p-4 border-2 rounded-xl ${props.class}`}>
-          <GasSvg class={`md:hidden lg:block h-12 fill-${props.fill} `}/>
+          <GasSvg class={`md:hidden lg:block h-12 ${props.fill} `}/>
           <div class='flex flex-col w-1/4 lg:ml-7 mr-auto'>
             <p class='font-bold md:text-2xl xl:text-3xl'>{props.gasType.octane}</p>
             <p class='text-slate-400'>{(props.gasType.name).toUpperCase()}</p>
@@ -59,7 +74,7 @@ interface gasItemProps{
           <div class='flex flex-row items-center'>
             <button onClick$={$(()=>decrement())} class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>-</button>
             {/* add listener on input to change qtys on manual input */}
-            <input type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-9'></input>
+            <input onChange$={$((e)=>{inputChange(e)})} type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-9'></input>
             <button onClick$={$(()=>increment())} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>
           </div>
         </div>

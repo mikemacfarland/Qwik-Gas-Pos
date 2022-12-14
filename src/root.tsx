@@ -5,7 +5,7 @@ import globalStyles from './global.css?inline';
 
 interface GasStore{
   // @TODO interface needs adittional descriptor for gastypes objects
-  gasTypes: Array<{name:string,price:number,qty:number,octane:number}>
+  gasTypes: Array<{name:string,price:number,qty:number,octane:number,stock:number}>
   settings:{
     darkMode: boolean
     noOfPumps: number
@@ -22,9 +22,9 @@ useStyles$(globalStyles);
 
 const GasStore = useStore({
     gasTypes:[
-        {name:'unleaded', price:4.23, qty:0, octane:87},
-        {name:'midgrade', price:4.82, qty:0, octane:89},
-        {name:'super', price:5.43, qty:0, octane:91}
+        {name:'unleaded', price:4.23, qty:0, octane:87, stock:18200},
+        {name:'midgrade', price:4.82, qty:0, octane:89, stock:10400},
+        {name:'super', price:5.43, qty:0, octane:91, stock:15600}
     ],
     settings:{
       darkMode: false,
