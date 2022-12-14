@@ -4,11 +4,11 @@ import Header from '../components/header/header';
 export default component$(() => {
   return (
     <>
-      <main class='flex flex-row justify-between bg-neutral-100'>
-        <section class='w-1/5 border-2 border-solid border-red-500'>
+      <main class='flex flex-col lg:flex-row justify-between m-4 xl:m-8'>
+        <section class='lg:mr-4 xl:mr-8'>
           <Header />
         </section>
-        <section class='w-3/4 border-2 border-solid border-red-500'>
+        <section class='lg:w-4/5'>
           <Slot />
         </section>
       </main>
