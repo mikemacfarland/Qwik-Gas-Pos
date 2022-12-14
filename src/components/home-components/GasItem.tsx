@@ -65,7 +65,7 @@ interface gasItemProps{
             <p class='font-bold md:text-2xl xl:text-3xl'>{props.gasType.octane}</p>
             <p class='text-slate-400'>{(props.gasType.name).toUpperCase()}</p>
           </div>
-          <p class='mr-2 text-xl font-bold'>{props.gasType.price}$</p>
+          <p class='mr-4 text-xl font-bold'>{props.gasType.price}$</p>
           <div class='flex flex-row mr-2 cursor-pointer justify-center items-center h-10 px-4 border-mid-green border-2 rounded-xl '>
             <p class='mr-1'>Pump</p>
             <DownSvg/>
