@@ -5,7 +5,7 @@ import { GasContext } from "~/root"
 
 interface gasItemProps{
     fill: string
-    gasType: object
+    gasType: {qty:number, name:string, octane:number, price:number}
     class:string
   }
   
@@ -43,7 +43,7 @@ interface gasItemProps{
         console.log(gasContext.total)
     })
 
-    const inputChange = $((e:any)=>{
+    const inputChange = $((e)=>{
       props.gasType.qty = parseInt(e.target.value)
 
       const newGasTotals = gasContext.gasTypes.map((type)=>{

@@ -1,4 +1,5 @@
 import { component$, JSXNode} from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 import { Settings } from '../icons/settings'
 import { Food } from '../icons/food'
 import { GasSvg } from '../icons/gasPump';
@@ -51,9 +52,9 @@ interface linkProps{
 
 export const AnchorItem = ((props:linkProps)=>{
   return(
-      <a class={`flex flex-row w-full h-full justify-between items-center font-bold bg-white rounded-2xl px-4${props.class}`} href={props.linkto}>
+      <Link class={`flex flex-row w-full h-full justify-between items-center font-bold bg-white rounded-2xl px-4${props.class}`} href={props.linkto}>
         {props.content}
         {props.icon}
-      </a>
+      </Link>
   )
 })

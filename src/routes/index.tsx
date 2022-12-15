@@ -7,7 +7,6 @@ import { ClearSvg } from '../components/icons/clear'
 import PieChart from '../components/charts/pieChart'
 import BarChart from '~/components/charts/barChart';
 import { GasContext }  from '~/root';
-// im
 
 export default component$(() => {
   const gasContext = useContext(GasContext)
@@ -16,14 +15,14 @@ export default component$(() => {
   // @TODO add a pump selection buttons maybe up to 4? or 8?
   // @TODO put # of pumps in settings
   return (
-    <div class='flex flex-row w-full justify-between'>
+    <div class='relative flex flex-row w-full justify-between'>
       <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 w-4/6'>
         <GasItem class='mt-8 mb-4' fill='fill-unl-yellow' gasType={gasContext.gasTypes[0]}/>
         <GasItem class='' fill='fill-mid-green' gasType={gasContext.gasTypes[1]}/>
         <GasItem class='mt-4 mb-8' fill='fill-sup-blue' gasType={gasContext.gasTypes[2]}/>
         <div class='flex flex-row justify-between md:mx-4 lg:mx-8 my-4' >
-          <p>Total Pay</p>
-          <p class='font-bold'>{gasContext.total ? gasContext.total : '0.00'}$</p>
+          <p>Total Balance</p>
+          <p class='font-bold'>{parseFloat((gasContext.total + gasContext.merchTotal).toFixed(2))}$</p>
         </div>
 
         <div class='flex flex-row justify-between md:mx-4 lg:mx-8 my-4'>
@@ -32,8 +31,8 @@ export default component$(() => {
         </div>
 
         <div class='flex flex-row justify-between md:mx-4 lg:mx-8 m-8'>
-          <button class='flex h-10 mr-4 w-full justify-center items-center border-2 bg-mid-green rounded-xl border-mid-green text-white' >Confirm</button>
-          <button  onClick$={$(()=>{gasContext.gasTypes.forEach(type=>{type.qty = 0}), gasContext.total = 0, gasContext.discount = 0})} class='flex h-10 ml-4 w-full justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>
+          <button onClick$={$(()=>gasContext.layout.overlay = true)} class='flex h-10 mr-4 w-full justify-center items-center border-2 bg-mid-green rounded-xl border-mid-green text-white' >Confirm</button>
+          <button onClick$={$(()=>{gasContext.gasTypes.forEach(type=>{type.qty = 0}), gasContext.total = 0, gasContext.merchTotal = 0, gasContext.discount = 0})} class='flex h-10 ml-4 w-full justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>
             <ClearSvg/>
             <p class='ml-2'>Clear</p>
           </button>

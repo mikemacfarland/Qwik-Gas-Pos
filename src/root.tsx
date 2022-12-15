@@ -10,9 +10,14 @@ interface GasStore{
     darkMode: boolean
     noOfPumps: number
     metric: boolean
+    taxRate: number
   }
-  gasQty: number
+  layout:{
+    overlay:boolean
+  }
+  
   total: number
+  merchTotal: number
   discount: number
 }
 
@@ -30,9 +35,13 @@ const GasStore = useStore({
       darkMode: false,
       noOfPumps: 4,
       metric: false,
+      taxRate: .07
+    },
+    layout:{
+      overlay:false
     },
     total:0,
-    gasQty: 0,
+    merchTotal:3.99,
     discount:0,
   },{recursive:true})
 
