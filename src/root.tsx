@@ -14,8 +14,12 @@ interface GasStore{
   }
   layout:{
     overlay:boolean
+    message:any
   }
-  
+  payment:{
+    card:boolean
+    paymentProcessing: boolean
+  }
   total: number
   merchTotal: number
   discount: number
@@ -25,6 +29,7 @@ export const GasContext = createContext<GasStore>('GasContext')
 export default component$(()=>{
 useStyles$(globalStyles);
 
+// @TODO can separate this store into separate stores depending on component sets that use store to limit re-renders?
 const GasStore = useStore({
     gasTypes:[
         {name:'unleaded', price:4.23, qty:0, octane:87, stock:18200},
@@ -38,7 +43,12 @@ const GasStore = useStore({
       taxRate: .07
     },
     layout:{
-      overlay:false
+      overlay:true,
+      message: null
+    },
+    payment:{
+      card:true,
+      paymentProcessing: false
     },
     total:0,
     merchTotal:3.99,
