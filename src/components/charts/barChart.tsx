@@ -48,7 +48,6 @@ export default component$(()=>{
         })
         const highest = Math.max(...dayTotals)
         const gasSalesChartData = gasSales.map(day=>{
-            // @TODO check/correct structure of this object and gasSalesChartData array
             return {
                 day:day,
                 unleaded: Math.floor((day.unleaded / highest) * 100),
@@ -69,6 +68,7 @@ export default component$(()=>{
                 {
                 gasSalesChartData().map(data=>{
                     return (<DayData 
+                        key={data.day.day}
                         day={data.day.day}
                         superHeight={data.super}
                         midGradeHeight={data.midGrade}
@@ -82,6 +82,7 @@ export default component$(()=>{
 })
 
 interface dayDataProps{
+    key:string
     day: string
     unleadedHeight: number
     midGradeHeight: number
@@ -91,7 +92,7 @@ interface dayDataProps{
 export const DayData = ((props:dayDataProps)=>{
     // use this component to create bars within barchart
     return(
-        <div>
+        <div key={props.key}>
             <div class='flex flex-col justify-end items-center relative h-20'>
                 <div class='absolute left-1/2 -translate-x-1/2 rounded-full h-full w-1 bg-slate-200 z-0'></div>
                 <div style={`height:${props.superHeight}%;`} class='w-1.5 bg-sup-blue z-10 rounded-full'></div>
