@@ -43,7 +43,7 @@ const GasStore = useStore({
       taxRate: .07
     },
     layout:{
-      overlay:true,
+      overlay:false,
       message: null
     },
     payment:{

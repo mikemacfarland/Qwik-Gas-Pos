@@ -8,6 +8,12 @@ export default component$(()=>{
     const totalTax = parseFloat((gasContext.merchTotal * gasContext.settings.taxRate).toFixed(2))
 
     const confirmClick = $(()=>{
+        
+        const  closeOverlay = (timeout:number)=>{setTimeout(()=>{
+                gasContext.layout.overlay = false 
+                gasContext.layout.message = null
+            },timeout)}
+
         if(gasContext.payment.card){
         gasContext.payment.paymentProcessing = true
         setTimeout(()=>{
@@ -15,11 +21,12 @@ export default component$(()=>{
             gasContext.layout.message = 'Payment Successful! 🎉'
         },6000)}
             
-        setTimeout(()=>{
-                gasContext.layout.overlay = false 
-                gasContext.layout.message = null
-            },8000)
+        closeOverlay(8000)
         
+        if(!gasContext.payment.card){
+            gasContext.layout.message = 'Payment Successful! 🎉'
+            closeOverlay(2000)
+        }
         
     })
 
