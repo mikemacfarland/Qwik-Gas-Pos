@@ -9,7 +9,6 @@ interface GasStore{
   settings:{
     darkMode: boolean
     noOfPumps: number
-    metric: boolean
     taxRate: number
   }
   layout:{
@@ -39,7 +38,6 @@ const GasStore = useStore({
     settings:{
       darkMode: false,
       noOfPumps: 4,
-      metric: false,
       taxRate: .07
     },
     layout:{
