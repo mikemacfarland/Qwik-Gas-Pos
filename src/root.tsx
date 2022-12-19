@@ -49,7 +49,7 @@ const GasStore = useStore({
       paymentProcessing: false
     },
     total:0,
-    merchTotal:3.99,
+    merchTotal:0,
     discount:0,
   },{recursive:true})
 

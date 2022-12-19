@@ -1,4 +1,4 @@
-import { component$, useStore, $,useContext} from "@builder.io/qwik";
+import { component$, $,useContext} from "@builder.io/qwik";
 import { GasContext } from "~/root";
 import Loader from "../icons/loader";
 
@@ -14,16 +14,20 @@ export default component$(()=>{
                 gasContext.layout.message = null
             },timeout)}
 
-        if(gasContext.payment.card){
+        if(gasContext.total === 0){
+                gasContext.layout.message = 'Balance is 0! 💸'
+                closeOverlay(2000)
+        }
+
+        if(gasContext.payment.card && gasContext.total > 0){
         gasContext.payment.paymentProcessing = true
         setTimeout(()=>{
             gasContext.payment.paymentProcessing = false
             gasContext.layout.message = 'Payment Successful! 🎉'
+            closeOverlay(2000)
         },6000)}
-            
-        closeOverlay(8000)
         
-        if(!gasContext.payment.card){
+        if(!gasContext.payment.card && gasContext.total > 0){
             gasContext.layout.message = 'Payment Successful! 🎉'
             closeOverlay(2000)
         }
