@@ -5,7 +5,9 @@ import Loader from "../icons/loader";
 export default component$(()=>{
     const gasContext = useContext(GasContext)
 
-    const totalTax = parseFloat((gasContext.merchTotal * gasContext.settings.taxRate).toFixed(2))
+    const totalTax = parseFloat((gasContext.merchTotal * (gasContext.settings.taxRate / 100)).toFixed(2))
+
+    const totalCharge = parseFloat((gasContext.total + gasContext.merchTotal + totalTax).toFixed(2))
 
     const confirmClick = $(()=>{
         
@@ -14,21 +16,30 @@ export default component$(()=>{
                 gasContext.layout.message = null
             },timeout)}
 
-        if(gasContext.total === 0){
+        const updateGasTotals = ()=>{
+            gasContext.gasTypes.forEach((type)=>{
+               type.stock = type.stock - type.qty
+               type.qty = 0
+            })
+        }
+
+        if(totalCharge === 0){
                 gasContext.layout.message = 'Balance is 0! 💸'
                 closeOverlay(2000)
         }
 
-        if(gasContext.payment.card && gasContext.total > 0){
+        if(gasContext.payment.card && totalCharge > 0){
         gasContext.payment.paymentProcessing = true
         setTimeout(()=>{
             gasContext.payment.paymentProcessing = false
             gasContext.layout.message = 'Payment Successful! 🎉'
+            updateGasTotals()
             closeOverlay(2000)
         },6000)}
         
-        if(!gasContext.payment.card && gasContext.total > 0){
+        if(!gasContext.payment.card && totalCharge > 0){
             gasContext.layout.message = 'Payment Successful! 🎉'
+            updateGasTotals()
             closeOverlay(2000)
         }
         
@@ -54,7 +65,7 @@ export default component$(()=>{
             </div>
             <div class='flex flex-row justify-between px-8 my-6'>
                 <p>Total Charge</p>
-                <p>{parseFloat((gasContext.total + gasContext.merchTotal + totalTax).toFixed(2))}</p>
+                <p>{totalCharge}</p>
             </div>
             <div class='flex flex-col justify-center items-center'>
                 { gasContext.payment.card ? 

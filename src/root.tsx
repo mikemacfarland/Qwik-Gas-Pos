@@ -38,7 +38,7 @@ const GasStore = useStore({
     settings:{
       darkMode: false,
       noOfPumps: 4,
-      taxRate: .07
+      taxRate: 7
     },
     layout:{
       overlay:false,
@@ -49,7 +49,7 @@ const GasStore = useStore({
       paymentProcessing: false
     },
     total:0,
-    merchTotal:0,
+    merchTotal:23.32,
     discount:0,
   },{recursive:true})
 

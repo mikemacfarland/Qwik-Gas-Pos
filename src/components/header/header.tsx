@@ -1,5 +1,5 @@
-import { component$, JSXNode} from '@builder.io/qwik';
-import { Link } from '@builder.io/qwik-city';
+import { component$, JSXNode,} from '@builder.io/qwik';
+import { Link, useLocation} from '@builder.io/qwik-city';
 import { Settings } from '../icons/settings'
 import { Food } from '../icons/food'
 import { GasSvg } from '../icons/gasPump';
@@ -8,18 +8,24 @@ import { Help } from '../icons/help'
 
 export default component$(() => {
 
+  const checkPath = (path:string)=>{
+    // useLocation() is Qwiks api for  window.location and returns a similar object
+    const location = useLocation()
+    return location.pathname === path ? true : false
+  } 
+
   return (
     <header class='flex flex-row flex-wrap lg:flex-nowrap lg:flex-col lg:h-full items-center'>
         <h1 class='align-middle font-bold text-4xl text-center  lg:mb-6 md:mr-auto'>Gas Pos System</h1>
       <ul class='lg:w-full flex md:flex-row lg:flex-col'>
         <li class='h-14 lg:mb-8 mr-4 lg:mr-0'>
-          <AnchorItem content='Fuel' class='' icon={<GasSvg class='fill-mid-green h-4 w-4 ml-2'/>} linkto='/'/>
+          <AnchorItem content='Fuel' class={checkPath('/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<GasSvg class='fill-inherit h-4 w-4 ml-2'/>} linkto='/'/>
         </li>
         <li class='h-14 lg:mb-8 md:mr-4 lg:mr-0'>
-          <AnchorItem content='Food/Drinks' class='' icon={<Food class='fill-mid-green h-4 w-4 ml-2'/>} linkto='/food-drinks'/>
+          <AnchorItem content='Food/Drinks' class={checkPath('/food-drinks/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<Food class='fill-inherit h-4 w-4 ml-2'/>} linkto='/food-drinks'/>
         </li>
         <li class='h-14 lg:mb-8'>
-          <AnchorItem content='Settings' class='' icon={<Settings class='fill-mid-green h-4 w-4 ml-2'/>} linkto='/settings'/>
+          <AnchorItem content='Settings' class={checkPath('/settings/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<Settings class='fill-inherit h-4 w-4 ml-2'/>} linkto='/settings'/>
         </li>
       </ul>
       <div class='flex flex-row justify-left items-center h-20 md:mr-auto md:w-1/2 lg:w-full lg:mb-8'>
@@ -36,7 +42,8 @@ export default component$(() => {
         </div>
       </div>
       <div class='h-14 w-content lg:w-full'>
-        <AnchorItem content='Cashier - name' class='' icon={<User class='ml-4 w-4 h-4 fill-mid-green'/>} linkto='/'/>
+        {/* @TODO create a cashier page route for this link */}
+        <AnchorItem content='Cashier - name' class={checkPath('/cashier')  ? 'bg-mid-green text-white fill-white' : 'text-black '} icon={<User class='ml-4 w-4 h-4 fill-inherit'/>} linkto='/'/>
       </div>
     </header>
   );
@@ -52,7 +59,7 @@ interface linkProps{
 
 export const AnchorItem = ((props:linkProps)=>{
   return(
-      <Link class={`flex flex-row w-full h-full justify-between items-center font-bold bg-white rounded-2xl px-4${props.class}`} href={props.linkto}>
+      <Link class={`flex flex-row w-full h-full justify-between items-center font-bold rounded-2xl px-4 hover:bg-mid-green hover:text-white fill-mid-green hover:fill-white ${props.class}`} href={props.linkto}>
         {props.content}
         {props.icon}
       </Link>

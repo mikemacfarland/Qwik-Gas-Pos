@@ -17,6 +17,11 @@ interface gasItemProps{
       selectedPump: null
     })
 
+    const gasPumps = []
+    for(let i = 0; i < gasContext.settings.noOfPumps; i++){
+      gasPumps.push([i+1])
+    }
+
     const decrement = $(()=>{
         props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
         //@TODO make this a reusable function ?
@@ -80,21 +85,18 @@ interface gasItemProps{
             <p class='text-slate-400'>{(props.gasType.name).toUpperCase()}</p>
           </div>
           <p class='mr-4 text-xl font-bold'>{props.gasType.price}$</p>
-          <div onClick$={$((e)=>{pumpDropDown(e)})} class='relative flex flex-row mr-2 cursor-pointer justify-center items-center h-10 px-4 border-mid-green border-2 rounded-xl '>
-            <p  class='cursor-pointer mr-1'>{gasItemStore.selectedPump ? gasItemStore.selectedPump : 'Pump'}</p>
+          <div onClick$={$((e)=>{pumpDropDown(e)})} class='min-w-22 relative flex flex-row mr-2 cursor-pointer justify-center items-center h-10 px-4 border-mid-green border-2 rounded-xl '>
+            <p  class='cursor-pointer mr-1 w-full'>{gasItemStore.selectedPump ? gasItemStore.selectedPump : 'Pump'}</p>
             <DownSvg class='fill-mid-green h-4 w-4'/>
-            <div class={`absolute top-3/4 w-full bg-white z-20 border-x-2 border-b-2 border-b-mid-green border-x-mid-green rounded-b-xl ${gasItemStore.dropdown ? 'block' : 'hidden'}`}>
-              <p onClick$={$((e)=>{selectPump(e)})} class='h-8'>1</p>
-              <p onClick$={$((e)=>{selectPump(e)})} class='h-8'>2</p>
-              <p onClick$={$((e)=>{selectPump(e)})} class='h-8'>3</p>
-              <p onClick$={$((e)=>{selectPump(e)})} class='h-8'>4</p>
+            <div class={`absolute top-3/4 w-full bg-white z-20 border-x-2 border-b-2 border-b-mid-green border-x-mid-green rounded-b-xl overflow-hidden ${gasItemStore.dropdown ? 'block' : 'hidden'}`}>
+              { gasPumps.map((pump)=>{
+                return (<p onClick$={$((e)=>{selectPump(e)})} class='flex justify-left items-center h-8 pl-4 w-full bg-white hover:bg-mid-green hover:text-white'>{pump}</p>)
+                })
+              }
             </div>
           </div>
-          
-          {/* @TODO add pump # selection HERE */}
           <div class='flex flex-row items-center'>
             <button onClick$={$(()=>decrement())} class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>-</button>
-            {/* add listener on input to change qtys on manual input */}
             <input onChange$={$((e)=>{inputChange(e)})} type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-9'></input>
             <button onClick$={$(()=>increment())} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>
           </div>
