@@ -1,7 +1,7 @@
 import { component$, JSXNode,} from '@builder.io/qwik';
 import { Link, useLocation} from '@builder.io/qwik-city';
 import { Settings } from '../icons/settings'
-import { Food } from '../icons/food'
+import { FoodSvg } from '../icons/food'
 import { GasSvg } from '../icons/gasPump';
 import { User } from '../icons/user'
 import { Help } from '../icons/help'
@@ -22,7 +22,7 @@ export default component$(() => {
           <AnchorItem content='Fuel' class={checkPath('/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<GasSvg class='fill-inherit h-4 w-4 ml-2'/>} linkto='/'/>
         </li>
         <li class='h-14 lg:mb-8 md:mr-4 lg:mr-0'>
-          <AnchorItem content='Food/Drinks' class={checkPath('/food-drinks/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<Food class='fill-inherit h-4 w-4 ml-2'/>} linkto='/food-drinks'/>
+          <AnchorItem content='Food/Drinks' class={checkPath('/food-drinks/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<FoodSvg class='fill-inherit h-4 w-4 ml-2'/>} linkto='/food-drinks'/>
         </li>
         <li class='h-14 lg:mb-8'>
           <AnchorItem content='Settings' class={checkPath('/settings/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<Settings class='fill-inherit h-4 w-4 ml-2'/>} linkto='/settings'/>

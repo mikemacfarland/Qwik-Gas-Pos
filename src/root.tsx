@@ -10,6 +10,7 @@ interface GasStore{
     noOfPumps: number
     taxRate: number
   }
+  foodTypes: Array<{name:string,type:string,price:number,qty:number}>
   layout:{
     overlay:boolean
     message:any
@@ -34,6 +35,9 @@ const GasStore = useStore({
         {name:'midgrade', price:4.82, qty:0, octane:89, stock:10400},
         {name:'super', price:5.43, qty:0, octane:91, stock:15600}
     ],
+    foodTypes:[
+      {name:'Pepperoni Pizza Slice', type:'Pizza', price:2.49, qty:0}
+    ],
     settings:{
       darkMode: false,
       noOfPumps: 4,
@@ -47,6 +51,7 @@ const GasStore = useStore({
       card:true,
       paymentProcessing: false
     },
+    
     total:0,
     merchTotal:23.32,
     discount:0,
