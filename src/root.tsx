@@ -4,7 +4,6 @@ import { RouterHead } from './components/router-head/router-head';
 import globalStyles from './global.css?inline';
 
 interface GasStore{
-  // @TODO interface needs adittional descriptor for gastypes objects
   gasTypes: Array<{name:string,price:number,qty:number,octane:number,stock:number}>
   settings:{
     darkMode: boolean

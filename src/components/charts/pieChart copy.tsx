@@ -1,9 +1,6 @@
 import { component$,useContext } from "@builder.io/qwik";
 import { GasContext } from "~/root";
 
-// @TODO copy this component before tyring to modify it into a reusable component
-
-
 export default component$(()=>{
   const gasContext = useContext(GasContext)
 

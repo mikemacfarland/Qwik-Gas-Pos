@@ -22,6 +22,9 @@ interface gasItemProps{
       gasPumps.push([i+1])
     }
 
+    
+
+
     const decrement = $(()=>{
         props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
         //@TODO make this a reusable function ?

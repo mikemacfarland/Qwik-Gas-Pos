@@ -8,10 +8,13 @@ export default component$(()=>{
     const gasContext = useContext(GasContext)
 
     // @TODO use this component to pass other components into it as children eg: 
+    //  @TODO use store to set which child should be visible within the overlay.
     //      - pay screen 
     //      - user sign in screen 
     //      - sync screen 
     //      - help screen.
+
+    
     
     const paymentClick = $((e)=>{
         e.stop
