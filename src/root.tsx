@@ -36,7 +36,8 @@ const GasStore = useStore({
         {name:'super', price:5.43, qty:0, octane:91, stock:15600}
     ],
     foodTypes:[
-      {name:'Pepperoni Pizza Slice', type:'Pizza', price:2.49, qty:0}
+      {name:'Pepperoni Pizza Slice', type:'Pizza', price:2.49, qty:0},
+      {name:'Big Chongus', type:'Hot Dog',price:4.99,qty:0}
     ],
     settings:{
       darkMode: false,
@@ -52,8 +53,9 @@ const GasStore = useStore({
       paymentProcessing: false
     },
     
+    //@TODO total should be gasTotal
     total:0,
-    merchTotal:23.32,
+    merchTotal:0,
     discount:0,
   },{recursive:true})
 

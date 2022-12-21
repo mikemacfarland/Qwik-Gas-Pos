@@ -23,49 +23,28 @@ interface gasItemProps{
     }
 
     
+    const gasTotal = $(()=>{
+      const newGasTotal = gasContext.gasTypes.map((type)=>{
+        return (type.price * type.qty)
+      }).reduce((a,b)=>{
+        return parseFloat((a + b).toFixed(2))
+      })
 
+      gasContext.total = newGasTotal
+    })
 
     const decrement = $(()=>{
         props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
-        //@TODO make this a reusable function ?
-        gasContext.total = gasContext.gasTypes.map((grade)=>{
-          const gradeTotal = grade.price * grade.qty
-          return gradeTotal
-          })
-          .reduce((a,b)=>{
-              const sum = parseFloat((a + b).toFixed(2))
-              
-              return sum
-          })
-
-        console.log(gasContext.total)
+        gasTotal()
     })
 
     const increment = $(()=>{props.gasType.qty++
-        gasContext.total = gasContext.gasTypes.map((grade)=>{
-            const gradeTotal = grade.price * grade.qty
-            return gradeTotal
-            })
-            .reduce((a,b)=>{
-                const sum = parseFloat((a + b).toFixed(2))
-                
-                return sum
-            })
-
-
-        console.log(gasContext.total)
+        gasTotal()
     })
 
     const inputChange = $((e)=>{
       props.gasType.qty = parseInt(e.target.value)
-
-      const newGasTotals = gasContext.gasTypes.map((type)=>{
-        return (type.qty * type.price)
-      }).reduce((a,b)=>{
-        return parseFloat((a + b).toFixed(2))
-      })
-      console.log(newGasTotals)
-      gasContext.total = newGasTotals
+      gasTotal()
     })
 
     const pumpDropDown = $((e)=>{

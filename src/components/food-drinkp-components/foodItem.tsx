@@ -21,21 +21,33 @@ interface foodItemProps{
 export default component$((props:foodItemProps)=>{
     const gasContext = useContext(GasContext)
 
+    const merchTotal = $(()=>{
+        const newMerchTotal = gasContext.foodTypes.map((type)=>{
+            return (type.qty * type.price)
+          }).reduce((a,b)=>{
+            return parseFloat((a + b).toFixed(2))
+          })
+          gasContext.merchTotal = newMerchTotal
+    })
+
     const changeQty = $((e)=>{
         gasContext.foodTypes.map((type)=>{
             if(type.name === props.name)  type.qty = e.target.value
-        })
+            merchTotal()
+        })          
     })
 
     const increment = $(()=>{
         gasContext.foodTypes.map((type)=>{
             if(type.name === props.name)  type.qty ++
+            merchTotal()
         })
     })
 
     const decrement = $(()=>{
         gasContext.foodTypes.map((type)=>{
             if(type.name === props.name && type.qty > 0)  type.qty --
+            merchTotal()
         })
     })
     
@@ -43,9 +55,9 @@ export default component$((props:foodItemProps)=>{
         <div class={`flex flex-row justify-left items-center h-14 p-4 md:mx-4 lg:mx-8 lg:text-sm border-2 rounded-xl ${props.class}`}>
 
                 <p>{props.name}</p>
-                <p>{props.price}</p>
+                <p class='font-bold ml-auto'>{props.price}</p>
 
-                <div class='flex flex-row justify-center items-center ml-auto'>
+                <div class='flex flex-row justify-center items-center ml-4'>
                     <div class={`${props.type === ('Coffee' || 'Soda') ? 'flex flex-row' : 'hidden'} `}>
                         <button class='w-10 h-10'>Sm</button>
                         <button class='w-10 h-10'>Md</button>
