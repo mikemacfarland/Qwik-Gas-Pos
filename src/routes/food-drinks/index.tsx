@@ -20,12 +20,15 @@ export default component$(() => {
   const foodStore = useStore({
     createItem:false,
     dropdown:false,
-    types:['Pizza','Coffee','Hot Dog','Bkfst','Salad','Misc'],
-    newItem:{name:'',type:'',price:''}
+    types:['Pizza','Coffee','Hot Dog','Bkfst','Salad','Misc','Soda','Coffee'],
+    newItem:{name:'',type:'',price:'',qty:0}
   })
 
   const createItem = $(()=>{
-    console.log('createitem')
+    // ISSUE SOLVED - shallow copy of foodstore.item was causing gasContext.foodtypes to use same reference for every object in array
+    // use spread opperator to make a copy with no reference to original.
+    // const newItem = JSON.parse(JSON.stringify(foodStore.newItem))
+    gasContext.foodTypes.push({...foodStore.newItem})
   })
 
   return (
@@ -35,15 +38,19 @@ export default component$(() => {
           <div class='md:my-4'>
           {gasContext.foodTypes.map((type)=>{
             return(
-              <FoodItem type={type.type} class='h-10' name={type.name} price={type.price} qty={type.qty}/>
+              <FoodItem key={type.name + type.price} type={type.type} class='h-10' name={type.name} price={type.price} qty={type.qty}/>
             )
           })}
           </div>
           <button onClick$={$(()=>foodStore.createItem = true)} class={`${foodStore.createItem? 'hidden' : 'block'} mx-auto mt-4  h-10 rounded-xl text-white w-1/2 bg-mid-green`}>Create Item</button>
+          
+          {/* Create item section */}
+          {/* @TODO when item is added make sure fields are filled out with unique name that isnt in store already */}
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>
             {/* @TODO make text dissapear when click into inputs */}
-            <input type="text" value='Name' class='mr-4'/>
-            <input type="text" value='Price $' class='w-12 mr-auto' />
+            <input onChange$={$((e)=>{foodStore.newItem.name = e.target.value})} type="text" value='Name' class='mr-4'/>
+            {/* @TODO price needs to be parsed in a function to make sure its a number */}
+            <input onChange$={$((e)=>{foodStore.newItem.price = e.target.value})} type="text" value='Price $' class='w-12 mr-auto' />
 
             <div class={`flex flex-col w-24 mr-2 border-2 border-mid-green rounded-xl cursor-pointer bg-white z-10 ${foodStore.dropdown ? 'h-fit' :'overflow-hidden h-10'}`}>
               <ul class='items-center justify-between w-full h-fit'> 
