@@ -34,6 +34,11 @@ export default component$(() => {
     foodStore.createItem = false
   })
 
+  const setItemPrice = $((e)=>{
+    
+    
+  })
+
   return (
     <div class='relative flex flex-row w-full justify-between'>
       <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 w-4/6'>
@@ -51,14 +56,22 @@ export default component$(() => {
             <button onClick$={()=>foodStore.createItem = true} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Create Item</button>
             <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block ml-8  h-10 rounded-xl text-mid-green w-1/3 border-2 border-mid-green bg-white'>Edit Items</button>
           </div>
-          {/* Create item section */}
           {/* @TODO put create item and edit items inside the same container as create item dialog, refactor */}
           {/* @TODO when item is added make sure fields are filled out with unique name that isnt in store already */}
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>
-            {/* @TODO make text dissapear when click into inputs */}
-            <input onChange$={(e)=>{foodStore.newItem.name = e.target.value}} type="text" value='Name' class='mr-4'/>
+            <input 
+              onChange$={(e)=>{foodStore.newItem.name = e.target.value}} 
+              onFocus$={(e)=>e.target.value === 'Name' ? e.target.value = '' : e.target.value} 
+              onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Name'} 
+              type="text" value='Name' class='mr-4'
+            />
             {/* @TODO price needs to be parsed in a function to make sure its a number */}
-            <input onChange$={(e)=>{foodStore.newItem.price = e.target.value}} type="text" value='Price $' class='w-12 mr-auto' />
+            <input 
+              onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.price = e.target.value}} 
+              onFocus$={(e)=>e.target.value === 'Price $' ? e.target.value = '' : e.target.value} 
+              onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Price $'}
+              type="text" value='Price $' class='w-12 mr-auto' 
+            />
 
             <div class={`flex flex-col w-24 mr-2 border-2 border-mid-green rounded-xl cursor-pointer bg-white z-10 ${foodStore.dropdown ? 'h-fit' :'overflow-hidden h-10'}`}>
               <ul class='items-center justify-between w-full h-fit'> 

@@ -30,7 +30,9 @@ export default component$((props:foodItemProps)=>{
           gasContext.merchTotal = newMerchTotal
     })
 
+    // @TODO the below 3 functions could be one function for refactor
     const changeQty = $((e)=>{
+        e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
         gasContext.foodTypes.map((type)=>{
             if(type.name === props.name)  type.qty = e.target.value
             merchTotal()
@@ -63,9 +65,9 @@ export default component$((props:foodItemProps)=>{
                         <button class='w-10 h-10'>Md</button>
                         <button class='w-10 h-10'>Lg</button>
                     </div>
-                    <button onClick$={$(()=>{decrement()})} class='w-10 h-10 border-2 border-mid-green rounded-xl text-mid-green'>-</button>
-                    <input onChange$={$((e)=>{changeQty(e)})} class='w-6 text-center mx-2' type="text" value={props.qty}/>
-                    <button onClick$={$(()=>{increment()})} class='w-10 h-10 rounded-xl bg-mid-green text-white'>+</button>
+                    <button onClick$={()=>decrement()} class='w-10 h-10 border-2 border-mid-green rounded-xl text-mid-green'>-</button>
+                    <input onChange$={(e)=>changeQty(e)} class='w-6 text-center mx-2 font-bold' type="text" value={props.qty}/>
+                    <button onClick$={()=>increment()} class='w-10 h-10 rounded-xl bg-mid-green text-white'>+</button>
                 </div>
             {/* <button></button> this will be for deleting items*/}
         </div>

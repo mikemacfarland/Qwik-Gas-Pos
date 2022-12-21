@@ -42,7 +42,9 @@ interface gasItemProps{
         gasTotal()
     })
 
+    // @TODO figure out how to get typscript to work with (e) being passed as argument
     const inputChange = $((e)=>{
+      e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
       props.gasType.qty = parseInt(e.target.value)
       gasTotal()
     })
@@ -56,6 +58,7 @@ interface gasItemProps{
 
     const selectPump = $((e)=>{
       gasItemStore.selectedPump === parseInt(e.target.innerText) ? gasItemStore.selectedPump = null :
+      // @TODO update this type
       gasItemStore.selectedPump = parseInt(e.target.innerText)
     })
 

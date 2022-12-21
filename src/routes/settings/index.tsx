@@ -34,7 +34,6 @@ export default component$(() => {
         <label class='mr-auto' for='taxRate'>Tax Rate</label>
         <input class='w-8' onKeyUp$={$((e)=>{changePumps(e)})} onChange$={$((e)=>{gasContext.settings.taxRate = e.target.value})} id='taxRate' type="text" value={gasContext.settings.taxRate}/><p>%</p>
       </div>
-      
     </div>
   );
 });
