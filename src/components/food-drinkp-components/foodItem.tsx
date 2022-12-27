@@ -49,7 +49,6 @@ export default component$((props:foodItemProps)=>{
         gasContext.foodTypes.map((item)=>{
             if(item.name === props.foodItem.name && item.qty > 0)  item.qty --
             merchTotal()
-            console.log(props.foodItem.sizes)
         })
     })
 
@@ -61,17 +60,16 @@ export default component$((props:foodItemProps)=>{
 
     const createSizes = $((array:boolean)=>{
         if(array){
-        return(
-            props.foodItem.sizes.map((size)=>{
-                return(
-                    <button onClick$={()=>changeSize(size)} class={`w-10 h-10 border-2 border-mid-green rounded-xl mr-2 hover:bg-mid-green ${size.price === props.foodItem.price ? 'bg-mid-green text-white' : 'bg-white text-black'} hover:text-white`}>{size.name}</button>
-                )})
-        )
-        }
-            
+            return(
+                props.foodItem.sizes.map((size)=>{
+                    return(
+                        <button onClick$={()=>changeSize(size)} class={`w-10 h-10 border-2 border-mid-green rounded-xl mr-2 hover:bg-mid-green ${size.price === props.foodItem.price ? 'bg-mid-green text-white' : 'bg-white text-black'} hover:text-white`}>{size.name}</button>
+                    )})
+            )
+        }  
     })     
 
-    // if food item price exists return fooditem price, otherwize food item price equals fooditem sizes [0].price
+    //set food item price to small if there is a prices array - @TODO this may need to be modified depending on how qwik sets context.
     props.foodItem.price ? props.foodItem.price : props.foodItem.price = props.foodItem.sizes[0].price
 
     return(
@@ -81,7 +79,7 @@ export default component$((props:foodItemProps)=>{
                 <p class='font-bold ml-auto'>{props.foodItem.price}</p>
 
                 <div class='flex flex-row justify-center items-center ml-4'>
-                    <div class={`${props.foodItem.type === ('Coffee' || 'Soda') ? 'flex flex-row' : 'hidden'} `}>
+                    <div class={`${props.foodItem.type === 'Coffee' || props.foodItem.type ==='Soda' ? 'flex flex-row' : 'hidden'} `}>
                         {/* @TODO this map is looking for a sizes array. either provide an empty one or add a conditional to omit this code */}
                         {
                         props.foodItem.sizes ? createSizes(true) : createSizes(false)
