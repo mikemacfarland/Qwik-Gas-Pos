@@ -10,7 +10,7 @@ interface GasStore{
     noOfPumps: number
     taxRate: number
   }
-  foodTypes: Array<{name:string,type:string,price:number,qty:number}>
+  foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number}>}>
   layout:{
     overlay:boolean
     message:any
@@ -36,8 +36,10 @@ const GasStore = useStore({
         {name:'super', price:5.43, qty:0, octane:91, stock:15600}
     ],
     foodTypes:[
-      {name:'Pepperoni Pizza Slice', type:'Pizza', price:2.49, qty:0},
-      {name:'Big Chongus', type:'Hot Dog',price:4.99,qty:0}
+      // {name:'Pepperoni Pizza Slice', type:'Pizza', price:2.49, qty:0},
+      // {name:'Big Chongus', type:'Hot Dog',price:4.99,qty:0},
+      // @TODO problem with sizes not showing up in food item to iterate over
+      {name:'Chonger Tea', type: 'Coffee',price:0,qty:0,sizes:[{price:1.09,name:'Sm'},{price:1.89,name:'Md'},{price:2.09,name:'Lg'}]}
     ],
     settings:{
       darkMode: false,

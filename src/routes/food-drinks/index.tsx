@@ -4,17 +4,9 @@ import FoodItem from '~/components/food-drinkp-components/foodItem';
 import { GasContext } from '~/root';
 import { ClearSvg } from '~/components/icons/clear';
 import { DownSvg } from '~/components/icons/down';
-// import { Link } from '@builder.io/qwik-city';
-
-
-// @TODO items to add here items to select
-//  fountain drinks | sm | md | lg
-//  breakfast sandwich
-//  pizza slices
-//  hot dog 
-//  misc food item - customizable name  
 
 export default component$(() => {
+
   const gasContext = useContext(GasContext)
 
   const foodStore = useStore({
@@ -29,14 +21,11 @@ export default component$(() => {
     // ISSUE SOLVED - shallow copy of foodstore.item was causing gasContext.foodtypes to use same reference for every object in array
     // use spread opperator to make a copy with no reference to original.
     // const newItem = JSON.parse(JSON.stringify(foodStore.newItem))
+    // console.log(foodStore.newItem)
     gasContext.foodTypes.push({...foodStore.newItem})
+    console.log(gasContext.foodTypes)
     foodStore.newItem = {name:'',type:'',price:'',qty:0}
     foodStore.createItem = false
-  })
-
-  const setItemPrice = $((e)=>{
-    
-    
   })
 
   return (
@@ -44,13 +33,12 @@ export default component$(() => {
       <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 w-4/6'>
         <div>
           <div class='md:my-4'>
-          {gasContext.foodTypes.map((type)=>{
+          {gasContext.foodTypes.map((item)=>{
             return(
-              <FoodItem key={type.name + type.price} type={type.type} class='h-10' name={type.name} price={type.price} qty={type.qty}/>
+              <FoodItem key={item.name + item.price} foodItem={item} class='h-10'/>
             )
           })}
           </div>
-
 
           <div class={`${foodStore.createItem? 'hidden' : 'flex'} flex-row justify-start mx-4 my-4`}>
             <button onClick$={()=>foodStore.createItem = true} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Create Item</button>
@@ -65,7 +53,6 @@ export default component$(() => {
               onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Name'} 
               type="text" value='Name' class='mr-4'
             />
-            {/* @TODO price needs to be parsed in a function to make sure its a number */}
             <input 
               onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.price = e.target.value}} 
               onFocus$={(e)=>e.target.value === 'Price $' ? e.target.value = '' : e.target.value} 
