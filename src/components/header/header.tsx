@@ -41,9 +41,9 @@ export default component$(() => {
           </div>
         </div>
       </div>
-      <div class='h-14 w-content lg:w-full'>
+      {/* <div class='h-14 w-content lg:w-full'>
         <AnchorItem content='Cashier - name' class={checkPath('/user/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<User class='ml-4 w-4 h-4 fill-inherit'/>} linkto='/user'/>
-      </div>
+      </div> */}
     </header>
   );
   

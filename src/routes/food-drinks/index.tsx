@@ -13,8 +13,8 @@ export default component$(() => {
     createItem:false,
     dropdown:false,
     editItems: false,
-    types:['Pizza','Coffee','Hot Dog','Bkfst','Salad','Misc','Soda','Coffee'],
-    newItem:{name:'',type:'',price:'',qty:0}
+    types:['Pizza','Coffee','Hot Dog','Bkfst','Burger','Salad','Misc','Soda','Tea'],
+    newItem:{name:'',type:'',price:0,qty:0,sizes:{name:'',price:0}}
   })
 
   const createItem = $(()=>{
@@ -22,15 +22,16 @@ export default component$(() => {
     // use spread opperator to make a copy with no reference to original.
     // const newItem = JSON.parse(JSON.stringify(foodStore.newItem))
     // console.log(foodStore.newItem)
+    // @TODO issue with type on line 26 see difference in foodstore.newItem vs context item it gets pushed to
     gasContext.foodTypes.push({...foodStore.newItem})
     console.log(gasContext.foodTypes)
-    foodStore.newItem = {name:'',type:'',price:'',qty:0}
+    foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:{name:'',price:0}}
     foodStore.createItem = false
   })
 
   return (
     <div class='relative flex flex-row w-full justify-between'>
-      <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 w-4/6'>
+      <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 w-full'>
         <div>
           <div class='md:my-4'>
           {gasContext.foodTypes.map((item)=>{
@@ -40,7 +41,7 @@ export default component$(() => {
           })}
           </div>
 
-          <div class={`${foodStore.createItem? 'hidden' : 'flex'} flex-row justify-start mx-4 my-4`}>
+          <div class={`${foodStore.createItem? 'hidden' : 'flex'} flex-row justify-start md:mx-4 lg:mx-8 my-4`}>
             <button onClick$={()=>foodStore.createItem = true} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Create Item</button>
             <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block ml-8  h-10 rounded-xl text-mid-green w-1/3 border-2 border-mid-green bg-white'>Edit Items</button>
           </div>
@@ -73,7 +74,8 @@ export default component$(() => {
                 })}
               </ul>
             </div>
-            <button onClick$={()=>{foodStore.createItem = false, foodStore.newItem.name = '', foodStore.newItem.price = '', foodStore.newItem.type = ''}} class='h-10 w-10 border-2  border-mid-green rounded-xl text-mid-green'>x</button>
+            
+            <button onClick$={()=>{foodStore.createItem = false, foodStore.newItem.name = '', foodStore.newItem.price = '', foodStore.newItem.type = ''}} class='h-10 w-10 border-2 border-mid-green rounded-xl text-mid-green'>x</button>
             <button onClick$={()=>createItem()} class='h-10 w-10  ml-2 bg-mid-green text-white rounded-xl'>+</button>
           </div>
 
@@ -96,11 +98,6 @@ export default component$(() => {
             <p class='ml-2'>Clear</p>
           </button>
         </div>
-      </div>
-
-      <div>
-        soda chart here<br/>
-        other thing here
       </div>      
     </div>
   );

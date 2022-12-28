@@ -1,55 +1,16 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
+import { GasContext } from "~/root";
 
 export default component$(()=>{
-    //@TODO make this a reusable chart for the food and drinks as well. 
-    // dummy data for week of sales
-
-    //@TODO move this data to the index file (fuel page and pass it to chart as props)
-    const gasSales = [
-        {day:'mon',
-        super: 602,
-        midGrade: 930,
-        unleaded: 2560
-        },
-        {day: 'tue',
-        super: 620,
-        midGrade: 1540,
-        unleaded: 3250
-        },
-        {day: 'wed',
-        super: 700,
-        midGrade: 1900,
-        unleaded: 3800
-        },
-        {day: 'thu',
-        super: 600,
-        midGrade: 1800,
-        unleaded: 3120
-        },
-        {day: 'fri',
-        super: 1120,
-        midGrade: 2300,
-        unleaded: 4120
-        },
-        {day: 'sat',
-        super: 1000,
-        midGrade: 2420,
-        unleaded: 4020
-        },
-        {day: 'sun',
-        super: 1700,
-        midGrade: 1600,
-        unleaded: 2600
-        }
-    ]
-
+    const gasContext = useContext(GasContext)
+        
     const gasSalesChartData = ()=>{
-        const dayTotals = gasSales.map(day=>{
+        const dayTotals = gasContext.gasSales.map(day=>{
             const dayTotal = day.midGrade + day.super + day.unleaded
             return dayTotal
         })
         const highest = Math.max(...dayTotals)
-        const gasSalesChartData = gasSales.map(day=>{
+        const gasSalesChartData = gasContext.gasSales.map(day=>{
             return {
                 day:day,
                 unleaded: Math.floor((day.unleaded / highest) * 100),

@@ -1,9 +1,6 @@
 import { component$,useContext } from "@builder.io/qwik";
 import { GasContext } from "~/root";
 
-// @TODO copy this component before tyring to modify it into a reusable component
-
-
 export default component$(()=>{
   const gasContext = useContext(GasContext)
 
@@ -20,8 +17,6 @@ export default component$(()=>{
     return(
         <div class='my-8 md:mx-4 lg:mx-6 xl:mx-8'>
             <div 
-            //  @TODO use props to determine how many items are on chart
-            //  @TODO use props to pass in the 3 gas itmes 
             class='flex justify-center items-center md:w-48 md:h-48 xl:w-52 xl:h-52 rounded-full' 
             style={`background: conic-gradient(#fcc482 0% ${singleLvl(gasContext.gasTypes[0].stock,totalFuel())}%, 
             #63c99e ${singleLvl(gasContext.gasTypes[0].stock,totalFuel())}% ${singleLvl(gasContext.gasTypes[0].stock,totalFuel()) + singleLvl(gasContext.gasTypes[1].stock,totalFuel())}%, 

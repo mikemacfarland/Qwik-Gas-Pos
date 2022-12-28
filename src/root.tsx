@@ -5,6 +5,7 @@ import globalStyles from './global.css?inline';
 
 interface GasStore{
   gasTypes: Array<{name:string,price:number,qty:number,octane:number,stock:number}>
+  gasSales: Array<{day:string,super:number,midGrade:number,unleaded:number}>
   settings:{
     darkMode: boolean
     noOfPumps: number
@@ -28,18 +29,55 @@ export const GasContext = createContext<GasStore>('GasContext')
 export default component$(()=>{
 useStyles$(globalStyles);
 
-// @TODO can separate this store into separate stores depending on component sets that use store to limit re-renders?
 const GasStore = useStore({
     gasTypes:[
         {name:'unleaded', price:4.23, qty:0, octane:87, stock:18200},
         {name:'midgrade', price:4.82, qty:0, octane:89, stock:10400},
         {name:'super', price:5.43, qty:0, octane:91, stock:15600}
     ],
+    gasSales:[
+      {day:'mon',
+      super: 602,
+      midGrade: 930,
+      unleaded: 2560
+      },
+      {day: 'tue',
+      super: 620,
+      midGrade: 1540,
+      unleaded: 3250
+      },
+      {day: 'wed',
+      super: 700,
+      midGrade: 1900,
+      unleaded: 3800
+      },
+      {day: 'thu',
+      super: 600,
+      midGrade: 1800,
+      unleaded: 3120
+      },
+      {day: 'fri',
+      super: 1120,
+      midGrade: 2300,
+      unleaded: 4120
+      },
+      {day: 'sat',
+      super: 1000,
+      midGrade: 2420,
+      unleaded: 4020
+      },
+      {day: 'sun',
+      super: 1700,
+      midGrade: 1600,
+      unleaded: 2600
+      }
+    ],
     foodTypes:[
-      {name:'Pepperoni Pizza Slice', type:'Pizza', price:2.49, qty:0},
-      {name:'Big Chongus', type:'Hot Dog',price:4.99,qty:0},
-      {name:'McChongus Double', type:'Sandwich',price:6.79,qty:0},
-      {name:'Chai Tea', type:'Coffee',price:0,qty:0,sizes:[{price:1.09,name:'Sm'},{price:1.89,name:'Md'},{price:2.09,name:'Lg'}]},
+      {name:'Pizza Slice', type:'Pizza', price:2.49, qty:0},
+      {name:'Big Chungus Dog', type:'Hot Dog',price:4.99,qty:0},
+      {name:'McChungus Double', type:'Burger',price:6.79,qty:0},
+      {name:'Coffee', type:'Coffee',price:0,qty:0,sizes:[{price:.99,name:'Sm'},{price:1.29,name:'Md'},{price:1.89,name:'Lg'}]},
+      {name:'Tea', type:'Coffee',price:0,qty:0,sizes:[{price:1.09,name:'Sm'},{price:1.89,name:'Md'},{price:2.09,name:'Lg'}]},
       {name:'Fountain Drink', type:'Soda',price:0,qty:0,sizes:[{price:1.39,name:'Sm'},{price:1.99,name:'Md'},{price:2.29,name:'Lg'}]}
     ],
     settings:{
@@ -55,12 +93,10 @@ const GasStore = useStore({
       card:true,
       paymentProcessing: false
     },
-    
-    //@TODO total should be gasTotal
     total:0,
     merchTotal:0,
     discount:0,
-  },{recursive:true})
+},{recursive:true})
 
   useContextProvider(
     GasContext,GasStore)
