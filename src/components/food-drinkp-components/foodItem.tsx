@@ -19,27 +19,24 @@ export default component$((props:foodItemProps)=>{
           gasContext.merchTotal = newMerchTotal
     })
 
-    // @TODO the below 3 functions could be one function for refactor
     const changeQty = $((e)=>{
         if(e.type === 'change'){
             e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
             gasContext.foodTypes.map((item)=>{
                 if(item.name === props.foodItem.name)  item.qty = e.target.value
-                merchTotal()
             })          
         }
         if(e.target.innerText === '+'){
             gasContext.foodTypes.map((item)=>{
             if(item.name === props.foodItem.name)  item.qty ++
-            merchTotal()
         })
         }
         if(e.target.innerText === '-'){
             gasContext.foodTypes.map((item)=>{
                 if(item.name === props.foodItem.name && item.qty > 0)  item.qty --
-                merchTotal()
             })
         }
+        merchTotal()
     })
 
     const changeSize = $((size:any)=>{
@@ -59,7 +56,7 @@ export default component$((props:foodItemProps)=>{
         }  
     })     
 
-    //set food item price to small if there is a prices array - @TODO this may need to be modified depending on how qwik sets context.
+    // @TODO this may be the cause of qwik error on load of store being set from a render (line 62)
     props.foodItem.price ? props.foodItem.price : props.foodItem.price = props.foodItem.sizes[0].price
 
     return(

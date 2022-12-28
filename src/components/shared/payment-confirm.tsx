@@ -1,8 +1,8 @@
-import { $component, useContext } from "@builder.io/qwik"
+import { component$, useContext } from "@builder.io/qwik"
 import { ClearSvg } from "../icons/clear"
 import { GasContext } from "~/root"
 
-export default $component(()=>{
+export default component$(()=>{
 
 const gasContext = useContext(GasContext)
 

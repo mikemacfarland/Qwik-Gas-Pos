@@ -33,29 +33,27 @@ interface gasItemProps{
       gasContext.total = newGasTotal
     })
 
-    const decrement = $(()=>{
-        props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
-        gasTotal()
-    })
-
-    const increment = $(()=>{props.gasType.qty++
-        gasTotal()
-    })
-
     // @TODO figure out how to get typscript to work with (e) being passed as argument, its just using (e) set to any for now
     interface e{
       target:any
+      type:string
     }
 
-    const inputChange = $((e:e)=>{
+    const changeQty = $((e:e)=>{
+      if(e.type === 'change'){
       e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
       props.gasType.qty = parseInt(e.target.value)
+      }
+      if(e.target.innerText === '+'){
+        props.gasType.qty++
+      }
+      if(e.target.innerText === '-'){
+        props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
+      }
       gasTotal()
     })
 
-    const pumpDropDown = $((e:e)=>{
-      console.log(gasContext.settings.noOfPumps)
-      console.log(e)
+    const pumpDropDown = $(()=>{
       gasItemStore.dropdown ? gasItemStore.dropdown = false :
       gasItemStore.dropdown = true
     })
@@ -84,9 +82,13 @@ interface gasItemProps{
             </div>
           </div>
           <div class='flex flex-row items-center'>
-            <button onClick$={$(()=>decrement())} class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>-</button>
-            <input onChange$={$((e:e)=>{inputChange(e)})} type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-9'></input>
-            <button onClick$={$(()=>increment())} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>
+            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>-</button>
+            <input onChange$={$((e:e)=>{changeQty(e)})}
+            onClick$={(e:e)=>{e.target.value = ''}}
+            onFocusout$={(e:e)=>{!e.target.value ? e.target.value = 0 : e.target.value}}
+            type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-9'
+            />
+            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>
           </div>
         </div>
    )
