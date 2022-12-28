@@ -13,8 +13,8 @@ export default component$(() => {
     createItem:false,
     dropdown:false,
     editItems: false,
-    types:['Pizza','Coffee','Hot Dog','Bkfst','Burger','Salad','Misc','Soda','Tea'],
-    newItem:{name:'',type:'',price:0,qty:0,sizes:{name:'',price:0}}
+    types:['Pizza','Coffee','Hot Dog','Bkfst','Burger','Salad','Misc','Soda','Tea','Drink','Food'],
+    newItem:{name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',Price:0}]}
   })
 
   const createItem = $(()=>{
@@ -23,10 +23,24 @@ export default component$(() => {
     // const newItem = JSON.parse(JSON.stringify(foodStore.newItem))
     // console.log(foodStore.newItem)
     // @TODO issue with type on line 26 see difference in foodstore.newItem vs context item it gets pushed to
+    console.log({...foodStore.newItem})
     gasContext.foodTypes.push({...foodStore.newItem})
     console.log(gasContext.foodTypes)
-    foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:{name:'',price:0}}
+    foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}
     foodStore.createItem = false
+  })
+
+  const setNewItemName = $((e)=>{
+    const foodNames = gasContext.foodTypes.map((type)=>{
+      return type.name.toUpperCase
+    })
+    if(foodNames.includes(e.target.value.toUpperCase())){
+      alert('error item already exists')
+    }
+    else{
+      foodStore.newItem.name = e.target.value
+      console.log('item name set')
+    }
   })
 
   return (
@@ -49,17 +63,32 @@ export default component$(() => {
           {/* @TODO when item is added make sure fields are filled out with unique name that isnt in store already */}
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>
             <input 
-              onChange$={(e)=>{foodStore.newItem.name = e.target.value}} 
+              onChange$={(e)=>{setNewItemName(e)}} 
               onFocus$={(e)=>e.target.value === 'Name' ? e.target.value = '' : e.target.value} 
               onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Name'} 
               type="text" value='Name' class='mr-4'
             />
             <input 
-              onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.price = e.target.value}} 
-              onFocus$={(e)=>e.target.value === 'Price $' ? e.target.value = '' : e.target.value} 
-              onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Price $'}
-              type="text" value='Price $' class='w-12 mr-auto' 
+              onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.price = e.target.value, foodStore.newItem.sizes[0].price = e.target.value}} 
+              onFocus$={(e)=>e.target.value === 'Price $' || e.target.value === 'Small $' ? e.target.value = '' : e.target.value} 
+              onFocusout$={(e)=> e.target.value === '' && foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? e.target.value = 'Small $' : e.target.value === '' ? e.target.value = 'Price $' : e.target.value}
+              type="text" value={`${foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? 'Small $' : 'Price $'}`} class='w-20 ml-auto mr-4' 
             />
+
+            <div class={`${foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? 'flex flex-row' : 'hidden'}`}>
+              {/* @TODO turn these onchange onfocus events into one function passing E and using e.type to run code instead of repeating all of this code */}
+              <input onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.sizes[1].price = e.target.value}} 
+              onFocus$={(e)=>e.target.value === 'Medium $' ? e.target.value = '' : e.target.value} 
+              onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Medium $'} 
+              class='w-20 mr-4' type="text" value='Medium $'
+              />
+              <input onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.sizes[2].price = e.target.value,console.log(foodStore.newItem.sizes)}}
+              onFocus$={(e)=>e.target.value === 'Large $' ? e.target.value = '' : e.target.value}
+              onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Large $'}
+              class='w-20 mr-4' type="text" value='Large $'
+              />
+            </div>
+
 
             <div class={`flex flex-col w-24 mr-2 border-2 border-mid-green rounded-xl cursor-pointer bg-white z-10 ${foodStore.dropdown ? 'h-fit' :'overflow-hidden h-10'}`}>
               <ul class='items-center justify-between w-full h-fit'> 

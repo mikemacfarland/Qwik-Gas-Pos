@@ -6,6 +6,7 @@ interface foodItemProps{
     class:string
     foodItem:{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number}>}
 }
+
 export default component$((props:foodItemProps)=>{
 
     const gasContext = useContext(GasContext)
@@ -55,9 +56,6 @@ export default component$((props:foodItemProps)=>{
             )
         }  
     })     
-
-    // @TODO this may be the cause of qwik error on load of store being set from a render (line 62)
-    props.foodItem.price ? props.foodItem.price : props.foodItem.price = props.foodItem.sizes[0].price
 
     return(
         <div class={`flex flex-row justify-left items-center h-14 p-4 mb-4 md:mx-4 lg:mx-8 lg:text-sm border-2 rounded-xl ${props.class}`}>

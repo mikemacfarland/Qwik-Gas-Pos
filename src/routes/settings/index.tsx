@@ -21,7 +21,6 @@ export default component$(() => {
 
   return (
     <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
-      {/* @TODO these inputs could be a reusable component? */}
       <div class='flex flex-row justify-between w-1/3 mb-3'>
         <label for="darkMode">Dark Mode</label>
         <input id='darkMode' type="checkbox" />

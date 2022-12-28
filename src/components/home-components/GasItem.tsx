@@ -60,6 +60,7 @@ interface gasItemProps{
 
     const selectPump = $((e:e)=>{
       gasItemStore.selectedPump === parseInt(e.target.innerText) ? gasItemStore.selectedPump = null :
+      // @TODO fix this type issue
       gasItemStore.selectedPump = parseInt(e.target.innerText)
     })
 

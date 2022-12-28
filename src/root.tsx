@@ -76,9 +76,9 @@ const GasStore = useStore({
       {name:'Pizza Slice', type:'Pizza', price:2.49, qty:0},
       {name:'Big Chungus Dog', type:'Hot Dog',price:4.99,qty:0},
       {name:'McChungus Double', type:'Burger',price:6.79,qty:0},
-      {name:'Coffee', type:'Coffee',price:0,qty:0,sizes:[{price:.99,name:'Sm'},{price:1.29,name:'Md'},{price:1.89,name:'Lg'}]},
-      {name:'Tea', type:'Coffee',price:0,qty:0,sizes:[{price:1.09,name:'Sm'},{price:1.89,name:'Md'},{price:2.09,name:'Lg'}]},
-      {name:'Fountain Drink', type:'Soda',price:0,qty:0,sizes:[{price:1.39,name:'Sm'},{price:1.99,name:'Md'},{price:2.29,name:'Lg'}]}
+      {name:'Coffee', type:'Coffee',price:.99,qty:0,sizes:[{price:.99,name:'Sm'},{price:1.29,name:'Md'},{price:1.89,name:'Lg'}]},
+      {name:'Tea', type:'Coffee',price:1.09,qty:0,sizes:[{price:1.09,name:'Sm'},{price:1.89,name:'Md'},{price:2.09,name:'Lg'}]},
+      {name:'Fountain Drink', type:'Soda',price:1.39,qty:0,sizes:[{price:1.39,name:'Sm'},{price:1.99,name:'Md'},{price:2.29,name:'Lg'}]}
     ],
     settings:{
       darkMode: false,
