@@ -21,6 +21,7 @@ export default component$((props:foodItemProps)=>{
     })
 
     const changeQty = $((e)=>{
+        // qwik error element must be connected to the dom on plus press
         if(e.type === 'change'){
             e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
             gasContext.foodTypes.map((item)=>{

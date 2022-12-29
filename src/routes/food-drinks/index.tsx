@@ -59,8 +59,6 @@ export default component$(() => {
             <button onClick$={()=>foodStore.createItem = true} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Create Item</button>
             <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block ml-8  h-10 rounded-xl text-mid-green w-1/3 border-2 border-mid-green bg-white'>Edit Items</button>
           </div>
-          {/* @TODO put create item and edit items inside the same container as create item dialog, refactor */}
-          {/* @TODO when item is added make sure fields are filled out with unique name that isnt in store already */}
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>
             <input 
               onChange$={(e)=>{setNewItemName(e)}} 

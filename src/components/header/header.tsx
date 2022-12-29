@@ -3,7 +3,7 @@ import { Link, useLocation} from '@builder.io/qwik-city';
 import { Settings } from '../icons/settings'
 import { FoodSvg } from '../icons/food'
 import { GasSvg } from '../icons/gasPump';
-import { User } from '../icons/user'
+// import { User } from '../icons/user'
 import { Help } from '../icons/help'
 
 export default component$(() => {

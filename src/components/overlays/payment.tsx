@@ -16,11 +16,18 @@ export default component$(()=>{
                 gasContext.layout.message = null
             },timeout)}
 
-        const updateGasTotals = ()=>{
+        const updateTotals = (timeout:number)=>{
+            setTimeout(()=>{
             gasContext.gasTypes.forEach((type)=>{
                type.stock = type.stock - type.qty
                type.qty = 0
             })
+            gasContext.foodTypes.map((type)=>{
+                type.qty = 0
+            })
+            gasContext.total = 0
+            gasContext.merchTotal = 0
+            },timeout)
         }
 
         if(totalCharge === 0){
@@ -33,14 +40,14 @@ export default component$(()=>{
         setTimeout(()=>{
             gasContext.payment.paymentProcessing = false
             gasContext.layout.message = 'Payment Successful! 🎉'
-            updateGasTotals()
             closeOverlay(2000)
+            updateTotals(2000)
         },6000)}
         
         if(!gasContext.payment.card && totalCharge > 0){
             gasContext.layout.message = 'Payment Successful! 🎉'
-            updateGasTotals()
             closeOverlay(2000)
+            updateTotals(2000)
         }
         
     })
@@ -68,10 +75,8 @@ export default component$(()=>{
                 <p>{totalCharge}</p>
             </div>
             <div class='flex flex-col justify-center items-center'>
-                { gasContext.payment.card ? 
-                <button onClick$={$(()=>{confirmClick()})} class='flex justify-center items-center text-white bg-mid-green h-14 px-5 rounded-xl w-3/4 mb-4' >{gasContext.payment.paymentProcessing ? <Loader/> : 'Request Card Payment'}</button> : 
-                <button onClick$={$(()=>{confirmClick()})} class='text-white bg-mid-green h-14 px-5 rounded-xl w-3/4 mb-4' >Confirm Cash Payment</button>}
-                <button onClick$={$(()=>{gasContext.layout.overlay = false})} class='text-white text-mid-green border-mid-green border-2 h-14 px-5 rounded-xl w-3/4'>Cancel Transaction</button>
+                <button onClick$={$(()=>{confirmClick()})} class='flex justify-center items-center text-white bg-mid-green h-14 px-5 rounded-xl w-3/4 mb-4' >{gasContext.payment.paymentProcessing ? <Loader/> : gasContext.payment.card ? 'Request Card Payment' : 'Confirm Cash Payment'}</button> 
+                <button onClick$={$(()=>{gasContext.layout.overlay = false})} class='text-mid-green border-mid-green border-2 h-14 px-5 rounded-xl w-3/4'>Cancel Transaction</button>
             </div>
         </div>
     )
