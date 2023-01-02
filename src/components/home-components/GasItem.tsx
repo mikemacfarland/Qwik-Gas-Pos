@@ -62,32 +62,36 @@ interface gasItemProps{
       gasItemStore.selectedPump === parseInt(e.target.innerText) ? gasItemStore.selectedPump = null :
       // @TODO fix this type issue
       gasItemStore.selectedPump = parseInt(e.target.innerText)
+      console.log(gasPumps.length === gasPumps[3])
+      gasItemStore.dropdown = false
     })
 
   return(
-    <div class={`flex flex-row justify-left items-center md:mx-4 lg:mx-8 lg:text-sm p-4 border-2 rounded-xl ${props.class}`}>
+    <div class={`flex flex-row justify-left items-center md:mx-4 lg:mx-8 lg:text-sm h-20 p-4 border-2 rounded-xl overflow-y ${props.class}`}>
           <GasSvg class={`md:hidden lg:block h-12 ${props.fill} `}/>
           <div class='flex flex-col w-1/4 lg:ml-7 mr-auto'>
             <p class='font-bold md:text-2xl xl:text-3xl'>{props.gasType.octane}</p>
             <p class='text-slate-400'>{(props.gasType.name).toUpperCase()}</p>
           </div>
           <p class='mr-4 text-xl font-bold'>{props.gasType.price}$</p>
-          <div onClick$={$((e:e)=>{pumpDropDown(e)})} class='min-w-22 relative flex flex-row mr-2 cursor-pointer justify-center items-center h-10 px-4 border-mid-green border-2 rounded-xl '>
-            <p  class='cursor-pointer mr-1 w-full'>{gasItemStore.selectedPump ? gasItemStore.selectedPump : 'Pump'}</p>
-            <DownSvg class='fill-mid-green h-4 w-4'/>
-            <div class={`absolute top-3/4 w-full bg-white z-20 border-x-2 border-b-2 border-b-mid-green border-x-mid-green rounded-b-xl overflow-hidden ${gasItemStore.dropdown ? 'block' : 'hidden'}`}>
+
+          <div class={`block ${gasItemStore.dropdown ?  'overflow-y z-20' : 'h-10 overflow-hidden z-10'} h-10 w-24 mr-2 relative`}>
+          <ul  class={`${gasItemStore.dropdown ?  'h-content' : 'h-10'} absolute top-0 left-0 w-full mr-2 cursor-pointer items-center border-2 border-mid-green rounded-xl overflow-hidden bg-white `} >
+            <li onClick$={$(()=>{pumpDropDown()})} class='cursor-pointer indent-2 w-full h-10 flex flex-row items-center'>{gasItemStore.selectedPump ? gasItemStore.selectedPump : 'Pump'}<DownSvg class='fill-mid-green w-4 ml-auto mr-2 z-20'/></li>
+
               { gasPumps.map((pump)=>{
-                return (<p onClick$={$((e:e)=>{selectPump(e)})} class='flex justify-left items-center h-8 pl-4 w-full bg-white hover:bg-mid-green hover:text-white'>{pump}</p>)
+                return (<li onClick$={$((e:e)=>{selectPump(e)})} class='flex justify-left items-center h-8 pl-4 w-full bg-white hover:bg-mid-green hover:text-white'>{pump}</li>)
                 })
               }
-            </div>
+          </ul>
           </div>
+
           <div class='flex flex-row items-center'>
             <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>-</button>
             <input onChange$={$((e:e)=>{changeQty(e)})}
             onClick$={(e:e)=>{e.target.value = ''}}
             onFocusout$={(e:e)=>{!e.target.value ? e.target.value = 0 : e.target.value}}
-            type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-9'
+            type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-9 bg-gray-100 rounded-lg'
             />
             <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>
           </div>

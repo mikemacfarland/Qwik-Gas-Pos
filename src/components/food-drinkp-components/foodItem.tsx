@@ -59,23 +59,23 @@ export default component$((props:foodItemProps)=>{
     })     
 
     return(
-        <div class={`flex flex-row justify-left items-center h-14 p-4 mb-4 md:mx-4 lg:mx-8 lg:text-sm border-2 rounded-xl ${props.class}`}>
+        <div class={`flex flex-row justify-left items-center text-lg h-14 p-4 mb-4 md:mx-4 lg:mx-8 border-2 rounded-xl ${props.class}`}>
 
                 <FoodIcon type={props.foodItem.type} class='fill-mid-green h-4 w-4 mr-3'/>
                 <p>{props.foodItem.name}</p>
                 <p class='font-bold ml-auto pl-2'>{props.foodItem.price}</p>
 
                 <div class='flex flex-row justify-center items-center ml-4'>
-                    <div class={`${props.foodItem.type === 'Coffee' || props.foodItem.type ==='Soda' || props.foodItem.type ==='Tea' ? 'flex flex-row' : 'hidden'} `}>
+                    <div class={`${props.foodItem.type === 'Coffee' || props.foodItem.type ==='Soda' || props.foodItem.type ==='Tea' ? 'flex flex-row' : 'hidden'} text-base`}>
                         {
                         props.foodItem.sizes ? createSizes(true) : createSizes(false)
                         }
                     </div>
-                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2 border-mid-green rounded-xl text-mid-green'>-</button>
+                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2 border-mid-green rounded-xl text-mid-green '>-</button>
                     <input onClick$={(e)=>e.target.value=''}  
                         onChange$={(e)=>changeQty(e)}
                         onFocusout$={(e)=>!e.target.value ? e.target.value = 0 : e.target.value} 
-                        class='w-6 text-center mx-2 font-bold' type="text" value={props.foodItem.qty}
+                        class='w-6 text-center mx-2 font-bold bg-gray-100 rounded-md' type="text" value={props.foodItem.qty}
                     />
                     <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 rounded-xl bg-mid-green text-white'>+</button>
                 </div>

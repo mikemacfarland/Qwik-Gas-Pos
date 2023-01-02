@@ -64,13 +64,13 @@ export default component$(() => {
               onChange$={(e)=>{setNewItemName(e)}} 
               onFocus$={(e)=>e.target.value === 'Name' ? e.target.value = '' : e.target.value} 
               onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Name'} 
-              type="text" value='Name' class='mr-4'
+              type="text" value='Name' class='mr-4 bg-gray-100 rounded-xl indent-2'
             />
             <input 
               onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.price = e.target.value, foodStore.newItem.sizes[0].price = e.target.value}} 
               onFocus$={(e)=>e.target.value === 'Price $' || e.target.value === 'Small $' ? e.target.value = '' : e.target.value} 
               onFocusout$={(e)=> e.target.value === '' && foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? e.target.value = 'Small $' : e.target.value === '' ? e.target.value = 'Price $' : e.target.value}
-              type="text" value={`${foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? 'Small $' : 'Price $'}`} class='w-20 ml-auto mr-4' 
+              type="text" value={`${foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? 'Small $' : 'Price $'}`} class='w-20 ml-auto mr-4 bg-gray-100 rounded-xl indent-2' 
             />
 
             <div class={`${foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? 'flex flex-row' : 'hidden'}`}>

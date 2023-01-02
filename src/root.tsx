@@ -91,7 +91,7 @@ const GasStore = useStore({
     },
     payment:{
       card:true,
-      paymentProcessing: false
+      paymentProcessing: false,
     },
     total:0,
     merchTotal:0,

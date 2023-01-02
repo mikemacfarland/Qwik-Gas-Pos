@@ -15,7 +15,7 @@ export default component$(()=>{
                 gasContext.layout.overlay = false 
                 gasContext.layout.message = null
             },timeout)}
-
+        // @TODO reset pump selection (also require a pump selection to checkout)
         const updateTotals = (timeout:number)=>{
             setTimeout(()=>{
             gasContext.gasTypes.forEach((type)=>{
