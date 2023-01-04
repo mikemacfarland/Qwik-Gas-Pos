@@ -21,18 +21,22 @@ export default component$((props:foodItemProps)=>{
     })
 
     const changeQty = $((e)=>{
-        // qwik error element must be connected to the dom on plus press
+        // @TODO qwik error element must be connected to the dom on plus press
+        
+        // change from input
         if(e.type === 'change'){
             e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
             gasContext.foodTypes.map((item)=>{
                 if(item.name === props.foodItem.name)  item.qty = e.target.value
             })          
         }
+        // increment 
         if(e.target.innerText === '+'){
             gasContext.foodTypes.map((item)=>{
             if(item.name === props.foodItem.name)  item.qty ++
         })
         }
+        // decrement
         if(e.target.innerText === '-'){
             gasContext.foodTypes.map((item)=>{
                 if(item.name === props.foodItem.name && item.qty > 0)  item.qty --
@@ -43,7 +47,6 @@ export default component$((props:foodItemProps)=>{
 
     const changeSize = $((size:any)=>{
         props.foodItem.price = size.price
-        console.log(size.price)
         merchTotal()
     })
 

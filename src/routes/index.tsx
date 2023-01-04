@@ -37,7 +37,7 @@ export default component$(() => {
       </div>
 
       <div class='flex flex-col justify-between rounded-3xl w-2/6'>
-        <div class='flex flex-col justify-center items-center rounded-3xl bg-white w-full h-content mb-8'>
+        <div class='flex flex-col justify-center items-center rounded-3xl bg-white w-full h-content md:mb-4 xl:mb-8'>
           {/* pie chart */}
           <PieChart/>
         </div>

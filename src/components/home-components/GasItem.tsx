@@ -62,7 +62,6 @@ interface gasItemProps{
       gasItemStore.selectedPump === parseInt(e.target.innerText) ? gasItemStore.selectedPump = null :
       // @TODO fix this type issue
       gasItemStore.selectedPump = parseInt(e.target.innerText)
-      console.log(gasPumps.length === gasPumps[3])
       gasItemStore.dropdown = false
     })
 

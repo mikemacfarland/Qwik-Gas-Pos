@@ -20,6 +20,10 @@ interface GasStore{
     card:boolean
     paymentProcessing: boolean
   }
+  user:{
+    userName:{first:string,last:string}
+    admin:boolean
+  }
   total: number
   merchTotal: number
   discount: number
@@ -93,6 +97,10 @@ const GasStore = useStore({
       card:true,
       paymentProcessing: false,
     },
+    user:{
+      userName:{first:'Nigel',last:'Nomad'}
+
+    },
     total:0,
     merchTotal:0,
     discount:0,
@@ -111,7 +119,7 @@ const GasStore = useStore({
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet"/>
         <RouterHead />
       </head>
-      <body lang="en" class='bg-neutral-100'>
+      <body lang="en" class='bg-neutral-200'>
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>

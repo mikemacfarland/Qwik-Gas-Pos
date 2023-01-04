@@ -23,9 +23,11 @@ export default component$(() => {
     // const newItem = JSON.parse(JSON.stringify(foodStore.newItem))
     // console.log(foodStore.newItem)
     // @TODO issue with type on line 26 see difference in foodstore.newItem vs context item it gets pushed to
-    console.log({...foodStore.newItem})
+    if(foodStore.newItem.type === ''){
+      foodStore.newItem.type = 'Food'
+    }
     gasContext.foodTypes.push({...foodStore.newItem})
-    console.log(gasContext.foodTypes)
+
     foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}
     foodStore.createItem = false
   })
@@ -39,7 +41,6 @@ export default component$(() => {
     }
     else{
       foodStore.newItem.name = e.target.value
-      console.log('item name set')
     }
   })
 
@@ -80,7 +81,7 @@ export default component$(() => {
               onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Medium $'} 
               class='w-20 mr-4' type="text" value='Medium $'
               />
-              <input onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.sizes[2].price = e.target.value,console.log(foodStore.newItem.sizes)}}
+              <input onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.sizes[2].price = e.target.value}}
               onFocus$={(e)=>e.target.value === 'Large $' ? e.target.value = '' : e.target.value}
               onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Large $'}
               class='w-20 mr-4' type="text" value='Large $'

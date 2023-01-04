@@ -28,12 +28,12 @@ export default component$(() => {
           <AnchorItem content='Settings' class={checkPath('/settings/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-white'} icon={<Settings class='fill-inherit h-4 w-4 ml-2'/>} linkto='/settings'/>
         </li>
       </ul>
-      <div class='flex flex-row justify-left items-center h-20 md:mr-auto md:w-1/2 lg:w-full lg:mb-8'>
-        <a href="/" class='flex flex-col justify-center items-center h-16 w-16 lg:h-20 lg:w-20 border-2 rounded-2xl'> 
+      <div class='text-sm flex flex-row md:justify-start lg:justify-between  items-center h-content md:mr-auto md:w-1/2 lg:w-full mb-4 lg:mb-8 '>
+        <a href="/" class='flex flex-col md:mr-4 justify-center items-center h-14 w-14 lg:h-16 lg:w-16 border-2 border-slate-300 rounded-2xl bg-white'> 
           <Help/>
           <p>Help</p> 
         </a>
-        <div class='md:ml-4 lg:ml-8 flex flex-col justify-center'>
+        <div class='flex flex-col justify-center border-2 border-slate-300 rounded-2xl h-14 lg:h-16 px-4'>
           <p class='text-slate-400'>Last sync</p>
           <div class='flex flex-row items-center'>
             <div class='w-3 h-3 rounded-full bg-mid-green mr-2'></div>
