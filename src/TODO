@@ -3,36 +3,35 @@
 --Alerts
 
 --Overlay
-    - help page as an overlay
-    - give contact info of super user/admin
+    ☐ help page as an overlay
+    ☐ give contact info of super user/admin
 
 --Aditional Page/form
-    - user sign in
-    - User Alert dialogue 
+    ☐ user sign in
+    ☐ User Alert dialogue 
 
 --Food
-    - edit items in food item dialogue - 
+    ☐ edit items in food item dialogue - 
 
 --Database
-    - add netlify database?
-    - create database of completed orders.
+    ☐ add netlify database?
+    ☐ create database of completed orders.
 
 --Gas
-- fix problem with gas going negative
-- change input for gas items to only go to 200
-- input for food items to only go to 20
+    ☐ fix problem with gas going negative
+    ☐ change input for gas items to only go to 200
+    ☐ input for food items to only go to 20
 
 --Index
-    - add timer for sync to update
-    - make help and sync smaller for md-lg layout
+    ☐ add timer for sync to update
+    ☐ make help and sync smaller for md-lg layout
 
 -- Settings
-    - Dark mode
-    - change inputs to 0 when focused and change back to default value if nothing is input
+    ☐ Dark mode
+    ☐ change inputs to 0 when focused and change back to default value if nothing is input
 
 - what settings should be in settings page?
-    -Dark Mode
-    -Delete or add Users
-    -Give User Permissions 
-    -
+    ☐ Dark Mode
+    ☐ Delete or add Users
+    ☐ Give User Permissions 
     
