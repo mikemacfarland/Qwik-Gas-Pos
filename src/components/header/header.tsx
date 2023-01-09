@@ -1,18 +1,20 @@
-import { component$, JSXNode,} from '@builder.io/qwik';
+import { component$, JSXNode, useContext,} from '@builder.io/qwik';
 import { Link, useLocation} from '@builder.io/qwik-city';
 import { Settings } from '../icons/settings'
 import { FoodSvg } from '../icons/food'
 import { GasSvg } from '../icons/gasPump';
 // import { User } from '../icons/user'
-import { Help } from '../icons/help'
+import { HelpSvg } from '../icons/help'
+import { GasContext } from '~/root';
 
 export default component$(() => {
 
+  const gasContext = useContext(GasContext)
   const checkPath = (path:string)=>{
     // useLocation() is Qwiks api for  window.location and returns a similar object
     const location = useLocation()
     return location.pathname === path ? true : false
-  } 
+  }
 
   return (
     <header class='flex flex-row flex-wrap lg:flex-nowrap lg:flex-col lg:h-full items-center'>
@@ -29,10 +31,11 @@ export default component$(() => {
         </li>
       </ul>
       <div class='text-sm flex flex-row md:justify-start lg:justify-between  items-center h-content md:mr-auto md:w-1/2 lg:w-full mb-4 lg:mb-8 '>
-        <a href="/" class='flex flex-col md:mr-4 justify-center items-center h-14 w-14 lg:h-16 lg:w-16 border-2 border-slate-300 rounded-2xl bg-white'> 
-          <Help/>
+        <button onClick$={()=>gasContext.layout.overlay = 'help'}
+        class='flex flex-col md:mr-4 justify-center items-center h-14 w-14 lg:h-16 lg:w-16 border-2 border-slate-300 rounded-2xl bg-white'> 
+          <HelpSvg/>
           <p>Help</p> 
-        </a>
+        </button>
         <div class='flex flex-col justify-center border-2 border-slate-300 rounded-2xl h-14 lg:h-16 px-4'>
           <p class='text-slate-400'>Last sync</p>
           <div class='flex flex-row items-center'>

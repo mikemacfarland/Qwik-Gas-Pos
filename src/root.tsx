@@ -15,7 +15,7 @@ interface GasStore{
   }
   foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number}>}>
   layout:{
-    overlay:boolean
+    overlay:string
     message:any
   }
   payment:{
@@ -94,7 +94,7 @@ const GasStore = useStore({
       maxGasQty: 200
     },
     layout:{
-      overlay:false,
+      overlay:'help',
       message: null
     },
     payment:{

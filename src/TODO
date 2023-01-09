@@ -25,6 +25,9 @@
     ✔ fix problem with gas going negative @done(23-01-08 23:07)
     ✔ change input for gas items to only go to 200 @done(23-01-08 23:07)
     ✔ input for food items to only go to 20 @done(23-01-09 12:11)
+    ☐ add dropdown for timeline on bar chart
+        ☐ add month and week selection
+        ☐ maybe add year selection or multiple year selection
 
 --Index
     ☐ add timer for sync to update
