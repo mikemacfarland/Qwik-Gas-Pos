@@ -21,9 +21,7 @@ export default component$((props:foodItemProps)=>{
     })
 
     const changeQty = $((e)=>{
-        // @TODO qwik error element must be connected to the dom on plus press
-        
-        // change from input
+        // onchange
         if(e.type === 'change'){
             const maxFoodQty = gasContext.settings.maxFoodQty
             e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
@@ -31,6 +29,10 @@ export default component$((props:foodItemProps)=>{
             gasContext.foodTypes.map((item)=>{
                 if(item.name === props.foodItem.name)  item.qty = e.target.value
             })
+        }
+        // keydown
+        if(e.type === 'keyup'){
+            e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
         }
         // increment 
         if(e.target.innerText === '+'){
@@ -50,6 +52,11 @@ export default component$((props:foodItemProps)=>{
     const changeSize = $((size:any)=>{
         props.foodItem.price = size.price
         merchTotal()
+    })
+
+    const inputFocus = $((e)=>{
+        const prevVal = props.foodItem.qty
+        e.type === 'focus' ? e.target.value = '' : e.target.value === '' ? e.target.value = prevVal : e.target.value
     })
 
     const createSizes = $((array:boolean)=>{
@@ -77,9 +84,10 @@ export default component$((props:foodItemProps)=>{
                         }
                     </div>
                     <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2 border-mid-green rounded-xl text-mid-green '>-</button>
-                    <input onClick$={(e)=>e.target.value=''}  
+                    <input onFocus$={(e)=>inputFocus(e)}
+                        onKeyUp$={(e)=>{changeQty(e)}} 
                         onChange$={(e)=>changeQty(e)}
-                        onFocusout$={(e)=>!e.target.value ? e.target.value = 0 : e.target.value} 
+                        onFocusout$={(e)=>inputFocus(e)} 
                         class='w-8 text-center mx-2 font-bold bg-gray-100 rounded-md' type="text" value={props.foodItem.qty}
                     />
                     <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 rounded-xl bg-mid-green text-white'>+</button>

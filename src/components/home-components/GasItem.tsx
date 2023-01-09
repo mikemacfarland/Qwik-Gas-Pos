@@ -48,28 +48,38 @@ interface gasItemProps{
 
       const maxQty = gasContext.settings.maxGasQty
       const gasStock = props.gasType.stock
+
+      // on change
       if(e.type === 'change'){
         e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
-
+        // @REFACTOR this is a pretty long expression, could be more readable with an if statement:
         // if value is more than both maxQty and gasStock AND gasStock is less than maxQty : value = gasStock
         e.target.value > maxQty && e.target.value > gasStock && gasStock < maxQty ? changeQty(gasStock) :
-
         // if value is more than maxQty and gasStock AND gasStock is more than maxQty : value = gasStock
         e.target.value > maxQty && e.target.value > gasStock && gasStock > maxQty ? changeQty(maxQty) :
-        
         // if value is more than maxQty AND less than gasStock AND gasStock is more than maxQty : value = maxQty
-        e.target.value > maxQty && e.target.value < gasStock && gasStock > maxQty ? changeQty(maxQty) :
-
+        e.target.value > maxQty && e.target.value < gasStock && gasStock > maxQty ? changeQty(maxQty) : 
         // if value is less than maxQty AND value is more than gasStock AND gasStock is less than maxQty : value = gasStock
         e.target.value < maxQty && e.target.value > gasStock && gasStock < maxQty ? changeQty(gasStock) : changeQty(e.target.value)
-        
-        // if value is less than maxQty and maxQty is la
       }
-      
 
+      // on keyup
+      if(e.type === 'keyup'){
+        e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+      }
+
+      // on focus and focus out
+      if(e.type === 'focus' || e.type === 'focusout'){
+        const prevVal = props.gasType.qty
+        e.type === 'focus' ? e.target.value = '' : e.target.value === '' ? e.target.value = prevVal : e.target.value
+      }
+
+      // increment
       if(e.target.innerText === '+' && gasStock > props.gasType.qty && props.gasType.qty < maxQty){
         props.gasType.qty++
       }
+
+      // decrement
       if(e.target.innerText === '-'){
         props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
       }
@@ -111,8 +121,9 @@ interface gasItemProps{
           <div class='flex flex-row items-center'>
             <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>-</button>
             <input onChange$={$((e:e)=>{changeQty(e)})}
-            onClick$={(e:e)=>{e.target.value > 0 ? e.target.value : e.target.value = ''}}
-            onFocusout$={(e:e)=>{!e.target.value ? e.target.value = 0 : e.target.value}}
+            onFocus$={(e:e)=>{changeQty(e)}}
+            onFocusout$={(e:e)=>{changeQty(e)}}
+            onKeyUp$={(e)=>{changeQty(e)}}
             type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-12 bg-gray-100 rounded-lg'
             />
             <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>

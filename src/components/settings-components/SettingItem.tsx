@@ -16,13 +16,16 @@ export default component$((props:settingsItemProps)=>{
 
     const inputFocus = $((e:any)=>{
         const prevVal = props.type
-        if(e.type === 'focus'){
-            e.target.value = ''
-        }
-        if(e.type === 'focusout'){
-            console.log(prevVal)
-            e.target.value === '' ? e.target.value = prevVal : e.target.value
-        }
+        e.type === 'focus' ? e.target.value = '' : e.target.value === '' ? e.target.value = prevVal : e.target.value
+
+        // @REFACTOR this could be an if statement. i prefer expressions.
+        // if(e.type === 'focus'){
+        //     e.target.value = ''
+        // }
+        // if(e.type === 'focusout'){
+        //     console.log(prevVal)
+        //     e.target.value === '' ? e.target.value = prevVal : e.target.value
+        // }
     })
 
     return(
