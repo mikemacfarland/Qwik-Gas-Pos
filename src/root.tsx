@@ -10,6 +10,7 @@ interface GasStore{
     darkMode: boolean
     noOfPumps: number
     taxRate: number
+    maxGasQty: number
   }
   foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number}>}>
   layout:{
@@ -87,7 +88,8 @@ const GasStore = useStore({
     settings:{
       darkMode: false,
       noOfPumps: 4,
-      taxRate: 7
+      taxRate: 7,
+      maxGasQty: 200
     },
     layout:{
       overlay:false,

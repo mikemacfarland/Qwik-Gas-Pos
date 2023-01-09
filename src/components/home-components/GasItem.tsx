@@ -5,7 +5,7 @@ import { GasContext } from "~/root"
 
 interface gasItemProps{
     fill: string
-    gasType: {qty:number, name:string, octane:number, price:number}
+    gasType: {qty:number, name:string, octane:number, price:number,stock:number}
     class:string
   }
   
@@ -40,11 +40,34 @@ interface gasItemProps{
     }
 
     const changeQty = $((e:e)=>{
-      if(e.type === 'change'){
-      e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
-      props.gasType.qty = parseInt(e.target.value)
+      const changeQty = (val:any)=> {
+        e.target.value = (val)
+        console.log(val)
+        typeof val === 'number' ? props.gasType.qty = val : props.gasType.qty = parseInt(val)
       }
-      if(e.target.innerText === '+'){
+
+      const maxQty = gasContext.settings.maxGasQty
+      const gasStock = props.gasType.stock
+      if(e.type === 'change'){
+        e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+
+        // if value is more than both maxQty and gasStock AND gasStock is less than maxQty : value = gasStock
+        e.target.value > maxQty && e.target.value > gasStock && gasStock < maxQty ? changeQty(gasStock) :
+
+        // if value is more than maxQty and gasStock AND gasStock is more than maxQty : value = gasStock
+        e.target.value > maxQty && e.target.value > gasStock && gasStock > maxQty ? changeQty(maxQty) :
+        
+        // if value is more than maxQty AND less than gasStock AND gasStock is more than maxQty : value = maxQty
+        e.target.value > maxQty && e.target.value < gasStock && gasStock > maxQty ? changeQty(maxQty) :
+
+        // if value is less than maxQty AND value is more than gasStock AND gasStock is less than maxQty : value = gasStock
+        e.target.value < maxQty && e.target.value > gasStock && gasStock < maxQty ? changeQty(gasStock) : changeQty(e.target.value)
+        
+        // if value is less than maxQty and maxQty is la
+      }
+      
+
+      if(e.target.innerText === '+' && gasStock > props.gasType.qty && props.gasType.qty < maxQty){
         props.gasType.qty++
       }
       if(e.target.innerText === '-'){
@@ -88,9 +111,9 @@ interface gasItemProps{
           <div class='flex flex-row items-center'>
             <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>-</button>
             <input onChange$={$((e:e)=>{changeQty(e)})}
-            onClick$={(e:e)=>{e.target.value = ''}}
+            onClick$={(e:e)=>{e.target.value > 0 ? e.target.value : e.target.value = ''}}
             onFocusout$={(e:e)=>{!e.target.value ? e.target.value = 0 : e.target.value}}
-            type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-9 bg-gray-100 rounded-lg'
+            type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-12 bg-gray-100 rounded-lg'
             />
             <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>
           </div>
