@@ -1,33 +1,26 @@
 import { component$,useContext,$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { GasContext } from '~/root';
+import SettingItem from '~/components/settings-components/SettingItem';
 
 export default component$(() => {
 
   const gasContext = useContext(GasContext)
 
-  const filterToNum = $((e)=>{
+  const filterToNum = $((e:any)=>{
     e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
   })
 
   return (
-    <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
-      {/* <div class='flex flex-row justify-between w-1/3 mb-3'>
-        <label for="darkMode">Dark Mode</label>
-        <input id='darkMode' type="checkbox" />
-      </div> */}
-      <div class='flex flex-row justify-between w-1/3 mb-3'>
-        <label for='noOfPumps'>Number of Pumps</label>
-        <input class='w-8 bg-gray-100 rounded-md' onKeyUp$={$((e)=>{filterToNum(e)})} onChange$={$((e)=>{gasContext.settings.noOfPumps = e.target.value})} id='noOfPumps' type="text" value={gasContext.settings.noOfPumps} pattern='[0-9]+'/>
-      </div>
-      <div class='flex flex-row justify-start w-1/3 mb-3'>
-        <label class='mr-auto' for='taxRate'>Tax Rate</label>
-        <input class='w-8 bg-gray-100 rounded-md' onKeyUp$={$((e)=>{filterToNum(e)})} onChange$={$((e)=>{gasContext.settings.taxRate = e.target.value})} id='taxRate' type="text" value={gasContext.settings.taxRate}/>
-      </div>
-      <div class='flex flex-row justify-start w-1/3'>
-        <label class='mr-auto' for='maxGasQty'>Max Gas Qty</label>
-        <input class='w-8 bg-gray-100 rounded-md' onChange$={$((e)=>{filterToNum(e),gasContext.settings.maxGasQty = e.target.value})} id='maxGasQty' type="text" value={gasContext.settings.maxGasQty}/>
-      </div>
+    <div class='flex flex-col space-y-4 rounded-3xl bg-white mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
+      <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.noOfPumps = e.target.value})} 
+      onKeyDown={$((e:any)=>{filterToNum(e)})} name='Number of pumps' type={gasContext.settings.noOfPumps}/>
+      <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.taxRate = e.target.value})} 
+      onKeyDown={$((e:any)=>{filterToNum(e)})} name='Tax rate' type={gasContext.settings.taxRate}/>
+      <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.maxGasQty = e.target.value})} 
+      onKeyDown={$((e:any)=>{filterToNum(e)})} name='Max gas qty' type={gasContext.settings.maxGasQty}/>
+      <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.maxFoodQty = e.target.value})} 
+      onKeyDown={$((e:any)=>{filterToNum(e)})} name='Max food qty' type={gasContext.settings.maxFoodQty}/>
     </div>
   );
 });
@@ -41,3 +34,6 @@ export const head: DocumentHead = {
     },
   ],
 };
+
+
+

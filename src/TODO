@@ -11,16 +11,17 @@
     ☐ User Alert dialogue 
 
 --Food
-    ☐ edit items in food item dialogue - 
+    ☐ edit items in food item dialogue -
+    ✔ fix food input to only go to 20 @done(23-01-08 23:18)
 
 --Database
     ☐ add netlify database?
     ☐ create database of completed orders.
 
 --Gas
-    ☐ fix problem with gas going negative
-    ☐ change input for gas items to only go to 200
-    ☐ input for food items to only go to 20
+    ✔ fix problem with gas going negative @done(23-01-08 23:07)
+    ✔ change input for gas items to only go to 200 @done(23-01-08 23:07)
+    ✔ input for food items to only go to 20 @done(23-01-09 12:11)
 
 --Index
     ☐ add timer for sync to update
@@ -28,10 +29,13 @@
 
 -- Settings
     ☐ Dark mode
-    ☐ change inputs to 0 when focused and change back to default value if nothing is input
+    ✔ make settings inputs a reusable component to refactor @done(23-01-09 12:10)
+    ✔ change inputs to 0 when focused and change back to default value if nothing is input @done(23-01-09 13:23)
 
-- what settings should be in settings page?
+- what settings should be in settings page? 
     ☐ Dark Mode
     ☐ Delete or add Users
-    ☐ Give User Permissions 
+    ✔ Give User Permissions @done(23-01-09 13:22)
+    ✔ gas max qty setting @done(23-01-08 23:11)
+    ✔ food max qty setting @done(23-01-08 23:11)
     

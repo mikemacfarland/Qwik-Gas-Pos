@@ -25,15 +25,17 @@ export default component$((props:foodItemProps)=>{
         
         // change from input
         if(e.type === 'change'){
+            const maxFoodQty = gasContext.settings.maxFoodQty
             e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+            e.target.value > maxFoodQty ?  e.target.value = maxFoodQty : e.target.value
             gasContext.foodTypes.map((item)=>{
                 if(item.name === props.foodItem.name)  item.qty = e.target.value
-            })          
+            })
         }
         // increment 
         if(e.target.innerText === '+'){
             gasContext.foodTypes.map((item)=>{
-            if(item.name === props.foodItem.name)  item.qty ++
+            if(item.name === props.foodItem.name && item.qty < gasContext.settings.maxFoodQty)  item.qty ++
         })
         }
         // decrement
@@ -78,7 +80,7 @@ export default component$((props:foodItemProps)=>{
                     <input onClick$={(e)=>e.target.value=''}  
                         onChange$={(e)=>changeQty(e)}
                         onFocusout$={(e)=>!e.target.value ? e.target.value = 0 : e.target.value} 
-                        class='w-6 text-center mx-2 font-bold bg-gray-100 rounded-md' type="text" value={props.foodItem.qty}
+                        class='w-8 text-center mx-2 font-bold bg-gray-100 rounded-md' type="text" value={props.foodItem.qty}
                     />
                     <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 rounded-xl bg-mid-green text-white'>+</button>
                 </div>
