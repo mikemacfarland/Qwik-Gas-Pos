@@ -12,6 +12,7 @@ interface GasStore{
     taxRate: number
     maxGasQty: number
     maxFoodQty: number
+    gasCapacity: number
   }
   foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number}>}>
   layout:{
@@ -37,9 +38,9 @@ useStyles$(globalStyles);
 
 const GasStore = useStore({
     gasTypes:[
-        {name:'unleaded', price:4.23, qty:0, octane:87, stock:18200},
-        {name:'midgrade', price:4.82, qty:0, octane:89, stock:10400},
-        {name:'super', price:5.43, qty:0, octane:91, stock:15600}
+        {name:'unleaded', price:4.23, qty:0, octane:87, stock:4005},
+        {name:'midgrade', price:4.82, qty:0, octane:89, stock:3650},
+        {name:'super', price:5.43, qty:0, octane:91, stock:4900}
     ],
     gasSales:[
       {day:'mon',
@@ -80,8 +81,8 @@ const GasStore = useStore({
     ],
     foodTypes:[
       {name:'Pizza Slice', type:'Pizza', price:2.49, qty:0},
-      {name:'Big Chungus Dog', type:'Hot Dog',price:4.99,qty:0},
-      {name:'McChungus Double', type:'Burger',price:6.79,qty:0},
+      {name:'Big Diesel Sausage', type:'Hot Dog',price:4.99,qty:0},
+      {name:'Gas Mc-Double', type:'Burger',price:6.79,qty:0},
       {name:'Coffee', type:'Coffee',price:.99,qty:0,sizes:[{price:.99,name:'Sm'},{price:1.29,name:'Md'},{price:1.89,name:'Lg'}]},
       {name:'Tea', type:'Coffee',price:1.09,qty:0,sizes:[{price:1.09,name:'Sm'},{price:1.89,name:'Md'},{price:2.09,name:'Lg'}]},
       {name:'Fountain Drink', type:'Soda',price:1.39,qty:0,sizes:[{price:1.39,name:'Sm'},{price:1.99,name:'Md'},{price:2.29,name:'Lg'}]}
@@ -91,7 +92,8 @@ const GasStore = useStore({
       noOfPumps: 4,
       taxRate: 7,
       maxFoodQty: 20,
-      maxGasQty: 200
+      maxGasQty: 200,
+      gasCapacity: 15000
     },
     layout:{
       overlay:'',

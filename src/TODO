@@ -36,6 +36,7 @@
     ✔ fix problem with gas going negative @done(23-01-08 23:07)
     ✔ change input for gas items to only go to 200 @done(23-01-08 23:07)
     ✔ input for food items to only go to 20 @done(23-01-09 12:11)
+    ☐ make selection of gas pump mandatory for adding gas when pressing confirm button
     ☐ add dropdown for timeline on bar chart
         ☐ add month and week selection
         ☐ maybe add year selection or multiple year selection

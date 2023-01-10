@@ -37,7 +37,7 @@ export default component$((props:settingsItemProps)=>{
             <input onChange$={props.onChange} onKeyup$={props.onKeyDown} 
                 onFocus$={$((e)=>{inputFocus(e)})} 
                 onFocusout$={$((e)=>{inputFocus(e)})} 
-                class='w-10 bg-gray-100 rounded-md text-center' id={htmlFor} type="text" value={props.type}
+                class='w-14 bg-gray-100 rounded-md text-center' id={htmlFor} type="text" value={props.type}
             />
             }
       </div>

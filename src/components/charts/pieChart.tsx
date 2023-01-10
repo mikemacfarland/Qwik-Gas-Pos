@@ -10,7 +10,7 @@ export default component$(()=>{
   }
 
   const totalFuel = ()=>{
-    const currLvl = Math.floor(((gasContext.gasTypes[0].stock + gasContext.gasTypes[1].stock + gasContext.gasTypes[2].stock) / 60000) * 100)
+    const currLvl = Math.floor(((gasContext.gasTypes[0].stock + gasContext.gasTypes[1].stock + gasContext.gasTypes[2].stock) / gasContext.settings.gasCapacity) * 100)
     return currLvl
   }
   

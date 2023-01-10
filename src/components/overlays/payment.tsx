@@ -12,7 +12,7 @@ export default component$(()=>{
     const confirmClick = $(()=>{
         
         const  closeOverlay = (timeout:number)=>{setTimeout(()=>{
-                gasContext.layout.overlay = false 
+                gasContext.layout.overlay = '' 
                 gasContext.layout.message = null
             },timeout)}
         // @TODO reset pump selection (also require a pump selection to checkout)
@@ -76,7 +76,7 @@ export default component$(()=>{
             </div>
             <div class='flex flex-col justify-center items-center'>
                 <button onClick$={$(()=>{confirmClick()})} class='flex justify-center items-center text-white bg-mid-green h-14 px-5 rounded-xl w-3/4 mb-4' >{gasContext.payment.paymentProcessing ? <Loader/> : gasContext.payment.card ? 'Request Card Payment' : 'Confirm Cash Payment'}</button> 
-                <button onClick$={$(()=>{gasContext.layout.overlay = false})} class='text-mid-green border-mid-green border-2 h-14 px-5 rounded-xl w-3/4'>Cancel Transaction</button>
+                <button onClick$={$(()=>{gasContext.layout.overlay = ''})} class='text-mid-green border-mid-green border-2 h-14 px-5 rounded-xl w-3/4'>Cancel Transaction</button>
             </div>
         </div>
     )
