@@ -53,7 +53,7 @@ export default component$((props:foodItemProps)=>{
         props.foodItem.price = size.price
         merchTotal()
     })
-
+    // onfocus
     const inputFocus = $((e)=>{
         const prevVal = props.foodItem.qty
         e.type === 'focus' ? e.target.value = '' : e.target.value === '' ? e.target.value = prevVal : e.target.value

@@ -94,7 +94,7 @@ const GasStore = useStore({
       maxGasQty: 200
     },
     layout:{
-      overlay:'help',
+      overlay:'',
       message: null
     },
     payment:{

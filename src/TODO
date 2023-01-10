@@ -2,20 +2,31 @@
 
 --ALL
     ✔ check input behaviour across app, make sure its all the same @done(23-01-09 13:51)
+    ☐ create cart context to push items to as a array instead of mapping total to qtys (this will fix the food item size issue in cart)
+    ☐ @TESTING create tests for input,button and link elements on build
 
 --Alerts
+    ☐ create small alert that pops up for useful user information. eeeez
+
+--Header
+    ✔ help button to open overlay with admin contact info @done(23-01-09 15:06)
 
 --Overlay
-    ☐ help page as an overlay
-    ☐ give contact info of super user/admin
+    ✔ help page as an overlay @done(23-01-09 15:05)
+    ✔ give contact info of super user/admin @done(23-01-09 15:05)
 
 --Aditional Page/form
     ☐ user sign in
     ☐ User Alert dialogue 
 
 --Food
-    ☐ edit items in food item dialogue -
+    ☐ food items to be rung up individually from sizes - right now if you ring up 3 md coffees and change the item to sm to ring up another, it will change the total
+    ☐ edit items in food item dialogue
+    ☐ name filter for creating items - uniform input behaviour with app
+    ☐ have x button positioned absolute fill up food container and then click to delete when edit is on
+    ☐ only show edit button if user is admin? or require admin code to add and delete items
     ✔ fix food input to only go to 20 @done(23-01-08 23:18)
+    ☐ fix food drink item price selection issues when creating items
 
 --Database
     ☐ add netlify database?

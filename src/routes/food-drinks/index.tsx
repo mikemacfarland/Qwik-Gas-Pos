@@ -26,22 +26,53 @@ export default component$(() => {
     if(foodStore.newItem.type === ''){
       foodStore.newItem.type = 'Food'
     }
+    console.log(foodStore.newItem)
+    foodStore.newItem.name === '' ? alert('New item requires unique name') :
+    foodStore.newItem.price === 0 ? alert('New item requires price') :
     gasContext.foodTypes.push({...foodStore.newItem})
-
+    // @TODO inputs in create new item needs to be set to 0 
     foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}
     foodStore.createItem = false
   })
 
+  const filterPrice = $((e:any,idx:number)=>{
+    // on keyup
+    if(e.type === 'keyup'){
+      e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+    }
+    // on focusin and focusout
+    if(e.type === 'focusin' || e.type === 'focusout'){
+      e.type === 'focusin' ? e.target.value = '' : 
+      e.target.value === '' && idx !== 0 ? e.target.value = foodStore.newItem.sizes[idx].price : 
+      e.target.value === '' ? e.target.value = foodStore.newItem.price : e.target.value
+    }
+    // on change
+    if(e.type === 'change'){
+      idx === 0 ? (foodStore.newItem.price = e.target.value,foodStore.newItem.sizes[0].price = e.target.value) :
+      foodStore.newItem.sizes[idx].price = e.target.value 
+    }
+  })
+
   const setNewItemName = $((e)=>{
+    const prevVal = foodStore.newItem.name
     const foodNames = gasContext.foodTypes.map((type)=>{
       return type.name.toUpperCase
     })
-    if(foodNames.includes(e.target.value.toUpperCase())){
-      alert('error item already exists')
+    console.log(foodStore.newItem.name)
+    // on focusin and focusout
+    if(e.type === 'focus' || e.type === 'focusout'){
+      console.log(e.type)
+      e.type === 'focus' ? e.target.value = '' : e.target.value === '' && !foodStore.newItem.name ? e.target.value = 'Name' :
+      prevVal ? e.target.value = prevVal : e.target.value
+      
     }
-    else{
-      foodStore.newItem.name = e.target.value
+
+    // on change
+    if(e.type === 'change'){
+      console.log(e.type)
+    foodNames.includes(e.target.value.toUpperCase()) ? alert('error item already exists') : foodStore.newItem.name = e.target.value
     }
+    
   })
 
   return (
@@ -63,29 +94,45 @@ export default component$(() => {
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>
             <input 
               onChange$={(e)=>{setNewItemName(e)}} 
-              onFocus$={(e)=>e.target.value === 'Name' ? e.target.value = '' : e.target.value} 
-              onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Name'} 
-              type="text" value='Name' class='mr-4 bg-gray-100 rounded-xl indent-2'
-            />
-            <input 
-              onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.price = e.target.value, foodStore.newItem.sizes[0].price = e.target.value}} 
-              onFocus$={(e)=>e.target.value === 'Price $' || e.target.value === 'Small $' ? e.target.value = '' : e.target.value} 
-              onFocusout$={(e)=> e.target.value === '' && foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? e.target.value = 'Small $' : e.target.value === '' ? e.target.value = 'Price $' : e.target.value}
-              type="text" value={`${foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? 'Small $' : 'Price $'}`} class='w-20 ml-auto mr-4 bg-gray-100 rounded-xl indent-2' 
+              onFocus$={(e)=>{setNewItemName(e)}} 
+              onFocusout$={(e)=>{setNewItemName(e)}} 
+              type="text" value={foodStore.newItem.name ? foodStore.newItem.name : 'Name'} class='mr-4 bg-gray-100 rounded-xl indent-2'
             />
 
+            {/* input for small and price */}
+            <label class='flex align-center items-center ml-auto' for="price">{`${foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? 'Sm:' : 'Price:'}`}</label>
+            <input
+              onChange$={(e)=>{filterPrice(e,0)}}
+              onFocusin$={(e)=>{filterPrice(e,0)}}
+              onFocusOut$={(e)=>{filterPrice(e,0)}}
+              onKeyUp$={(e)=>{filterPrice(e,0)}}
+              type="text" 
+              value={foodStore.newItem.price} 
+              id='price'
+              class='w-14 ml-2 mr-4 bg-gray-100 rounded-xl indent-2' 
+            />
+
+            {/* element holding Md and Lg sizes */}
             <div class={`${foodStore.newItem.type === 'Coffee' || foodStore.newItem.type === 'Tea' || foodStore.newItem.type === 'Drink' ? 'flex flex-row' : 'hidden'}`}>
-              {/* @TODO turn these onchange onfocus events into one function passing E and using e.type to run code instead of repeating all of this code */}
-              <input onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.sizes[1].price = e.target.value}} 
-              onFocus$={(e)=>e.target.value === 'Medium $' ? e.target.value = '' : e.target.value} 
-              onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Medium $'} 
-              class='w-20 mr-4' type="text" value='Medium $'
+
+              <label for="medium" class='flex align-center items-center mr-2'>Md:</label>
+              <input 
+                onChange$={(e)=>{filterPrice(e,1)}}
+                onFocusin$={(e)=>{filterPrice(e,1)}}
+                onFocusOut$={(e)=>{filterPrice(e,1)}}
+                onKeyUp$={(e)=>{filterPrice(e,1)}}
+                class='w-14 mr-4 bg-gray-100 rounded-xl indent-2' type="text" value={foodStore.newItem.sizes[1].price} id='medium'
               />
-              <input onChange$={(e)=>{e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'), foodStore.newItem.sizes[2].price = e.target.value}}
-              onFocus$={(e)=>e.target.value === 'Large $' ? e.target.value = '' : e.target.value}
-              onFocusout$={(e)=> e.target.value ? e.target.value : e.target.value = 'Large $'}
-              class='w-20 mr-4' type="text" value='Large $'
+
+              <label for="large" class='flex align-center items-center mr-2'>Lg:</label>
+              <input 
+                onChange$={(e)=>{filterPrice(e,2)}}
+                onFocusin$={(e)=>{filterPrice(e,2)}}
+                onFocusOut$={(e)=>{filterPrice(e,2)}}
+                onKeyUp$={(e)=>{filterPrice(e,2)}}
+                class='w-14 mr-4 bg-gray-100 rounded-xl indent-2' type="text" value={foodStore.newItem.sizes[2].price} id='large'
               />
+
             </div>
 
 
@@ -103,7 +150,7 @@ export default component$(() => {
               </ul>
             </div>
             
-            <button onClick$={()=>{foodStore.createItem = false, foodStore.newItem.name = '', foodStore.newItem.price = '', foodStore.newItem.type = ''}} class='h-10 w-10 border-2 border-mid-green rounded-xl text-mid-green'>x</button>
+            <button onClick$={()=>{foodStore.createItem = false,foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}}} class='h-10 w-10 border-2 border-mid-green rounded-xl text-mid-green'>x</button>
             <button onClick$={()=>createItem()} class='h-10 w-10  ml-2 bg-mid-green text-white rounded-xl'>+</button>
           </div>
 
@@ -120,7 +167,7 @@ export default component$(() => {
         </div>
         {/* @TODO this div could be a reusable component to refactor */}
         <div class='flex flex-row justify-between md:mx-4 lg:mx-8 m-8'>
-          <button onClick$={$(()=>gasContext.layout.overlay = true)} class='flex h-10 mr-4 w-full justify-center items-center border-2 bg-mid-green rounded-xl border-mid-green text-white' >Confirm</button>
+          <button onClick$={$(()=>gasContext.layout.overlay = 'payment')} class='flex h-10 mr-4 w-full justify-center items-center border-2 bg-mid-green rounded-xl border-mid-green text-white' >Confirm</button>
           <button onClick$={$(()=>{gasContext.foodTypes.forEach(type=>{type.qty = 0}), gasContext.total = 0, gasContext.merchTotal = 0, gasContext.discount = 0})} class='flex h-10 ml-4 w-full justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>
             <ClearSvg/>
             <p class='ml-2'>Clear</p>
