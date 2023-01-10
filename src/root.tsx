@@ -4,7 +4,7 @@ import { RouterHead } from './components/router-head/router-head';
 import globalStyles from './global.css?inline';
 
 interface GasStore{
-  gasTypes: Array<{name:string,price:number,qty:number,octane:number,stock:number}>
+  gasTypes: Array<{name:string,price:number,qty:number,octane:number,pump:number,stock:number}>
   gasSales: Array<{day:string,super:number,midGrade:number,unleaded:number}>
   settings:{
     darkMode: boolean
@@ -16,6 +16,7 @@ interface GasStore{
   }
   foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number}>}>
   layout:{
+    alert:string
     overlay:string
     message:any
   }
@@ -38,9 +39,9 @@ useStyles$(globalStyles);
 
 const GasStore = useStore({
     gasTypes:[
-        {name:'unleaded', price:4.23, qty:0, octane:87, stock:4005},
-        {name:'midgrade', price:4.82, qty:0, octane:89, stock:3650},
-        {name:'super', price:5.43, qty:0, octane:91, stock:4900}
+        {name:'unleaded', price:4.23, qty:0, octane:87, pump:0, stock:4005},
+        {name:'midgrade', price:4.82, qty:0, octane:89, pump:0, stock:3650},
+        {name:'super', price:5.43, qty:0, octane:91, pump:0, stock:4900}
     ],
     gasSales:[
       {day:'mon',
@@ -96,6 +97,7 @@ const GasStore = useStore({
       gasCapacity: 15000
     },
     layout:{
+      alert:'',
       overlay:'',
       message: null
     },

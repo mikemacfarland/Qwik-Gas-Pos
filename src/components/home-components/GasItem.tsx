@@ -5,7 +5,7 @@ import { GasContext } from "~/root"
 
 interface gasItemProps{
     fill: string
-    gasType: {qty:number, name:string, octane:number, price:number,stock:number}
+    gasType: {qty:number, name:string, octane:number, price:number,pump:number,stock:number}
     class:string
   }
   
@@ -14,7 +14,14 @@ interface gasItemProps{
     
     const gasItemStore = useStore({
       dropdown: false,
-      selectedPump: null
+    })
+
+
+    const setAlert = $((msg)=>{
+      gasContext.layout.alert = msg
+      setTimeout(()=>{
+        gasContext.layout.alert = ''
+      },3000)
     })
 
     const gasPumps = []
@@ -91,11 +98,31 @@ interface gasItemProps{
       gasItemStore.dropdown = true
     })
 
+
+
+
+
     const selectPump = $((e:e)=>{
-      gasItemStore.selectedPump === parseInt(e.target.innerText) ? gasItemStore.selectedPump = null :
-      // @TODO fix this type issue
-      gasItemStore.selectedPump = parseInt(e.target.innerText)
-      gasItemStore.dropdown = false
+      const selectedPump = parseInt(e.target.innerText)
+      // array of selected pumps
+      const selectedPumps = gasContext.gasTypes.filter((type)=>{
+        if(type.pump !== 0)return type
+      }).map((type)=>{return type.pump})
+      // selected same pump to reset
+      if(props.gasType.pump === selectedPump && gasItemStore.dropdown === true){
+        gasItemStore.dropdown = false
+        props.gasType.pump = 0
+      }
+      // selected pump that is already selected
+      else if(selectedPumps.includes(selectedPump)){
+        setAlert(`Pump ${selectedPump} already selected`)
+        props.gasType.pump = 0
+      } 
+      // selected unselected pump
+      else{
+        props.gasType.pump = selectedPump
+        gasItemStore.dropdown = false
+      }
     })
 
   return(
@@ -109,7 +136,7 @@ interface gasItemProps{
 
           <div class={`block ${gasItemStore.dropdown ?  'overflow-y z-20' : 'h-10 overflow-hidden z-10'} h-10 w-24 mr-2 relative`}>
           <ul  class={`${gasItemStore.dropdown ?  'h-content' : 'h-10'} absolute top-0 left-0 w-full mr-2 cursor-pointer items-center border-2 border-mid-green rounded-xl overflow-hidden bg-white `} >
-            <li onClick$={$(()=>{pumpDropDown()})} class='cursor-pointer indent-2 w-full h-10 flex flex-row items-center'>{gasItemStore.selectedPump ? gasItemStore.selectedPump : 'Pump'}<DownSvg class='fill-mid-green w-4 ml-auto mr-2 z-20'/></li>
+            <li onClick$={$(()=>{pumpDropDown()})} class='cursor-pointer indent-2 w-full h-10 flex flex-row items-center'>{props.gasType.pump > 0 ? props.gasType.pump : 'Pump'}<DownSvg class='fill-mid-green w-4 ml-auto mr-2 z-20'/></li>
 
               { gasPumps.map((pump)=>{
                 return (<li onClick$={$((e:e)=>{selectPump(e)})} class='flex justify-left items-center h-8 pl-4 w-full bg-white hover:bg-mid-green hover:text-white'>{pump}</li>)

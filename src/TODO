@@ -6,7 +6,7 @@
     ☐ @TESTING create tests for input,button and link elements on build
 
 --Alerts
-    ☐ create small alert that pops up for useful user information. eeeez
+    ✔ create small alert that pops up for useful user information. eeeez @done(23-01-10 13:38)
 
 --Header
     ✔ help button to open overlay with admin contact info @done(23-01-09 15:06)
@@ -14,6 +14,9 @@
 --Overlay
     ✔ help page as an overlay @done(23-01-09 15:05)
     ✔ give contact info of super user/admin @done(23-01-09 15:05)
+    --Payment
+        ☐ when payment complete or cancelled clear pumps selection
+
 
 --Aditional Page/form
     ☐ user sign in
@@ -36,7 +39,9 @@
     ✔ fix problem with gas going negative @done(23-01-08 23:07)
     ✔ change input for gas items to only go to 200 @done(23-01-08 23:07)
     ✔ input for food items to only go to 20 @done(23-01-09 12:11)
-    ☐ make selection of gas pump mandatory for adding gas when pressing confirm button
+    ✔ make selection of gas pump mandatory for adding gas when pressing confirm button @done(23-01-10 16:12)
+    ✔ add gas pumps to gastype context @done(23-01-10 16:13)
+    ✔ make payment screen only apear when valid selections of food and gas are made @done(23-01-10 18:56)
     ☐ add dropdown for timeline on bar chart
         ☐ add month and week selection
         ☐ maybe add year selection or multiple year selection

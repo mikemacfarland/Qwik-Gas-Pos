@@ -17,6 +17,13 @@ export default component$(() => {
     newItem:{name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',Price:0}]}
   })
 
+  const setAlert = $((msg)=>{
+    gasContext.layout.alert = msg
+    setTimeout(()=>{
+      gasContext.layout.alert = ''
+    },3000)
+  })
+
   const createItem = $(()=>{
     // ISSUE SOLVED - shallow copy of foodstore.item was causing gasContext.foodtypes to use same reference for every object in array
     // use spread opperator to make a copy with no reference to original.
@@ -27,8 +34,8 @@ export default component$(() => {
       foodStore.newItem.type = 'Food'
     }
     console.log(foodStore.newItem)
-    foodStore.newItem.name === '' ? alert('New item requires unique name') :
-    foodStore.newItem.price === 0 ? alert('New item requires price') :
+    foodStore.newItem.name === '' ?  setAlert('New item requires unique name') :
+    foodStore.newItem.price === 0 ? setAlert('New item requires price') :
     gasContext.foodTypes.push({...foodStore.newItem})
     // @TODO inputs in create new item needs to be set to 0 
     foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}
