@@ -22,11 +22,11 @@
 --Food
     ☐ food items to be rung up individually from sizes - right now if you ring up 3 md coffees and change the item to sm to ring up another, it will change the total
     ☐ edit items in food item dialogue
-    ☐ name filter for creating items - uniform input behaviour with app
+    ✔ name filter for creating items - uniform input behaviour with app @done(23-01-09 21:42)
     ☐ have x button positioned absolute fill up food container and then click to delete when edit is on
     ☐ only show edit button if user is admin? or require admin code to add and delete items
     ✔ fix food input to only go to 20 @done(23-01-08 23:18)
-    ☐ fix food drink item price selection issues when creating items
+    ✔ fix food drink item price selection issues when creating items @done(23-01-09 21:42)
 
 --Database
     ☐ add netlify database?

@@ -56,9 +56,9 @@ export default component$(() => {
   const setNewItemName = $((e)=>{
     const prevVal = foodStore.newItem.name
     const foodNames = gasContext.foodTypes.map((type)=>{
-      return type.name.toUpperCase
+      return type.name.toUpperCase()
     })
-    console.log(foodStore.newItem.name)
+
     // on focusin and focusout
     if(e.type === 'focus' || e.type === 'focusout'){
       console.log(e.type)
@@ -66,13 +66,14 @@ export default component$(() => {
       prevVal ? e.target.value = prevVal : e.target.value
       
     }
-
     // on change
     if(e.type === 'change'){
+      console.log(foodNames)
+      console.log(e.target.value)
+
       console.log(e.type)
     foodNames.includes(e.target.value.toUpperCase()) ? alert('error item already exists') : foodStore.newItem.name = e.target.value
     }
-    
   })
 
   return (
