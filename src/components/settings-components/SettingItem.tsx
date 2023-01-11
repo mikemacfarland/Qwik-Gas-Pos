@@ -24,7 +24,7 @@ export default component$((props:settingsItemProps)=>{
             {/* @TODO needs event listener can use the same onchange if you add condition to accept a booolean*/}
             <label class='mr-auto' for={htmlFor}>{props.name}</label>
             {typeof(props.type) === 'boolean' ? 
-            <input class='settingsCheckbox w-14 ' onChange$={props.onChange} type='checkbox' id={htmlFor}/> :
+            <input class='settingsCheckbox w-14 ' onChange$={props.onChange} type='checkbox' checked={props.type === true ? true : false} id={htmlFor}/> :
             <input onChange$={props.onChange} onKeyup$={props.onKeyDown} 
                 onFocus$={$((e)=>{inputFocus(e)})}
                 onFocusout$={$((e)=>{inputFocus(e)})} 

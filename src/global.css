@@ -18,7 +18,7 @@
   --primary-color: rgb(229 229 229); 
   --secondary-color: white;
   --tertiary-color: rgb(107 114 128);
-  --quadrary-color: rgb(243 244 246);
+  --quadrary-color: rgb(226 232 240);
   --mid-green: #63c993;
   --unl-yellow: #fcc482;
   --sup-blue: #6492ec;
@@ -40,7 +40,7 @@
   height: 26px;
   border-radius: 13px;
   transition: all .3s ease-in-out;
-  background-color: var(--secondary-color);
+  background-color: var(--quadrary-color);
 }
 
 .settingsCheckbox:checked::before{

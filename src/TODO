@@ -20,7 +20,9 @@
         ✔ when payment complete or cancelled clear pumps selection @done(23-01-10 19:03)
 
 --Styling
-    ☐ add js for turning dark mode on and off
+    ✔ add js for turning dark mode on and off @done(23-01-11 15:56)
+    ☐ add :active styling to buttons
+    ☐ add transitions and animations to events and alerts
 
 --Aditional Page/form
     ☐ user sign in

@@ -14,7 +14,10 @@ export default component$(() => {
   const handleCheck = $((e)=>{
     console.log('darkMode')
     gasContext.settings.darkMode = e.target.checked
+    gasContext.settings.darkMode === true ?  document.querySelector('html')?.classList.add('dark') : document.querySelector('html')?.classList.remove('dark')
   })
+
+
   return (
     <div class='flex flex-col space-y-4 rounded-3xl bg-secondary-color dark:bg-slate-400 mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
       {/* @TODO @REFACTOR this output can be mapped instead of repeating all this code would have to add names of settings to settings in this case */}
