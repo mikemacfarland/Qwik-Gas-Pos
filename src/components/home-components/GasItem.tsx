@@ -125,7 +125,7 @@ interface gasItemProps{
     })
 
   return(
-    <div class={`flex flex-row justify-left items-center md:mx-4 lg:mx-8 lg:text-sm h-20 p-4 border-2 rounded-xl overflow-y ${props.class}`}>
+    <div class={`flex flex-row justify-left items-center md:mx-4 lg:mx-8 lg:text-sm h-20 p-4 border-2  rounded-xl overflow-y ${props.class}`}>
           <GasSvg class={`md:hidden lg:block h-12 ${props.fill} `}/>
           <div class='flex flex-col w-1/4 lg:ml-7 mr-auto'>
             <p class='font-bold md:text-2xl xl:text-3xl'>{props.gasType.octane}</p>
@@ -134,25 +134,25 @@ interface gasItemProps{
           <p class='mr-4 text-xl font-bold'>{props.gasType.price}$</p>
 
           <div class={`block ${gasItemStore.dropdown ?  'overflow-y z-20' : 'h-10 overflow-hidden z-10'} h-10 w-24 mr-2 relative`}>
-          <ul  class={`${gasItemStore.dropdown ?  'h-content' : 'h-10'} absolute top-0 left-0 w-full mr-2 cursor-pointer items-center border-2 border-mid-green rounded-xl overflow-hidden bg-white `} >
-            <li onClick$={$(()=>{pumpDropDown()})} class='cursor-pointer indent-2 w-full h-10 flex flex-row items-center'>{props.gasType.pump > 0 ? props.gasType.pump : 'Pump'}<DownSvg class='fill-mid-green w-4 ml-auto mr-2 z-20'/></li>
+          <ul  class={`${gasItemStore.dropdown ?  'h-content' : 'h-10'} absolute top-0 left-0 w-full mr-2 cursor-pointer items-center border-2  border-mid-green dark:border-secondary-color rounded-xl overflow-hidden bg-secondary-color dark:bg-slate-400 `} >
+            <li onClick$={$(()=>{pumpDropDown()})} class='cursor-pointer indent-2 w-full h-10 flex flex-row items-center'>{props.gasType.pump > 0 ? props.gasType.pump : 'Pump'}<DownSvg class='fill-mid-green dark:fill-secondary-color w-4 ml-auto mr-2 z-20'/></li>
 
               { gasPumps.map((pump)=>{
-                return (<li onClick$={$((e:e)=>{selectPump(e)})} class='flex justify-left items-center h-8 pl-4 w-full bg-white hover:bg-mid-green hover:text-white'>{pump}</li>)
+                return (<li onClick$={$((e:e)=>{selectPump(e)})} class='flex justify-left items-center h-8 pl-4 w-full bg-secondary-color dark:bg-slate-400 hover:bg-mid-green hover:text-secondary-color'>{pump}</li>)
                 })
               }
           </ul>
           </div>
 
           <div class='flex flex-row items-center'>
-            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>-</button>
+            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2  rounded-xl border-mid-green dark:border-secondary-color text-mid-green dark:text-secondary-color'>-</button>
             <input onChange$={$((e:e)=>{changeQty(e)})}
             onFocus$={(e:e)=>{changeQty(e)}}
             onFocusout$={(e:e)=>{changeQty(e)}}
             onKeyUp$={(e)=>{changeQty(e)}}
-            type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-12 bg-gray-100 rounded-lg'
+            type='text' value={props.gasType.qty} class='text-center font-bold text-xl mx-2 w-12 bg-quadrary-color dark:bg-tertiary-color rounded-lg'
             />
-            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2 rounded-xl border-mid-green text-white'>+</button>
+            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center bg-mid-green border-2  rounded-xl border-mid-green dark:border-secondary-color text-white'>+</button>
           </div>
         </div>
    )

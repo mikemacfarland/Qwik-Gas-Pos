@@ -19,6 +19,8 @@
     --Payment
         ✔ when payment complete or cancelled clear pumps selection @done(23-01-10 19:03)
 
+--Styling
+    ☐ add js for turning dark mode on and off
 
 --Aditional Page/form
     ☐ user sign in
@@ -55,13 +57,10 @@
     ✔ make help and sync smaller for md-lg layout @done(23-01-10 20:44)
     
 -- Settings
-    ☐ Dark mode
+    ✔ Dark mode @done(23-01-11 15:09)
     ✔ make settings inputs a reusable component to refactor @done(23-01-09 12:10)
-    ✔ change inputs to 0 when focused and change back to default value if nothing is input @done(23-01-09 13:23)
-
-- what settings should be in settings page? 
-    ☐ Dark Mode
-    ☐ Delete or add Users
+    ✔ change inputs to 0 when focused and change back to default value if nothing is input @done(23-01-09 13:23) 
+    ☐ Delete or add Users -- for admins only
     ✔ Give User Permissions @done(23-01-09 13:22)
     ✔ gas max qty setting @done(23-01-08 23:11)
     ✔ food max qty setting @done(23-01-08 23:11)

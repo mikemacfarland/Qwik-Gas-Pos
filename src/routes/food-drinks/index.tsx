@@ -80,7 +80,7 @@ export default component$(() => {
 
   return (
     <div class='relative flex flex-row w-full justify-between'>
-      <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 w-full'>
+      <div class='flex flex-col rounded-3xl bg-secondary-color dark:bg-slate-400 mr-4 xl:mr-8 w-full'>
         <div>
           <div class='md:my-4'>
           {gasContext.foodTypes.map((item)=>{
@@ -92,14 +92,14 @@ export default component$(() => {
 
           <div class={`${foodStore.createItem? 'hidden' : 'flex'} flex-row justify-start md:mx-4 lg:mx-8 my-4`}>
             <button onClick$={()=>foodStore.createItem = true} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Create Item</button>
-            <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block ml-8  h-10 rounded-xl text-mid-green w-1/3 border-2 border-mid-green bg-white'>Edit Items</button>
+            <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block ml-8  h-10 rounded-xl text-mid-green w-1/3 border-2  border-mid-green dark:border-secondary-color dark:text-secondary-color bg-secondary-color dark:bg-slate-400'>Edit Items</button>
           </div>
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>
             <input 
               onChange$={(e)=>{setNewItemName(e)}} 
               onFocus$={(e)=>{setNewItemName(e)}} 
               onFocusout$={(e)=>{setNewItemName(e)}} 
-              type="text" value={foodStore.newItem.name ? foodStore.newItem.name : 'Name'} class='mr-4 bg-gray-100 rounded-xl indent-2'
+              type="text" value={foodStore.newItem.name ? foodStore.newItem.name : 'Name'} class='mr-4 bg-quadrary-color dark:bg-tertiary-color rounded-xl indent-2'
             />
 
             {/* input for small and price */}
@@ -112,7 +112,7 @@ export default component$(() => {
               type="text" 
               value={foodStore.newItem.price} 
               id='price'
-              class='w-14 ml-2 mr-4 bg-gray-100 rounded-xl indent-2' 
+              class='w-14 ml-2 mr-4 bg-quadrary-color dark:bg-tertiary-color rounded-xl indent-2' 
             />
 
             {/* element holding Md and Lg sizes */}
@@ -124,7 +124,7 @@ export default component$(() => {
                 onFocusin$={(e)=>{filterPrice(e,1)}}
                 onFocusOut$={(e)=>{filterPrice(e,1)}}
                 onKeyUp$={(e)=>{filterPrice(e,1)}}
-                class='w-14 mr-4 bg-gray-100 rounded-xl indent-2' type="text" value={foodStore.newItem.sizes[1].price} id='medium'
+                class='w-14 mr-4 bg-quadrary-color dark:bg-tertiary-color rounded-xl indent-2' type="text" value={foodStore.newItem.sizes[1].price} id='medium'
               />
 
               <label for="large" class='flex align-center items-center mr-2'>Lg:</label>
@@ -133,17 +133,17 @@ export default component$(() => {
                 onFocusin$={(e)=>{filterPrice(e,2)}}
                 onFocusOut$={(e)=>{filterPrice(e,2)}}
                 onKeyUp$={(e)=>{filterPrice(e,2)}}
-                class='w-14 mr-4 bg-gray-100 rounded-xl indent-2' type="text" value={foodStore.newItem.sizes[2].price} id='large'
+                class='w-14 mr-4 bg-quadrary-color dark:bg-tertiary-color rounded-xl indent-2' type="text" value={foodStore.newItem.sizes[2].price} id='large'
               />
 
             </div>
 
 
-            <div class={`flex flex-col w-24 mr-2 border-2 border-mid-green rounded-xl cursor-pointer bg-white z-10 ${foodStore.dropdown ? 'h-fit' :'overflow-hidden h-10'}`}>
+            <div class={`flex flex-col w-24 mr-2 border-2  border-mid-green dark:border-secondary-color rounded-xl cursor-pointer bg-secondary-color dark:bg-slate-400 z-10 ${foodStore.dropdown ? 'h-fit' :'overflow-hidden h-10'}`}>
               <ul class='items-center justify-between w-full h-fit'> 
                 <li onClick$={()=>{foodStore.dropdown ? foodStore.dropdown = false : foodStore.dropdown = true}} class='indent-2 flex flex-row justify-left items-center h-10 w-full'>
                   <p>{foodStore.newItem.type ? foodStore.newItem.type : 'Type'}</p>
-                  <DownSvg class='ml-auto mr-2 fill-mid-green w-4 h-4'/>
+                  <DownSvg class='ml-auto mr-2 fill-mid-green dark:fill-secondary-color w-4 h-4'/>
                 </li>
                 {foodStore.types.map((type)=>{
                   return(
@@ -153,8 +153,8 @@ export default component$(() => {
               </ul>
             </div>
             
-            <button onClick$={()=>{foodStore.createItem = false,foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}}} class='h-10 w-10 border-2 border-mid-green rounded-xl text-mid-green'>x</button>
-            <button onClick$={()=>createItem()} class='h-10 w-10  ml-2 bg-mid-green text-white rounded-xl'>+</button>
+            <button onClick$={()=>{foodStore.createItem = false,foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}}} class='h-10 w-10 border-2  border-mid-green text-mid-green rounded-xl dark:border-secondary-color dark:text-secondary-color '>x</button>
+            <button onClick$={()=>createItem()} class='h-10 w-10  ml-2 bg-mid-green text-secondary-color rounded-xl'>+</button>
           </div>
 
           <div class='flex flex-row justify-between md:mx-4 lg:mx-8 my-4' >

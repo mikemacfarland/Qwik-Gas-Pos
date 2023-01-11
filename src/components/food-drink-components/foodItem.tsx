@@ -64,16 +64,16 @@ export default component$((props:foodItemProps)=>{
             return(
                 props.foodItem.sizes.map((size)=>{
                     return(
-                        <button onClick$={()=>changeSize(size)} class={`w-10 h-10 border-2 border-mid-green rounded-xl mr-2 hover:bg-mid-green ${size.price === props.foodItem.price ? 'bg-mid-green text-white' : 'bg-white text-black'} hover:text-white`}>{size.name}</button>
+                        <button onClick$={()=>changeSize(size)} class={`w-10 h-10 border-2  border-mid-green dark:border-secondary-color rounded-xl mr-2 hover:bg-mid-green ${size.price === props.foodItem.price ? 'bg-mid-green text-secondary-color border-none' : 'bg-secondary-color dark:bg-slate-400 '} hover:text-white`}>{size.name}</button>
                     )})
             )
         }  
     })     
 
     return(
-        <div class={`flex flex-row justify-left items-center text-lg h-14 p-4 mb-4 md:mx-4 lg:mx-8 border-2 rounded-xl ${props.class}`}>
+        <div class={`flex flex-row justify-left items-center text-lg h-14 p-4 mb-4 md:mx-4 lg:mx-8 border-2  rounded-xl ${props.class}`}>
 
-                <FoodIcon type={props.foodItem.type} class='fill-mid-green h-4 w-4 mr-3'/>
+                <FoodIcon type={props.foodItem.type} class='fill-mid-green dark:fill-secondary-color h-4 w-4 mr-3'/>
                 <p>{props.foodItem.name}</p>
                 <p class='font-bold ml-auto pl-2'>{props.foodItem.price}</p>
 
@@ -83,14 +83,14 @@ export default component$((props:foodItemProps)=>{
                         props.foodItem.sizes ? createSizes(true) : createSizes(false)
                         }
                     </div>
-                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2 border-mid-green rounded-xl text-mid-green '>-</button>
+                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2  border-mid-green dark:border-secondary-color rounded-xl text-mid-green dark:text-secondary-color '>-</button>
                     <input onFocus$={(e)=>inputFocus(e)}
                         onKeyUp$={(e)=>{changeQty(e)}} 
                         onChange$={(e)=>changeQty(e)}
                         onFocusout$={(e)=>inputFocus(e)} 
-                        class='w-8 text-center mx-2 font-bold bg-gray-100 rounded-md' type="text" value={props.foodItem.qty}
+                        class='w-8 text-center mx-2 font-bold bg-quadrary-color dark:bg-tertiary-color rounded-md' type="text" value={props.foodItem.qty}
                     />
-                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 rounded-xl bg-mid-green text-white'>+</button>
+                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 rounded-xl bg-mid-green text-secondary-color'>+</button>
                 </div>
             {/* @TODO <button></button> this will be for deleting items*/}
         </div>

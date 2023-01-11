@@ -11,8 +11,12 @@ export default component$(() => {
     e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
   })
 
+  const handleCheck = $((e)=>{
+    console.log('darkMode')
+    gasContext.settings.darkMode = e.target.checked
+  })
   return (
-    <div class='flex flex-col space-y-4 rounded-3xl bg-white mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
+    <div class='flex flex-col space-y-4 rounded-3xl bg-secondary-color dark:bg-slate-400 mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
       {/* @TODO @REFACTOR this output can be mapped instead of repeating all this code would have to add names of settings to settings in this case */}
       <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.noOfPumps = e.target.value})} 
       onKeyDown={$((e:any)=>{filterToNum(e)})} name='Number of pumps' type={gasContext.settings.noOfPumps}/>
@@ -22,9 +26,10 @@ export default component$(() => {
       onKeyDown={$((e:any)=>{filterToNum(e)})} name='Max gas qty' type={gasContext.settings.maxGasQty}/>
       <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.maxFoodQty = e.target.value})} 
       onKeyDown={$((e:any)=>{filterToNum(e)})} name='Max food qty' type={gasContext.settings.maxFoodQty}/>
+      <SettingItem onChange={$((e:any)=>{handleCheck(e)})} name='Dark mode' type={gasContext.settings.darkMode}/>
     </div>
-  );
-});
+  )
+})
 
 export const head: DocumentHead = {
   title: 'GasPos | Settings',

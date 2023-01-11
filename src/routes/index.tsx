@@ -1,4 +1,4 @@
-import { component$, useContext, $} from '@builder.io/qwik';
+import { component$, useContext} from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import GasItem from '~/components/home-components/GasItem';
 import PieChart from '../components/charts/pieChart'
@@ -11,7 +11,7 @@ export default component$(() => {
 
   return (
     <div class='relative flex flex-row w-full justify-between'>
-      <div class='flex flex-col rounded-3xl bg-white mr-4 xl:mr-8 w-4/6'>
+      <div class='flex flex-col rounded-3xl bg-secondary-color dark:bg-slate-400 mr-4 xl:mr-8 w-4/6'>
         <GasItem class='mt-4 mb-4' fill='fill-unl-yellow' gasType={gasContext.gasTypes[0]}/>
         <GasItem class='' fill='fill-mid-green' gasType={gasContext.gasTypes[1]}/>
         <GasItem class='mt-4 mb-8' fill='fill-sup-blue' gasType={gasContext.gasTypes[2]}/>
@@ -28,12 +28,12 @@ export default component$(() => {
       </div>
 
       <div class='flex flex-col justify-between rounded-3xl w-2/6'>
-        <div class='flex flex-col justify-center items-center rounded-3xl bg-white w-full h-content md:mb-4 xl:mb-8'>
+        <div class='flex flex-col justify-center items-center rounded-3xl bg-secondary-color dark:bg-slate-400 w-full h-content md:mb-4 xl:mb-8'>
           {/* pie chart */}
           <PieChart/>
         </div>
         
-        <div class='rounded-3xl bg-white w-full h-2/5'>
+        <div class='rounded-3xl bg-secondary-color dark:bg-slate-400 w-full h-2/5'>
           {/*  bar chart */}
           <BarChart/>
         </div>  
