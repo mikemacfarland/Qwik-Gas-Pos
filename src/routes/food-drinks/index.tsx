@@ -1,9 +1,9 @@
 import { component$,useContext ,$, useStore} from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import FoodItem from '~/components/food-drinkp-components/foodItem';
+import FoodItem from '~/components/food-drink-components/foodItem';
 import { GasContext } from '~/root';
-import { ClearSvg } from '~/components/icons/clear';
 import { DownSvg } from '~/components/icons/down';
+import PaymentConfirmation from '~/components/shared/paymentConfirmation';
 
 export default component$(() => {
 
@@ -17,7 +17,8 @@ export default component$(() => {
     newItem:{name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',Price:0}]}
   })
 
-  const setAlert = $((msg)=>{
+  // @TODO only component that uses this setalert funciton on the food page is the edit buttons. could move into individual component
+  const setAlert = $((msg:string)=>{
     gasContext.layout.alert = msg
     setTimeout(()=>{
       gasContext.layout.alert = ''
@@ -25,11 +26,6 @@ export default component$(() => {
   })
 
   const createItem = $(()=>{
-    // ISSUE SOLVED - shallow copy of foodstore.item was causing gasContext.foodtypes to use same reference for every object in array
-    // use spread opperator to make a copy with no reference to original.
-    // const newItem = JSON.parse(JSON.stringify(foodStore.newItem))
-    // console.log(foodStore.newItem)
-    // @TODO issue with type on line 26 see difference in foodstore.newItem vs context item it gets pushed to
     if(foodStore.newItem.type === ''){
       foodStore.newItem.type = 'Food'
     }
@@ -37,7 +33,6 @@ export default component$(() => {
     foodStore.newItem.name === '' ?  setAlert('New item requires unique name') :
     foodStore.newItem.price === 0 ? setAlert('New item requires price') :
     gasContext.foodTypes.push({...foodStore.newItem})
-    // @TODO inputs in create new item needs to be set to 0 
     foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}
     foodStore.createItem = false
   })
@@ -173,14 +168,7 @@ export default component$(() => {
           </div>
 
         </div>
-        {/* @TODO this div could be a reusable component to refactor */}
-        <div class='flex flex-row justify-between md:mx-4 lg:mx-8 m-8'>
-          <button onClick$={$(()=>gasContext.layout.overlay = 'payment')} class='flex h-10 mr-4 w-full justify-center items-center border-2 bg-mid-green rounded-xl border-mid-green text-white' >Confirm</button>
-          <button onClick$={$(()=>{gasContext.foodTypes.forEach(type=>{type.qty = 0}), gasContext.total = 0, gasContext.merchTotal = 0, gasContext.discount = 0})} class='flex h-10 ml-4 w-full justify-center items-center border-2 rounded-xl border-mid-green text-mid-green'>
-            <ClearSvg/>
-            <p class='ml-2'>Clear</p>
-          </button>
-        </div>
+        <PaymentConfirmation/>
       </div>      
     </div>
   );

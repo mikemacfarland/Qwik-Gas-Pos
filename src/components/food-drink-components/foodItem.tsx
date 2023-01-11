@@ -18,7 +18,6 @@ export default component$((props:foodItemProps)=>{
             return parseFloat((a + b).toFixed(2))
           })
           gasContext.merchTotal = newMerchTotal
-          gasContext.total = 
     })
 
     const changeQty = $((e)=>{

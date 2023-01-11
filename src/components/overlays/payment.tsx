@@ -15,12 +15,12 @@ export default component$(()=>{
                 gasContext.layout.overlay = '' 
                 gasContext.layout.message = null
             },timeout)}
-        // @TODO reset pump selection (also require a pump selection to checkout)
         const updateTotals = (timeout:number)=>{
             setTimeout(()=>{
             gasContext.gasTypes.forEach((type)=>{
                type.stock = type.stock - type.qty
                type.qty = 0
+               type.pump = 0
             })
             gasContext.foodTypes.map((type)=>{
                 type.qty = 0

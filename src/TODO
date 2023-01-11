@@ -2,8 +2,10 @@
 
 --ALL
     ✔ check input behaviour across app, make sure its all the same @done(23-01-09 13:51)
-    ☐ create cart context to push items to as a array instead of mapping total to qtys (this will fix the food item size issue in cart)
     ☐ @TESTING create tests for input,button and link elements on build
+
+--Context
+    ☐ create cart context to push items to as a array instead of mapping total to qtys (this will fix the food item size issue in cart
 
 --Alerts
     ✔ create small alert that pops up for useful user information. eeeez @done(23-01-10 13:38)
@@ -15,16 +17,17 @@
     ✔ help page as an overlay @done(23-01-09 15:05)
     ✔ give contact info of super user/admin @done(23-01-09 15:05)
     --Payment
-        ☐ when payment complete or cancelled clear pumps selection
+        ✔ when payment complete or cancelled clear pumps selection @done(23-01-10 19:03)
 
 
 --Aditional Page/form
     ☐ user sign in
     ☐ User Alert dialogue 
 
---Food
+--Food page
     ☐ food items to be rung up individually from sizes - right now if you ring up 3 md coffees and change the item to sm to ring up another, it will change the total
     ☐ edit items in food item dialogue
+    ✔ make payment buttons a reusable component @done(23-01-10 20:24)
     ✔ name filter for creating items - uniform input behaviour with app @done(23-01-09 21:42)
     ☐ have x button positioned absolute fill up food container and then click to delete when edit is on
     ☐ only show edit button if user is admin? or require admin code to add and delete items
@@ -35,21 +38,22 @@
     ☐ add netlify database?
     ☐ create database of completed orders.
 
---Gas
+--Gas page
     ✔ fix problem with gas going negative @done(23-01-08 23:07)
     ✔ change input for gas items to only go to 200 @done(23-01-08 23:07)
     ✔ input for food items to only go to 20 @done(23-01-09 12:11)
     ✔ make selection of gas pump mandatory for adding gas when pressing confirm button @done(23-01-10 16:12)
     ✔ add gas pumps to gastype context @done(23-01-10 16:13)
     ✔ make payment screen only apear when valid selections of food and gas are made @done(23-01-10 18:56)
+    ✔ make payment buttons a reusable component @done(23-01-10 20:24)
     ☐ add dropdown for timeline on bar chart
         ☐ add month and week selection
         ☐ maybe add year selection or multiple year selection
 
 --Index
     ☐ add timer for sync to update
-    ☐ make help and sync smaller for md-lg layout
-
+    ✔ make help and sync smaller for md-lg layout @done(23-01-10 20:44)
+    
 -- Settings
     ☐ Dark mode
     ✔ make settings inputs a reusable component to refactor @done(23-01-09 12:10)

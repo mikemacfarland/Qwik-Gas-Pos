@@ -13,7 +13,7 @@ export default component$(() => {
 
   return (
     <div class='flex flex-col space-y-4 rounded-3xl bg-white mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
-      {/* @TODO @REFACTOR this output can be mapped instead of repeating all this code */}
+      {/* @TODO @REFACTOR this output can be mapped instead of repeating all this code would have to add names of settings to settings in this case */}
       <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.noOfPumps = e.target.value})} 
       onKeyDown={$((e:any)=>{filterToNum(e)})} name='Number of pumps' type={gasContext.settings.noOfPumps}/>
       <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.taxRate = e.target.value})} 
@@ -22,9 +22,6 @@ export default component$(() => {
       onKeyDown={$((e:any)=>{filterToNum(e)})} name='Max gas qty' type={gasContext.settings.maxGasQty}/>
       <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.maxFoodQty = e.target.value})} 
       onKeyDown={$((e:any)=>{filterToNum(e)})} name='Max food qty' type={gasContext.settings.maxFoodQty}/>
-      {/* @TODO will need logic for this setting if gas capacity is set to lower than gas stock alert user and prompt confirmation */}
-      {/* <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.gasCapacity = e.target.value})} 
-      onKeyDown={$((e:any)=>{filterToNum(e)})} name='Gas capacity' type={gasContext.settings.gasCapacity}/> */}
     </div>
   );
 });

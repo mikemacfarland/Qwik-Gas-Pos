@@ -40,7 +40,6 @@ interface gasItemProps{
       gasContext.total = newGasTotal
     })
 
-    // @TODO figure out how to get typscript to work with (e) being passed as argument, its just using (e) set to any for now
     interface e{
       target:any
       type:string
@@ -59,7 +58,7 @@ interface gasItemProps{
       // on change
       if(e.type === 'change'){
         e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
-        // @REFACTOR this is a pretty long expression, could be more readable with an if statement:
+        // @TODO REFACTOR this is a pretty long expression, could be more readable with an if statement or mapping:
         // if value is more than both maxQty and gasStock AND gasStock is less than maxQty : value = gasStock
         e.target.value > maxQty && e.target.value > gasStock && gasStock < maxQty ? changeQty(gasStock) :
         // if value is more than maxQty and gasStock AND gasStock is more than maxQty : value = gasStock
