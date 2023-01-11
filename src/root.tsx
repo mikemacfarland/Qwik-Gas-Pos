@@ -127,7 +127,7 @@ const GasStore = useStore({
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet"/>
         <RouterHead />
       </head>
-      <body lang="en" class='bg-neutral-200'>
+      <body lang="en" class='bg-primary-color dark:bg-slate-500 dark:text-white' >
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>
