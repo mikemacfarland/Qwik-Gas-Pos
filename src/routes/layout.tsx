@@ -10,7 +10,7 @@ export default component$(() => {
         <Overlay/>
         <Alert/>
         <section class='lg:mr-4 xl:mr-8'>
-          <Header />
+          <Header/>
         </section>
         <section class='lg:w-4/5'>
           <Slot />

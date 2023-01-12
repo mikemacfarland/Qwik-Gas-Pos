@@ -48,10 +48,10 @@ export default component$(()=>{
     })
 
     return(
-        <div onClick$={$((e)=>{e.stopPropagation()})} class=' h-content p-8 w-1/2 bg-secondary-color dark:bg-slate-400 rounded-3xl'>
+        <div onClick$={$((e)=>{e.stopPropagation()})} class=' h-content p-8 w-1/2 bg-secondary-color  transition-colors duration-300 dark:bg-slate-400 rounded-3xl'>
             <div class='flex flex-row justify-between'>
-                <div onClick$={$(()=>{gasContext.payment.card = true})} class={`${gasContext.payment.card ? 'bg-mid-green' : 'bg-secondary-color dark:bg-slate-400'} cursor-pointer flex justify-center items-center h-14 w-1/2 border-2  border-mid-green dark:border-secondary-color rounded-xl mr-1`}>Card Sale</div>
-                <div onClick$={$(()=>{gasContext.payment.card = false})} class={`${gasContext.payment.card! ? 'bg-secondary-color dark:bg-slate-400' : 'bg-mid-green'} cursor-pointer flex justify-center items-center h-14 w-1/2 border-2  border-mid-green dark:border-secondary-color rounded-xl ml-1`}>Cash Sale</div>
+                <div onClick$={$(()=>{gasContext.payment.card = true})} class={`${gasContext.payment.card ? 'bg-mid-green' : 'bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} cursor-pointer flex justify-center items-center h-14 w-1/2 border-2  border-mid-green  transition-colors duration-300 dark:border-secondary-color rounded-xl mr-1`}>Card Sale</div>
+                <div onClick$={$(()=>{gasContext.payment.card = false})} class={`${gasContext.payment.card! ? 'bg-secondary-color  transition-colors duration-300 dark:bg-slate-400' : 'bg-mid-green'} cursor-pointer flex justify-center items-center h-14 w-1/2 border-2  border-mid-green  transition-colors duration-300 dark:border-secondary-color rounded-xl ml-1`}>Cash Sale</div>
             </div>
             <div class='flex flex-row justify-between px-8 my-6'>
                 <p>Gas</p>
@@ -71,7 +71,7 @@ export default component$(()=>{
             </div>
             <div class='flex flex-col justify-center items-center'>
                 <button onClick$={$(()=>{confirmClick()})} class='flex justify-center items-center text-white bg-mid-green h-14 px-5 rounded-xl w-3/4 mb-4' >{gasContext.payment.paymentProcessing ? <Loader/> : gasContext.payment.card ? 'Request Card Payment' : 'Confirm Cash Payment'}</button> 
-                <button onClick$={$(()=>{gasContext.layout.overlay = ''})} class='text-mid-green border-mid-green border-2  h-14 px-5 rounded-xl w-3/4 dark:border-secondary-color dark:text-secondary-color'>Cancel Transaction</button>
+                <button onClick$={$(()=>{gasContext.layout.overlay = ''})} class='text-mid-green border-mid-green border-2  h-14 px-5 rounded-xl w-3/4  transition-colors duration-300 dark:border-secondary-color  transition-colors duration-300 dark:text-secondary-color'>Cancel Transaction</button>
             </div>
         </div>
     )

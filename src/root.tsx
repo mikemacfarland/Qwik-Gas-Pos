@@ -1,7 +1,8 @@
-import { component$, useContextProvider, createContext, useStore, useStyles$} from '@builder.io/qwik';
+import { component$, useContextProvider, createContext, useStore, useStyles$, $} from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 import globalStyles from './global.css?inline';
+
 
 interface GasStore{
   gasTypes: Array<{name:string,price:number,qty:number,octane:number,pump:number,stock:number}>
@@ -27,6 +28,10 @@ interface GasStore{
   user:{
     userName:{first:string,last:string}
     admin:boolean
+  }
+  orders:{
+    cart: Array<{price:number,name:string}> 
+    history: Array<{order:Array<{date:string,items:Array<{price:number,name:string}>,id:number}>}>
   }
   total: number
   merchTotal: number
@@ -107,7 +112,11 @@ const GasStore = useStore({
     },
     user:{
       userName:{first:'Nigel',last:'Nomad'}
-
+    },
+    // cart and history for orders
+    orders:{
+      cart:[{price:0,name:'Tea'}], 
+      history: [{date:'04-21-2022',items:[{price:0,name:'Tea'}],id:'needtogenerateid'}]
     },
     total:0,
     merchTotal:0,
@@ -127,7 +136,7 @@ const GasStore = useStore({
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet"/>
         <RouterHead />
       </head>
-      <body lang="en" class='bg-primary-color dark:bg-slate-500 dark:text-white' >
+      <body lang="en" class='bg-primary-color dark:bg-slate-500  transition-colors duration-300 dark:text-white' >
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>

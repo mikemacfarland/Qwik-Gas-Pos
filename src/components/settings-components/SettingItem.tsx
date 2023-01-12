@@ -1,4 +1,4 @@
-import { component$, $} from "@builder.io/qwik";
+import { component$, $,} from "@builder.io/qwik";
 
 interface settingsItemProps{
     name:string
@@ -28,7 +28,7 @@ export default component$((props:settingsItemProps)=>{
             <input onChange$={props.onChange} onKeyup$={props.onKeyDown} 
                 onFocus$={$((e)=>{inputFocus(e)})}
                 onFocusout$={$((e)=>{inputFocus(e)})} 
-                class='w-14 bg-quadrary-color dark:bg-tertiary-color rounded-md text-center' id={htmlFor} type="text" value={props.type}
+                class='w-14 bg-quadrary-color  transition-colors duration-300 dark:bg-tertiary-color rounded-md text-center' id={htmlFor} type="text" value={props.type}
             />
             }
       </div>

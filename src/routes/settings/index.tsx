@@ -1,4 +1,4 @@
-import { component$,useContext,$ } from '@builder.io/qwik';
+import { component$,useContext,$, useOnWindow} from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { GasContext } from '~/root';
 import SettingItem from '~/components/settings-components/SettingItem';
@@ -12,14 +12,13 @@ export default component$(() => {
   })
 
   const handleCheck = $((e)=>{
-    console.log('darkMode')
     gasContext.settings.darkMode = e.target.checked
     gasContext.settings.darkMode === true ?  document.querySelector('html')?.classList.add('dark') : document.querySelector('html')?.classList.remove('dark')
   })
 
 
   return (
-    <div class='flex flex-col space-y-4 rounded-3xl bg-secondary-color dark:bg-slate-400 mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
+    <div class='flex flex-col space-y-4 rounded-3xl bg-secondary-color  transition-colors duration-300 dark:bg-slate-400 mr-4 xl:mr-8 py-8 px-8 font-bold w-full'>
       {/* @TODO @REFACTOR this output can be mapped instead of repeating all this code would have to add names of settings to settings in this case */}
       <SettingItem onChange={$((e:any)=>{filterToNum(e),gasContext.settings.noOfPumps = e.target.value})} 
       onKeyDown={$((e:any)=>{filterToNum(e)})} name='Number of pumps' type={gasContext.settings.noOfPumps}/>

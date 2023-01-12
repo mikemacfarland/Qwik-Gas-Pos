@@ -23,9 +23,9 @@ export default component$(()=>{
             #6492ec ${singleLvl(gasContext.gasTypes[1].stock,totalFuel())}% ${singleLvl(gasContext.gasTypes[0].stock,totalFuel()) + singleLvl(gasContext.gasTypes[1].stock,totalFuel()) + singleLvl(gasContext.gasTypes[2].stock,totalFuel())}%, 
             white ${singleLvl(gasContext.gasTypes[0].stock,totalFuel()) + singleLvl(gasContext.gasTypes[1].stock,totalFuel()) + singleLvl(gasContext.gasTypes[2].stock,totalFuel())}% ${100.00}%);`}>
                 
-                <div class='flex flex-col justify-center items-center md:w-36 md:h-36 xl:w-40 xl:h-40 bg-secondary-color dark:bg-slate-400 rounded-full z-20' >
+                <div class='flex flex-col justify-center items-center md:w-36 md:h-36 xl:w-40 xl:h-40 bg-secondary-color  transition-colors duration-300 dark:bg-slate-400 rounded-full z-20' >
                     <p class='text-3xl font-bold'>{totalFuel()}%</p>
-                    <p class='text-slate-400 dark:text-secondary-color' >Fuel Left</p>
+                    <p class='text-slate-400  transition-colors duration-300 dark:text-secondary-color' >Fuel Left</p>
                 </div>
             </div>
 

@@ -5,7 +5,7 @@
     ☐ @TESTING create tests for input,button and link elements on build
 
 --Context
-    ☐ create cart context to push items to as a array instead of mapping total to qtys (this will fix the food item size issue in cart
+    ☐ create cart context to push items to as a array instead of mapping total to qtys this will fix the food item size issue in cart
 
 --Alerts
     ✔ create small alert that pops up for useful user information. eeeez @done(23-01-10 13:38)
@@ -22,6 +22,7 @@
 --Styling
     ✔ add js for turning dark mode on and off @done(23-01-11 15:56)
     ☐ add :active styling to buttons
+    ✔ add transitions to buttons .3s @done(23-01-11 22:10)
     ☐ add transitions and animations to events and alerts
 
 --Aditional Page/form

@@ -6,7 +6,7 @@ export default component$(()=>{
     const gasContext = useContext(GasContext)
 
     return(
-        <div onClick$={$((e)=>{e.stopPropagation()})} class=' h-content p-8 md:w-1/2 lg:w-1/2 xl:w-1/3 bg-secondary-color dark:bg-slate-400 rounded-3xl'>
+        <div onClick$={$((e)=>{e.stopPropagation()})} class=' h-content p-8 md:w-1/2 lg:w-1/2 xl:w-1/3 bg-secondary-color  transition-colors duration-300 dark:bg-slate-400 rounded-3xl'>
             <div>
                 <h1 class='text-xl font-bold text-center' >Admin contact info</h1>
                 <ul class='flex flex-col space-y-4 mt-4 pl-6'>
@@ -24,7 +24,7 @@ export default component$(()=>{
                     </li>
                 </ul>
             </div>
-            <button onClick$={()=>gasContext.layout.overlay = ''} class='block text-mid-green border-mid-green dark:border-secondary-color border-2  h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
+            <button onClick$={()=>gasContext.layout.overlay = ''} class='block text-mid-green border-mid-green  transition-colors duration-300 dark:border-secondary-color border-2  h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
         </div>
     )
 })
