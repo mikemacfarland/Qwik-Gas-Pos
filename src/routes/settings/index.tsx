@@ -1,4 +1,4 @@
-import { component$,useContext,$, useOnWindow} from '@builder.io/qwik';
+import { component$,useContext,$} from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { GasContext } from '~/root';
 import SettingItem from '~/components/settings-components/SettingItem';
