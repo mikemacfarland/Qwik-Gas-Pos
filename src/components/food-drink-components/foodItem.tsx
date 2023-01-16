@@ -37,15 +37,17 @@ export default component$((props:foodItemProps)=>{
         }
         // increment 
         if(e.target.innerText === '+'){
-            gasContext.foodTypes.map((item)=>{
-            if(item.name === props.foodItem.name && item.qty < gasContext.settings.maxFoodQty)  item.qty ++
-        })
+            // gasContext.foodTypes.map((item)=>{
+            // if(item.name === props.foodItem.name && item.qty < gasContext.settings.maxFoodQty)  item.qty +    
+            // })
+        console.log('increment')
         }
         // decrement
         if(e.target.innerText === '-'){
-            gasContext.foodTypes.map((item)=>{
-                if(item.name === props.foodItem.name && item.qty > 0)  item.qty --
-            })
+            // gasContext.foodTypes.map((item)=>{
+            //     if(item.name === props.foodItem.name && item.qty > 0)  item.qty --
+            // })
+            console.log('decrement')
         }
         merchTotal()
     })

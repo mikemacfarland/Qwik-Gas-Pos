@@ -3,6 +3,7 @@
 --ALL
     ✔ check input behaviour across app, make sure its all the same @done(23-01-09 13:51)
     ☐ @TESTING create tests for input,button and link elements on build
+    ☐ add page for transaction history
 
 --Context
     ☐ create cart context to push items to as a array instead of mapping total to qtys this will fix the food item size issue in cart
@@ -30,6 +31,7 @@
     ☐ User Alert dialogue 
 
 --Food page
+    ☐ make items add to cart style with qty select
     ☐ food items to be rung up individually from sizes - right now if you ring up 3 md coffees and change the item to sm to ring up another, it will change the total
     ☐ edit items in food item dialogue
     ✔ make payment buttons a reusable component @done(23-01-10 20:24)
@@ -44,6 +46,7 @@
     ☐ create database of completed orders.
 
 --Gas page
+    ☐ make items add to cart style with qty select
     ✔ fix problem with gas going negative @done(23-01-08 23:07)
     ✔ change input for gas items to only go to 200 @done(23-01-08 23:07)
     ✔ input for food items to only go to 20 @done(23-01-09 12:11)
@@ -54,6 +57,12 @@
     ☐ add dropdown for timeline on bar chart
         ☐ add month and week selection
         ☐ maybe add year selection or multiple year selection
+
+--Transaction Page
+    ☐ date filter for transactions
+    ☐ filter gas only
+    ☐ filter food only
+    ☐ other filters?
 
 --Index
     ☐ add timer for sync to update

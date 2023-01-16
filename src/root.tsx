@@ -1,4 +1,4 @@
-import { component$, useContextProvider, createContext, useStore, useStyles$, $} from '@builder.io/qwik';
+import { component$, useContextProvider, createContext, useStore, useStyles$ ,useClientEffect$} from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 import globalStyles from './global.css?inline';
@@ -125,6 +125,22 @@ const GasStore = useStore({
 
   useContextProvider(
     GasContext,GasStore)
+
+    useClientEffect$(() => {
+      const darkmode = localStorage.darkMode
+
+      if(darkmode === 'true'){
+          GasStore.settings.darkMode = true
+          document.querySelector('html')?.classList.add('dark')
+          console.log(darkmode)
+          }
+      if(darkmode === 'false'){
+          console.log(darkmode)
+          document.querySelector('html')?.classList.remove('dark')
+          GasStore.settings.darkMode = false
+          }
+      
+    },{eagerness: 'load'});
 
   return (
     <QwikCityProvider>

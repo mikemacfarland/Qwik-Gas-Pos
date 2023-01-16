@@ -1,4 +1,4 @@
-import { component$,useContext,$, useOnWindow} from '@builder.io/qwik';
+import { component$,useContext,$} from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { GasContext } from '~/root';
 import SettingItem from '~/components/settings-components/SettingItem';
@@ -13,7 +13,14 @@ export default component$(() => {
 
   const handleCheck = $((e)=>{
     gasContext.settings.darkMode = e.target.checked
-    gasContext.settings.darkMode === true ?  document.querySelector('html')?.classList.add('dark') : document.querySelector('html')?.classList.remove('dark')
+    if(gasContext.settings.darkMode === true){
+      document.querySelector('html')?.classList.add('dark')
+      localStorage.setItem('darkMode','true')
+    }
+    else{
+      document.querySelector('html')?.classList.remove('dark')
+      localStorage.setItem('darkMode','false')
+    }
   })
 
 
