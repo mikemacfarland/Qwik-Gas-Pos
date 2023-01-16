@@ -115,8 +115,8 @@ const GasStore = useStore({
     },
     // cart and history for orders
     orders:{
-      cart:[{price:0,name:'Tea'}], 
-      history: [{date:'04-21-2022',items:[{price:0,name:'Tea'}],id:'needtogenerateid'}]
+      cart:[{price:.99,name:'Tea'}], 
+      history: [{date:'04-21-2022',total:1.09,items:[{price:.99,name:'Tea'}],id:'needtogenerateid'}]
     },
     total:0,
     merchTotal:0,
@@ -132,10 +132,8 @@ const GasStore = useStore({
       if(darkmode === 'true'){
           GasStore.settings.darkMode = true
           document.querySelector('html')?.classList.add('dark')
-          console.log(darkmode)
           }
       if(darkmode === 'false'){
-          console.log(darkmode)
           document.querySelector('html')?.classList.remove('dark')
           GasStore.settings.darkMode = false
           }

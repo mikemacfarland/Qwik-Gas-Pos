@@ -4,6 +4,7 @@
     ✔ check input behaviour across app, make sure its all the same @done(23-01-09 13:51)
     ☐ @TESTING create tests for input,button and link elements on build
     ☐ add page for transaction history
+    ☐ update readme
 
 --Context
     ☐ create cart context to push items to as a array instead of mapping total to qtys this will fix the food item size issue in cart
@@ -42,7 +43,8 @@
     ✔ fix food drink item price selection issues when creating items @done(23-01-09 21:42)
 
 --Database
-    ☐ add netlify database?
+    ✘ add netlify database? - use localstorage for now @cancelled(23-01-16 10:31)
+    ☐ add localstorage for orders
     ☐ create database of completed orders.
 
 --Gas page
@@ -73,6 +75,7 @@
     ✔ make settings inputs a reusable component to refactor @done(23-01-09 12:10)
     ✔ change inputs to 0 when focused and change back to default value if nothing is input @done(23-01-09 13:23) 
     ☐ Delete or add Users -- for admins only
+    ✔ dark mode in localstorage @done(23-01-16 10:29)
     ✔ Give User Permissions @done(23-01-09 13:22)
     ✔ gas max qty setting @done(23-01-08 23:11)
     ✔ food max qty setting @done(23-01-08 23:11)

@@ -5,7 +5,9 @@ import { FoodSvg } from '../icons/food'
 import { GasSvg } from '../icons/gasPump';
 // import { User } from '../icons/user'
 import { HelpSvg } from '../icons/help'
+import { MoneySvg } from '../icons/money';
 import { GasContext } from '~/root';
+
 
 export default component$(() => {
 
@@ -25,6 +27,9 @@ export default component$(() => {
         </li>
         <li class='h-14 lg:mb-8 md:mr-4 lg:mr-0'>
           <AnchorItem content='Food/Drinks' class={checkPath('/food-drinks/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<FoodSvg class='fill-inherit h-4 w-4 ml-2'/>} linkto='/food-drinks'/>
+        </li>
+        <li class='h-14 lg:mb-8 md:mr-4 lg:mr-0'>
+          <AnchorItem content='Reciepts' class={checkPath('/reciepts/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<MoneySvg class='fill-inherit h-4 w-4 ml-2'/>} linkto='/reciepts'/>
         </li>
         <li class='h-14 lg:mb-8'>
           <AnchorItem content='Settings' class={checkPath('/settings/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<Settings class='fill-inherit h-4 w-4 ml-2'/>} linkto='/settings'/>
