@@ -74,9 +74,9 @@ export default component$((props:foodItemProps)=>{
             return(
                 props.foodItem.sizes.map((size)=>{
                 return(
-                    <button onClick$={(e)=>changeSize(e)} class={`relative w-10 h-10 border-2  border-mid-green  transition-colors duration-300 dark:border-secondary-color rounded-xl mr-2 dark:hover:bg-mid-green hover:bg-mid-green ${size.price ? 'bg-mid-green text-secondary-color border-none' : 'bg-secondary-color  transition-colors duration-300 dark:bg-slate-400 '} hover:text-white`}>
+                    <button onClick$={(e)=>changeSize(e)} class={`relative w-10 h-10 border-2 border-mid-green dark:border-secondary-color rounded-xl mr-2 hover:bg-mid-green ${props.foodItem.sizes[foodItemStore.idx].name ===  size.name ? 'bg-mid-green text-secondary-color border-mid-green border-2 dark:border-mid-green' : 'bg-secondary-color dark:bg-slate-400 '} hover:text-white transition-colors duration-300`}>
                     {size.name}
-                    <div class={`${size.qty > 0 ? 'visible' : 'hidden'} absolute bg-unl-yellow w-2 h-2 top-1 left-1/2 -translate-x-1/2 rounded-full`}>{}</div>
+                    <div class={`${size.qty > 0 ? 'visible' : 'hidden'} absolute bg-unl-yellow w-2 h-2 -top-0.5 -right-0.5 rounded-full`}>{}</div>
                     </button>
                 )})
             )
