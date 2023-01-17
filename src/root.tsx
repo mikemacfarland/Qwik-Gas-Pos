@@ -15,7 +15,7 @@ interface GasStore{
     maxFoodQty: number
     gasCapacity: number
   }
-  foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number}>}>
+  foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number,qty:number}>}>
   layout:{
     alert:string
     overlay:string
@@ -30,8 +30,8 @@ interface GasStore{
     admin:boolean
   }
   orders:{
-    cart: Array<{price:number,name:string}> 
-    history: Array<{order:Array<{date:string,items:Array<{price:number,name:string}>,id:number}>}>
+    cart: Array<{name:string,qty:number,price:number}>
+    history: Array<{order:Array<{date:string,id:number,items:Array<{price:number,name:string}>}>}>
   }
   total: number
   merchTotal: number
@@ -89,9 +89,9 @@ const GasStore = useStore({
       {name:'Pizza Slice', type:'Pizza', price:2.49, qty:0},
       {name:'Big Diesel Sausage', type:'Hot Dog',price:4.99,qty:0},
       {name:'Gas Mc-Double', type:'Burger',price:6.79,qty:0},
-      {name:'Coffee', type:'Coffee',price:.99,qty:0,sizes:[{price:.99,name:'Sm'},{price:1.29,name:'Md'},{price:1.89,name:'Lg'}]},
-      {name:'Tea', type:'Coffee',price:1.09,qty:0,sizes:[{price:1.09,name:'Sm'},{price:1.89,name:'Md'},{price:2.09,name:'Lg'}]},
-      {name:'Fountain Drink', type:'Soda',price:1.39,qty:0,sizes:[{price:1.39,name:'Sm'},{price:1.99,name:'Md'},{price:2.29,name:'Lg'}]}
+      {name:'Coffee', type:'Coffee',sizes:[{price:.99,name:'Sm',qty:0},{price:1.29,name:'Md',qty:0},{price:1.89,name:'Lg',qty:0}]},
+      {name:'Tea', type:'Coffee',sizes:[{price:1.09,name:'Sm',qty:0},{price:1.89,name:'Md',qty:0},{price:2.09,name:'Lg',qty:0}]},
+      {name:'Fountain Drink', type:'Soda',sizes:[{price:1.39,name:'Sm',qty:0},{price:1.99,name:'Md',qty:0},{price:2.29,name:'Lg',qty:0}]}
     ],
     settings:{
       darkMode: false,
@@ -115,7 +115,7 @@ const GasStore = useStore({
     },
     // cart and history for orders
     orders:{
-      cart:[{price:.99,name:'Tea'}], 
+      cart:[{name:'Tea',qty:1,price:.99}],
       history: [{date:'04-21-2022',total:1.09,items:[{price:.99,name:'Tea'}],id:'needtogenerateid'}]
     },
     total:0,

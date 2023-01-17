@@ -25,6 +25,7 @@ export default component$(() => {
     },3000)
   })
 
+  // @TODO cart update this will have to create items in the right format without price and qty if they have sizes
   const createItem = $(()=>{
     if(foodStore.newItem.type === ''){
       foodStore.newItem.type = 'Food'
@@ -64,7 +65,6 @@ export default component$(() => {
     if(e.type === 'focus' || e.type === 'focusout'){
       e.type === 'focus' ? e.target.value = '' : e.target.value === '' && !foodStore.newItem.name ? e.target.value = 'Name' :
       prevVal ? e.target.value = prevVal : e.target.value
-      
     }
     // on change
     if(e.type === 'change'){
@@ -84,9 +84,10 @@ export default component$(() => {
           })}
           </div>
 
-          <div class={`${foodStore.createItem? 'hidden' : 'flex'} flex-row justify-start md:mx-4 lg:mx-8 my-4`}>
+          <div class={`${foodStore.createItem? 'hidden' : 'flex'} flex-row space-x-4 justify-between md:mx-4 lg:mx-8 my-4`}>
             <button onClick$={()=>foodStore.createItem = true} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Create Item</button>
-            <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block ml-8  h-10 rounded-xl text-mid-green w-1/3 border-2  border-mid-green  transition-colors duration-300 dark:border-secondary-color  transition-colors duration-300 dark:text-secondary-color bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'>Edit Items</button>
+            <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block h-10 rounded-xl text-mid-green w-1/3 border-2  border-mid-green dark:border-secondary-color dark:text-secondary-color bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'>Edit Items</button>
+            <button onClick$={()=>{gasContext.layout.overlay = 'true',gasContext.layout.overlay = 'cart'}} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Edit cart</button>
           </div>
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>
             <input 
@@ -103,10 +104,10 @@ export default component$(() => {
               onFocusin$={(e)=>{filterPrice(e,0)}}
               onFocusOut$={(e)=>{filterPrice(e,0)}}
               onKeyUp$={(e)=>{filterPrice(e,0)}}
-              type="text" 
-              value={foodStore.newItem.price} 
+              type="text"
+              value={foodStore.newItem.price}
               id='price'
-              class='w-14 ml-2 mr-4 bg-quadrary-color  transition-colors duration-300 dark:bg-tertiary-color rounded-xl indent-2' 
+              class='w-14 ml-2 mr-4 bg-quadrary-color  transition-colors duration-300 dark:bg-tertiary-color rounded-xl indent-2'
             />
 
             {/* element holding Md and Lg sizes */}
@@ -129,7 +130,6 @@ export default component$(() => {
                 onKeyUp$={(e)=>{filterPrice(e,2)}}
                 class='w-14 mr-4 bg-quadrary-color  transition-colors duration-300 dark:bg-tertiary-color rounded-xl indent-2' type="text" value={foodStore.newItem.sizes[2].price} id='large'
               />
-
             </div>
 
 
@@ -147,7 +147,7 @@ export default component$(() => {
               </ul>
             </div>
             
-            <button onClick$={()=>{foodStore.createItem = false,foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}}} class='h-10 w-10 border-2  border-mid-green text-mid-green rounded-xl  transition-colors duration-300 dark:border-secondary-color  transition-colors duration-300 dark:text-secondary-color '>x</button>
+            <button onClick$={()=>{foodStore.createItem = false,foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}}} class='h-10 w-10 border-2  border-mid-green text-mid-green rounded-xl dark:border-secondary-color  transition-colors duration-300 dark:text-secondary-color '>x</button>
             <button onClick$={()=>createItem()} class='h-10 w-10  ml-2 bg-mid-green text-secondary-color rounded-xl'>+</button>
           </div>
 

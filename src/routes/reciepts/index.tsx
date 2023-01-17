@@ -1,4 +1,4 @@
-import { component$,useContext,$} from '@builder.io/qwik';
+import { component$,useContext} from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { GasContext } from '~/root';
 
@@ -31,9 +31,9 @@ export default component$(() => {
       <ul class='w-full'>
         <LiItem class='mb-4 border-' item1='Transaction ID' item2='Date' item3='Total'/>
         {
-          gasContext.orders.history.map((item)=>{
+          gasContext.orders.history.map((order)=>{
             return (
-              <LiItem key={item.id} item1={item.id} item2={item.date} item3={item.total}/>
+              <LiItem key={order.id} item1={order.id} item2={order.date} item3={order.total}/>
             )
           })
         }
