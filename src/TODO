@@ -19,8 +19,8 @@
 --Overlay
     ✔ help page as an overlay @done(23-01-09 15:05)
     ✔ give contact info of super user/admin @done(23-01-09 15:05)
-    ☐ style edit cart overlay
-    ☐ add 
+    ✔ style edit cart overlay @done(23-01-18 13:47)
+    ☐ add functionailty to cart overlay - edit items - delete items
     --Payment
         ✔ when payment complete or cancelled clear pumps selection @done(23-01-10 19:03)
 
@@ -35,9 +35,9 @@
     ☐ User Alert dialogue 
 
 --Food page
-    ☐ make items add to cart style with qty select
+    ✔ make items add to cart style with qty select @done(23-01-18 13:48)
     ✔ food items to be rung up individually from sizes - right now if you ring up 3 md coffees and change the item to sm to ring up another, it will change the total @done(23-01-17 23:26)
-    ☐ edit items in food item dialogue
+    ☐ edit items in food item dialogue - use overlay with same style as cart overlay
     ✔ add icon to fooditem to denote if multiple sizes are picked @done(23-01-17 23:26)
     ✔ make payment buttons a reusable component @done(23-01-10 20:24)
     ✔ name filter for creating items - uniform input behaviour with app @done(23-01-09 21:42)
@@ -48,8 +48,7 @@
 
 --Database
     ✘ add netlify database? - use localstorage for now @cancelled(23-01-16 10:31)
-    ☐ add localstorage for orders
-    ☐ create database of completed orders.
+    ✔ add localstorage for orders @done(23-01-18 14:37)
 
 --Gas page
     ☐ add red circle or user notify for gas items when pump isnt selected
@@ -78,7 +77,6 @@
 -- Settings
     ✔ Dark mode @done(23-01-11 15:09)
     ☐ setting for gas tank sizes
-    ☐ setting for some other eshit
     ✔ make settings inputs a reusable component to refactor @done(23-01-09 12:10)
     ✔ change inputs to 0 when focused and change back to default value if nothing is input @done(23-01-09 13:23) 
     ☐ Delete or add Users -- for admins only

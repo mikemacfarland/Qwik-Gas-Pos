@@ -130,6 +130,7 @@ const GasStore = useStore({
 
     useClientEffect$(() => {
       const darkmode = localStorage.darkMode
+      const orderHistory = localStorage.orderHistory
       if(darkmode === 'true'){
           GasStore.settings.darkMode = true
           document.querySelector('html')?.classList.add('dark')
@@ -138,6 +139,7 @@ const GasStore = useStore({
           document.querySelector('html')?.classList.remove('dark')
           GasStore.settings.darkMode = false
           }
+      orderHistory ? GasStore.orders.history = JSON.parse(orderHistory) : GasStore.orders.history = []
     },{eagerness: 'load'});
 
   return (
