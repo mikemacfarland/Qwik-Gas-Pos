@@ -80,7 +80,7 @@ interface gasItemProps{
       gasContext.gasTypes.map((gasItem)=>{
           if(gasItem.qty > 0){
               const newName = gasItem.name.charAt(0).toUpperCase() + gasItem.name.substring(1)
-              gasContext.orders.cart.push({name:newName,qty:gasItem.qty,price:gasItem.price})
+              gasContext.orders.cart.push({name:newName,qty:gasItem.qty,price:gasItem.price,type:'gas'})
           }
       })
       updateTotals()
@@ -141,10 +141,6 @@ interface gasItemProps{
       gasItemStore.dropdown ? gasItemStore.dropdown = false :
       gasItemStore.dropdown = true
     })
-
-
-
-
 
     const selectPump = $((e:e)=>{
       const selectedPump = parseInt(e.target.innerText)

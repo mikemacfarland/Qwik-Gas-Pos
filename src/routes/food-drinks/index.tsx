@@ -88,7 +88,7 @@ export default component$(() => {
             <button onClick$={()=>foodStore.createItem = true} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Create Item</button>
             <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block h-10 rounded-xl text-mid-green w-1/3 border-2  border-mid-green dark:border-secondary-color dark:text-secondary-color bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'>Edit Items</button>
             {/* edit cart button */}
-            <button onClick$={()=>{gasContext.layout.overlay = 'true',gasContext.layout.overlay = 'cart'}} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Edit cart</button>
+            <button onClick$={()=>{gasContext.layout.overlay = 'true',gasContext.layout.overlay = 'cart'}} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>View cart</button>
           </div>
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>
             <input 

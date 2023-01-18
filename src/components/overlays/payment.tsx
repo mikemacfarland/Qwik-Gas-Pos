@@ -5,9 +5,9 @@ import Loader from "../icons/loader";
 export default component$(()=>{
     const gasContext = useContext(GasContext)
 
-    const totalTax = gasContext.tax
+    const totalTax = gasContext.tax.toFixed(2)
 
-    const totalCharge = gasContext.total + gasContext.tax + gasContext.merchTotal
+    const totalCharge = (gasContext.total + gasContext.tax + gasContext.merchTotal).toFixed(2)
 
     const confirmClick = $(()=>{
         
@@ -56,15 +56,15 @@ export default component$(()=>{
             </div>
             <div class='flex flex-row justify-between px-8 my-6'>
                 <p>Gas</p>
-                <p>{gasContext.total}</p>
+                <p>{gasContext.total.toFixed(2)}</p>
             </div>
             <div class='flex flex-row justify-between px-8 my-6'>
                 <p>Merchandise</p>
-                <p>{gasContext.merchTotal}</p>
+                <p>{gasContext.merchTotal.toFixed(2)}</p>
             </div>
             <div class='flex flex-row justify-between px-8 my-6'>
                 <p>Tax</p>
-                <p>{totalTax}</p>
+                <p>{parseFloat(totalTax).toFixed(2)}</p>
             </div>
             <div class='flex flex-row justify-between px-8 my-6'>
                 <p>Total Charge</p>
@@ -72,7 +72,7 @@ export default component$(()=>{
             </div>
             <div class='flex flex-col justify-center items-center'>
                 <button onClick$={$(()=>{confirmClick()})} class='flex justify-center items-center text-white bg-mid-green h-14 px-5 rounded-xl w-3/4 mb-4' >{gasContext.payment.paymentProcessing ? <Loader/> : gasContext.payment.card ? 'Request Card Payment' : 'Confirm Cash Payment'}</button> 
-                <button onClick$={$(()=>{gasContext.layout.overlay = ''})} class='text-mid-green border-mid-green border-2  h-14 px-5 rounded-xl w-3/4  transition-colors duration-300 dark:border-secondary-color  transition-colors duration-300 dark:text-secondary-color'>Cancel Transaction</button>
+                <button onClick$={$(()=>{gasContext.layout.overlay = ''})} class='text-mid-green border-mid-green border-2  h-14 px-5 rounded-xl w-3/4 dark:border-secondary-color  transition-colors duration-300 dark:text-secondary-color'>Cancel Transaction</button>
             </div>
         </div>
     )
