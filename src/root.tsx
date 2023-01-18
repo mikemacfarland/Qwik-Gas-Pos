@@ -30,11 +30,12 @@ interface GasStore{
     admin:boolean
   }
   orders:{
-    cart: Array<{name:string,qty:number,price:number}>
+    cart: Array<{name:string,qty:number,price:number,type:string}>
     history: Array<{order:Array<{date:string,id:number,items:Array<{price:number,name:string}>}>}>
   }
   total: number
   merchTotal: number
+  tax:number
   discount: number
 }
 
@@ -115,10 +116,11 @@ const GasStore = useStore({
     },
     // cart and history for orders
     orders:{
-      cart:[{name:'Tea',qty:1,price:.99}],
+      cart:[],
       history: [{date:'04-21-2022',total:1.09,items:[{price:.99,name:'Tea'}],id:'needtogenerateid'}]
     },
     total:0,
+    tax:0,
     merchTotal:0,
     discount:0,
 },{recursive:true})

@@ -16,7 +16,6 @@ interface gasItemProps{
       dropdown: false,
     })
 
-
     const setAlert = $((msg)=>{
       gasContext.layout.alert = msg
       setTimeout(()=>{
@@ -29,7 +28,6 @@ interface gasItemProps{
       gasPumps.push([i+1])
     }
 
-    
     const gasTotal = $(()=>{
       const newGasTotal = gasContext.gasTypes.map((type)=>{
         return (type.price * type.qty)
@@ -39,6 +37,29 @@ interface gasItemProps{
 
       gasContext.total = newGasTotal
     })
+
+    const updateCart = $(()=>{
+      gasContext.orders.cart = []
+      gasContext.foodTypes.map((foodItem)=>{
+          if(foodItem.qty && foodItem.qty > 0){
+              gasContext.orders.cart.push(foodItem)
+          }
+          if(foodItem.sizes){
+              foodItem.sizes.map((size)=>{
+                  if(size.qty > 0){
+                      const sizedItemName = `${size.name} ${foodItem.name}`
+                      gasContext.orders.cart.push({name:sizedItemName,qty:size.qty,price:size.price})
+                  }
+              })
+          }
+      })
+      gasContext.gasTypes.map((gasItem)=>{
+          if(gasItem.qty > 0){
+              const newName = gasItem.name.charAt(0).toUpperCase() + gasItem.name.substring(1)
+              gasContext.orders.cart.push({name:newName,qty:gasItem.qty,price:gasItem.price})
+          }
+      })
+  })
 
     interface e{
       target:any
@@ -88,7 +109,7 @@ interface gasItemProps{
       if(e.target.innerText === '-'){
         props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
       }
-      gasTotal()
+      updateCart()
     })
 
     const pumpDropDown = $(()=>{

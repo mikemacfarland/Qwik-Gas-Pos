@@ -83,10 +83,11 @@ export default component$(() => {
             )
           })}
           </div>
-
+          {/* @TODO some of the funcitons and elements in this component can be refactored into reusable components so not as much code just to render 3 size elements */}
           <div class={`${foodStore.createItem? 'hidden' : 'flex'} flex-row space-x-4 justify-between md:mx-4 lg:mx-8 my-4`}>
             <button onClick$={()=>foodStore.createItem = true} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Create Item</button>
             <button onClick$={()=>foodStore.editItems ? foodStore.editItems = false : foodStore.editItems = true} class='block h-10 rounded-xl text-mid-green w-1/3 border-2  border-mid-green dark:border-secondary-color dark:text-secondary-color bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'>Edit Items</button>
+            {/* edit cart button */}
             <button onClick$={()=>{gasContext.layout.overlay = 'true',gasContext.layout.overlay = 'cart'}} class='w-1/3 h-10 rounded-xl text-white bg-mid-green'>Edit cart</button>
           </div>
           <div class={` ${foodStore.createItem? 'flex' : 'hidden'} flex-row justify-start md:m-4 lg:m-8 h-10`}>

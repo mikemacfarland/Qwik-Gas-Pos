@@ -15,6 +15,9 @@ export default component$(() => {
         <GasItem class='mt-4 mb-4' fill='fill-unl-yellow' gasType={gasContext.gasTypes[0]}/>
         <GasItem class='' fill='fill-mid-green' gasType={gasContext.gasTypes[1]}/>
         <GasItem class='mt-4 mb-8' fill='fill-sup-blue' gasType={gasContext.gasTypes[2]}/>
+        <div class='flex flex-row justify-end'>
+          <button onClick$={()=>{gasContext.layout.overlay = 'true',gasContext.layout.overlay = 'cart'}} class='w-1/3 h-10 rounded-xl text-white bg-mid-green mx-8'>Edit cart</button>
+        </div>
         <div class='flex flex-row justify-between md:mx-4 lg:mx-8 my-4' >
           <p>Total Balance</p>
           <p class='font-bold'>{parseFloat((gasContext.total + gasContext.merchTotal).toFixed(2))}$</p>

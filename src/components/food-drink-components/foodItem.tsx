@@ -17,7 +17,32 @@ export default component$((props:foodItemProps)=>{
         idx:0
     })
 
-    // Function to update merch total
+    // function to update global totals
+    const updateTotals = $(()=>{
+        console.log(gasContext.orders.cart)
+        const taxableItems = gasContext.orders.cart.map((item)=>{
+            if(item.type !== 'gas'){
+                return item.price * item.qty
+            }
+        }).reduce((item,a)=>{ return a + item })
+        
+        
+        if(taxableItems){
+        gasContext.tax = taxableItems * (gasContext.settings.taxRate / 100) 
+        gasContext.merchTotal = gasContext.tax + taxableItems
+        }
+
+        const gasItems = gasContext.orders.cart.map((item)=>{
+            if(item.type === 'gas'){
+                return item.price * item.qty
+            }
+        })
+
+        console.log(gasItems)
+        
+    })
+
+    // Function to update cart
     const updateCart = $(()=>{
         gasContext.orders.cart = []
         gasContext.foodTypes.map((foodItem)=>{
@@ -28,11 +53,18 @@ export default component$((props:foodItemProps)=>{
                 foodItem.sizes.map((size)=>{
                     if(size.qty > 0){
                         const sizedItemName = `${size.name} ${foodItem.name}`
-                        gasContext.orders.cart.push({name:sizedItemName,qty:size.qty,price:size.price})
+                        gasContext.orders.cart.push({name:sizedItemName,qty:size.qty,price:size.price,type:foodItem.type})
                     }
                 })
             }
         })
+        gasContext.gasTypes.map((gasItem)=>{
+            if(gasItem.qty > 0){
+                const newName = gasItem.name.charAt(0).toUpperCase() + gasItem.name.substring(1)
+                gasContext.orders.cart.push({name:newName,qty:gasItem.qty,price:gasItem.price,type:'gas'})
+            }
+        })
+        updateTotals()
     })
 
     // Function to change qty
@@ -54,6 +86,7 @@ export default component$((props:foodItemProps)=>{
             props.foodItem.sizes ? props.foodItem.sizes[foodItemStore.idx].qty -- : props.foodItem.qty --
         }
         updateCart()
+
     })
 
     // on input focus behaviour function

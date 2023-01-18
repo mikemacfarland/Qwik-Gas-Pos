@@ -61,7 +61,7 @@ export default component$(()=>{
 
 return(
   <div class='flex flex-row justify-between md:mx-4 lg:mx-8 m-8'>
-    <button onClick$={$(()=>checkPumps())} class='flex h-10 mr-4 w-full justify-center items-center border-2  bg-mid-green rounded-xl border-mid-green  transition-colors duration-300 dark:border-secondary-color text-white' >Confirm</button>
+    <button onClick$={$(()=>checkPumps())} class='flex h-10 mr-4 w-full justify-center items-center border-2  bg-mid-green rounded-xl border-mid-green  transition-colors duration-300  text-white' >Confirm</button>
           <button onClick$={$(()=>clearTotal())} class='flex h-10 ml-4 w-full justify-center items-center border-2  rounded-xl border-mid-green dark:border-secondary-color text-mid-green  transition-colors duration-300 dark:text-white'>
       <ClearSvg class='w-4 h-4 fill-mid-green  transition-colors duration-300 dark:fill-secondary-color'
     />
