@@ -58,7 +58,7 @@ interface gasItemProps{
           foodItems.length > 0 ? gasContext.tax = arrReduce(foodItems) * (gasContext.settings.taxRate / 100) : gasContext.tax = 0
           gasItems.length > 0 ? gasContext.total = arrReduce(gasItems) : gasContext.total = 0
           foodItems.length > 0 ? gasContext.merchTotal = arrReduce(foodItems) : gasContext.merchTotal = 0
-
+          
       }
     })
 

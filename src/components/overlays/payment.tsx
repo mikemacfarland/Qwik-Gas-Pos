@@ -1,6 +1,7 @@
 import { component$, $,useContext} from "@builder.io/qwik";
 import { GasContext } from "~/root";
 import Loader from "../icons/loader";
+import { uid } from 'uid'
 
 export default component$(()=>{
     const gasContext = useContext(GasContext)
@@ -22,13 +23,28 @@ export default component$(()=>{
                type.qty = 0
                type.pump = 0
             })
-            gasContext.foodTypes.map((type)=>{
+            if(gasContext.foodTypes.length > 0){
+                gasContext.foodTypes.map((type)=>{
                 type.qty ? type.qty = 0 : type.sizes.forEach(size=> size.qty = 0)
-            })
-            gasContext.orders.cart = []
-            gasContext.total = 0
-            gasContext.merchTotal = 0
+                })  
+            }
+                gasContext.orders.cart = []
+                gasContext.total = 0
+                gasContext.merchTotal = 0
             },timeout)
+        }
+
+        const saveTransaction = ()=>{
+            const date = new Date()
+            const parsedDate = `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`
+            // set current transaction data to be stored
+            const newTransaction = {date:parsedDate,total:totalCharge,items:gasContext.orders.cart,id:uid(8)}
+            
+            // retrieve localstorage data to manipulate
+            const storedHistory = localStorage.getItem('orderHistory') ? JSON.parse(localStorage.getItem('orderHistory')) : []
+            storedHistory.push(newTransaction)
+            localStorage.setItem('orderHistory',JSON.stringify(storedHistory))
+            gasContext.orders.history = storedHistory
         }
 
         if(gasContext.payment.card && totalCharge > 0){
@@ -37,12 +53,14 @@ export default component$(()=>{
             gasContext.payment.paymentProcessing = false
             gasContext.layout.message = 'Payment Successful! 🎉'
             closeOverlay(2000)
+            saveTransaction()
             updateTotals(2000)
         },6000)}
         
         if(!gasContext.payment.card && totalCharge > 0){
             gasContext.layout.message = 'Payment Successful! 🎉'
             closeOverlay(2000)
+            saveTransaction()
             updateTotals(2000)
         }
         

@@ -31,7 +31,7 @@ interface GasStore{
   }
   orders:{
     cart: Array<{name:string,qty:number,price:number,type:string}>
-    history: Array<{order:Array<{date:string,id:number,items:Array<{price:number,name:string}>}>}>
+    history: Array<{date:string,total:string,items:Array<{}>,id:string}>
   }
   total: number
   merchTotal: number
@@ -117,7 +117,7 @@ const GasStore = useStore({
     // cart and history for orders
     orders:{
       cart:[],
-      history: [{date:'04-21-2022',total:1.09,items:[{price:.99,name:'Tea'}],id:'needtogenerateid'}]
+      history: []
     },
     total:0,
     tax:0,
