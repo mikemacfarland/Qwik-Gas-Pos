@@ -5,9 +5,9 @@ import Loader from "../icons/loader";
 export default component$(()=>{
     const gasContext = useContext(GasContext)
 
-    const totalTax = parseFloat((gasContext.merchTotal * (gasContext.settings.taxRate / 100)).toFixed(2))
+    const totalTax = gasContext.tax
 
-    const totalCharge = parseFloat((gasContext.total + gasContext.merchTotal + totalTax).toFixed(2))
+    const totalCharge = gasContext.total + gasContext.tax + gasContext.merchTotal
 
     const confirmClick = $(()=>{
         
@@ -23,8 +23,9 @@ export default component$(()=>{
                type.pump = 0
             })
             gasContext.foodTypes.map((type)=>{
-                type.qty = 0
+                type.qty ? type.qty = 0 : type.sizes.forEach(size=> size.qty = 0)
             })
+            gasContext.orders.cart = []
             gasContext.total = 0
             gasContext.merchTotal = 0
             },timeout)

@@ -5,10 +5,10 @@
     ☐ @TESTING create tests for input,button and link elements on build
     ✔ add page for transaction history @done(23-01-17 14:17)
     ✔ update readme @done(23-01-17 14:16)
-    ☐ button for edit cart
+    ✔ button for edit cart @done(23-01-17 23:28)
 
 --Context
-    ☐ create cart context to push items to as a array instead of mapping total to qtys this will fix the food item size issue in cart
+    ✔ create cart context to push items to as a array instead of mapping total to qtys this will fix the food item size issue in cart @done(23-01-17 23:28)
 
 --Alerts
     ✔ create small alert that pops up for useful user information. eeeez @done(23-01-10 13:38)
@@ -19,12 +19,14 @@
 --Overlay
     ✔ help page as an overlay @done(23-01-09 15:05)
     ✔ give contact info of super user/admin @done(23-01-09 15:05)
+    ☐ style edit cart overlay
+    ☐ add 
     --Payment
         ✔ when payment complete or cancelled clear pumps selection @done(23-01-10 19:03)
 
 --Styling
     ✔ add js for turning dark mode on and off @done(23-01-11 15:56)
-    ☐ add :active styling to buttons
+    ✔ add :active styling to buttons @done(23-01-17 23:35)
     ✔ add transitions to buttons .3s @done(23-01-11 22:10)
     ☐ add transitions and animations to events and alerts
 
@@ -34,9 +36,9 @@
 
 --Food page
     ☐ make items add to cart style with qty select
-    ☐ food items to be rung up individually from sizes - right now if you ring up 3 md coffees and change the item to sm to ring up another, it will change the total
+    ✔ food items to be rung up individually from sizes - right now if you ring up 3 md coffees and change the item to sm to ring up another, it will change the total @done(23-01-17 23:26)
     ☐ edit items in food item dialogue
-    ☐ add icon to fooditem to denote if multiple sizes are picked
+    ✔ add icon to fooditem to denote if multiple sizes are picked @done(23-01-17 23:26)
     ✔ make payment buttons a reusable component @done(23-01-10 20:24)
     ✔ name filter for creating items - uniform input behaviour with app @done(23-01-09 21:42)
     ☐ have x button positioned absolute fill up food container and then click to delete when edit is on
@@ -50,6 +52,7 @@
     ☐ create database of completed orders.
 
 --Gas page
+    ☐ add red circle or user notify for gas items when pump isnt selected
     ☐ make items add to cart style with qty select
     ✔ fix problem with gas going negative @done(23-01-08 23:07)
     ✔ change input for gas items to only go to 200 @done(23-01-08 23:07)
@@ -74,6 +77,8 @@
     
 -- Settings
     ✔ Dark mode @done(23-01-11 15:09)
+    ☐ setting for gas tank sizes
+    ☐ setting for some other eshit
     ✔ make settings inputs a reusable component to refactor @done(23-01-09 12:10)
     ✔ change inputs to 0 when focused and change back to default value if nothing is input @done(23-01-09 13:23) 
     ☐ Delete or add Users -- for admins only

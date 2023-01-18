@@ -38,6 +38,30 @@ interface gasItemProps{
       gasContext.total = newGasTotal
     })
 
+    const updateTotals = $(()=>{ 
+      const arrReduce = (arr)=>{
+          const totalAll = arr.map((item)=>{
+              return (item.price * item.qty)
+          }).reduce((item,a)=>{
+              return item + a
+          })
+          return totalAll
+      }
+
+      if(gasContext.orders.cart.length > 0 ){
+          const gasItems = []
+          const foodItems = []
+          gasContext.orders.cart.forEach((item)=>{
+              item.type === 'gas' ? gasItems.push(item) : foodItems.push(item)
+          })
+
+          foodItems.length > 0 ? gasContext.tax = arrReduce(foodItems) * (gasContext.settings.taxRate / 100) : gasContext.tax = 0
+          gasItems.length > 0 ? gasContext.total = arrReduce(gasItems) : gasContext.total = 0
+          foodItems.length > 0 ? gasContext.merchTotal = arrReduce(foodItems) : gasContext.merchTotal = 0
+
+      }
+    })
+
     const updateCart = $(()=>{
       gasContext.orders.cart = []
       gasContext.foodTypes.map((foodItem)=>{
@@ -59,6 +83,7 @@ interface gasItemProps{
               gasContext.orders.cart.push({name:newName,qty:gasItem.qty,price:gasItem.price})
           }
       })
+      updateTotals()
   })
 
     interface e{

@@ -11,7 +11,6 @@ export default component$(()=>{
     }
 
     const LiItem = ((props:liItemProps)=>{
-        console.log(props)
         return(
             <li class='flex flex-row space-x-8' key={props.key}>
                 <p>{props.item.name}</p>

@@ -18,28 +18,28 @@ export default component$((props:foodItemProps)=>{
     })
 
     // function to update global totals
-    const updateTotals = $(()=>{
-        console.log(gasContext.orders.cart)
-        const taxableItems = gasContext.orders.cart.map((item)=>{
-            if(item.type !== 'gas'){
-                return item.price * item.qty
-            }
-        }).reduce((item,a)=>{ return a + item })
-        
-        
-        if(taxableItems){
-        gasContext.tax = taxableItems * (gasContext.settings.taxRate / 100) 
-        gasContext.merchTotal = gasContext.tax + taxableItems
+    // this function could be in the update cart function if both were refactored a bit
+    const updateTotals = $(()=>{ 
+        const arrReduce = (arr)=>{
+            const totalAll = arr.map((item)=>{
+                return (item.price * item.qty)
+            }).reduce((item,a)=>{
+                return item + a
+            })
+            return totalAll
         }
 
-        const gasItems = gasContext.orders.cart.map((item)=>{
-            if(item.type === 'gas'){
-                return item.price * item.qty
-            }
-        })
+        if(gasContext.orders.cart.length > 0 ){
+            const gasItems = []
+            const foodItems = []
+            gasContext.orders.cart.forEach((item)=>{
+                item.type === 'gas' ? gasItems.push(item) : foodItems.push(item)
+            })
 
-        console.log(gasItems)
-        
+            foodItems.length > 0 ? gasContext.tax = arrReduce(foodItems) * (gasContext.settings.taxRate / 100) : gasContext.tax = 0
+            gasItems.length > 0 ? gasContext.total = arrReduce(gasItems) : gasContext.total = 0
+            foodItems.length > 0 ? gasContext.merchTotal = arrReduce(foodItems) : gasContext.merchTotal = 0
+        }
     })
 
     // Function to update cart
