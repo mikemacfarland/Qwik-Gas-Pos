@@ -6,7 +6,7 @@ import Alert from '~/components/shared/alert';
 export default component$(() => {
   return (
     <>
-      <main class='flex flex-col lg:flex-row justify-between m-4 xl:m-8'>
+      <main class='flex flex-col lg:flex-row justify-center my-4 mx-4 2xl:w-5/6 2xl:mx-auto'>
         <Overlay/>
         <Alert/>
         <section class='lg:mr-4 xl:mr-8'>

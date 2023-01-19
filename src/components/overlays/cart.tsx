@@ -10,46 +10,49 @@ export default component$(()=>{
         key:string
     }
 
+    // @TODO  make this component reusable for reciepts display as well to refactor files
+
     const LiItem = ((props:liItemProps)=>{
         return(
-            <tr class='flex flex-row justify-between my-2' key={props.key}>
-                <td class='w-1/4 text-left'><p class='w-1/'> {props.item.name}</p></td>
-                <td class='w-1/4 text-center'>
-                    <p>{props.item.qty}</p>
+            <ul class='flex flex-row justify-between my-2' key={props.key}>
+                <p class='w-52 md:w-60 lg:w-72 text-left'>{props.item.name}</p>
+                <p class='w-12 md:w-14 lg:w-20 text-center'>
+                    {props.item.qty}
                     {/* 
                     // @TODO make this a changable input for qty in cart 
                     <input onChange$={(e)=>{}}
                     class='w-14 text-center mx-2 font-bold bg-quadrary-color  transition-colors duration-300 dark:bg-tertiary-color rounded-md' type="text" value={props.item.qty}/> */}
-                </td>
-                <td class='w-1/4 text-center'><p>{props.item.price}</p></td>
-                <td class='w-1/4 text-right'> <p>{(props.item.price * props.item.qty).toFixed(2)}</p></td>
-                {/* <td class='w-1/4 text-right'><button class='w-8 h-content border-2 rounded-lg text-center' onClick$={()=>{console.log('remove item')}}>x</button></td> */}
-            </tr>
+                </p>
+                <p class='w-12 md:w-14 lg:w-20 text-center'>{props.item.price}</p>
+                <p class='w-12 md:w-14 lg:w-20 text-right'> {(props.item.price * props.item.qty).toFixed(2)}</p>
+                {/* <p class='w-1/4 text-right'><button class='w-8 h-content border-2 rounded-lg text-center' onClick$={()=>{console.log('remove item')}}>x</button></p> */}
+            </ul>
         )
     })
 
     return(
-        <div onClick$={$((e)=>{e.stopPropagation()})} class=' h-content max-h-1/2 p-8 md:w-1/2 lg:w-1/2 xl:w-1/3 bg-secondary-color  transition-colors duration-300 dark:bg-slate-400 rounded-3xl'>
+        <div onClick$={$((e)=>{e.stopPropagation()})} class=' h-content max-h-3/4 p-8 w-content  	 bg-secondary-color  transition-colors duration-300 dark:bg-slate-400 rounded-3xl'>
             <div>
-                <table class='w-full overflow-y-scroll'>
-                    <tr class='flex justify-between w-full font-bold border-2 px-2 py-2 rounded-lg mb-4'>
-                        <td class='w-1/4 text-left'><p>Item</p></td>
-                        <td class='w-1/4 text-center'><p>Qty</p></td>
-                        <td class='w-1/4 text-center'><p>Price</p></td>
-                        <td class='w-1/4 text-right'><p>Total</p></td>
-                    </tr>
+                <div class='flex justify-between w-full font-bold border-2 px-2 py-2 rounded-lg mb-4'>
+                    <p class='w-52 md:w-60 lg:w-72 text-left'>Item</p>
+                    <p class='w-12 md:w-14 lg:w-20 text-center'>Qty</p>
+                    <p class='w-12 md:w-14 lg:w-20 text-center'>Price</p>
+                    <p class='w-12 md:w-14 lg:w-20 text-right'>Total</p>
+                </div>
+                <ul class='max-h-80 w-full overflow-y-auto border-2 rounded-lg p-2'>
+                    
                     {
                     gasContext.orders.cart.length > 0 ? 
                     gasContext.orders.cart.map((item,)=>{
                         return(
                             <LiItem key={item.name} item={item}/>
                             )
-                    }) : <tr class='flex justify-center my-8'><td>Cart is empty!</td></tr>
+                    }) : <li class='flex justify-center my-8'>Cart is empty!</li>
                 }
-                </table>
+                </ul>
             </div>
             <div class='flex flex-row justify-between'>
-                <button onClick$={()=>gasContext.layout.overlay = ''} class='w-1/3 block text-mid-green dark:text-secondary-color border-mid-green  transition-colors duration-300 dark:border-secondary-color border-2 h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
+                <button onClick$={()=>gasContext.layout.overlay = ''} class='w-1/3 block text-mid-green dark:text-secondary-color border-mid-green  transition-colors duration-300 hover:bg-mid-green dark:border-secondary-color border-2 h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
                 <button onClick$={()=>gasContext.orders.cart.length > 0 ? gasContext.layout.overlay = 'payment' : gasContext.layout.overlay = 'cart'} class='w-1/3 block text-secondary-color bg-mid-green border-2 border-mid-green transition-colors duration-300 h-14 px-5 rounded-xl mx-auto mt-6'>Checkout</button>
             </div>
         </div>

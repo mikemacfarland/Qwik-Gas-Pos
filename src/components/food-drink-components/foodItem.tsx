@@ -83,10 +83,12 @@ export default component$((props:foodItemProps)=>{
         }
         // decrement
         if(e.target.innerText === '-'){
-            props.foodItem.sizes ? props.foodItem.sizes[foodItemStore.idx].qty -- : props.foodItem.qty --
+            if(props.foodItem.sizes)
+            props.foodItem.sizes[foodItemStore.idx].qty > 0 ? props.foodItem.sizes[foodItemStore.idx].qty -- : props.foodItem.sizes[foodItemStore.idx].qty = 0
+            if(props.foodItem.qty)
+            props.foodItem.qty > 0 ? props.foodItem.qty -- : props.foodItem.qty = 0
         }
         updateCart()
-
     })
 
     // on input focus behaviour function
@@ -117,10 +119,9 @@ export default component$((props:foodItemProps)=>{
     })     
 
     return(
-        <div class={` flex flex-row justify-left items-center text-lg h-14 p-4 mb-4 md:mx-4 lg:mx-8 border-2 rounded-xl ${props.class}`}>
+        <div class={`flex flex-row justify-left items-center text-lg h-14 p-4 mx-4 xl:mx-8 border-2 rounded-xl ${props.class}`}>
                 <FoodIcon type={props.foodItem.type} class='fill-mid-green  transition-colors duration-300 dark:fill-secondary-color h-4 w-4 mr-3'/>
                 <p>{props.foodItem.name}</p>
-                {/* @TODO else clause willneed to be using a local variable that when sizes switched = thi price */}
                 <p class='font-bold ml-auto pl-2'>{props.foodItem.sizes ? props.foodItem.sizes[foodItemStore.idx].price : props.foodItem.price}</p>
                 <div class='flex flex-row justify-center items-center ml-4'>
                     <div class={`${props.foodItem.type === 'Coffee' || props.foodItem.type ==='Soda' || props.foodItem.type ==='Tea' ? 'flex flex-row' : 'hidden'} text-base`}>
@@ -128,7 +129,7 @@ export default component$((props:foodItemProps)=>{
                         props.foodItem.sizes ? createSizes(true) : createSizes(false)
                         }
                     </div>
-                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2  border-mid-green  dark:border-secondary-color rounded-xl text-mid-green  transition-colors duration-300 dark:text-secondary-color '>-</button>
+                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2  border-mid-green  dark:border-secondary-color rounded-xl text-mid-green hover:bg-mid-green transition-colors duration-300 dark:text-secondary-color '>-</button>
                     <input onFocus$={(e)=>inputFocus(e)}
                         onKeyUp$={(e)=>{changeQty(e)}} 
                         onChange$={(e)=>changeQty(e)}
@@ -138,7 +139,7 @@ export default component$((props:foodItemProps)=>{
                     />
                     <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 rounded-xl bg-mid-green text-secondary-color'>+</button>
                 </div>
-                {/* @TODO add little icon to denote if 2 or 3 sizes are picked */}
+               
             {/* @TODO <button></button> this will be for deleting items*/}
         </div>
     )

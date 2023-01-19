@@ -4,6 +4,7 @@ import Payment from "./payment";
 import UserAlert from "./userAlert";
 import Help from "./help";
 import Cart from "./cart";
+import RecieptSummary from "./recieptSummary";
 
 export default component$(()=>{
     const gasContext = useContext(GasContext)
@@ -17,6 +18,7 @@ export default component$(()=>{
         <div onClick$={$((e)=>{paymentClick(e)})} class={`${gasContext.layout.overlay !== '' ? 'flex' : 'hidden'} justify-center items-center z-30 h-screen w-screen absolute top-0 left-0 bg-slate-400/75  transition-colors duration-300 dark:bg-tertiary-color/75 backdrop-blur-md`}>
             <UserAlert/>
             {gasContext.layout.overlay === 'payment' ? <Payment/> : 
+            gasContext.layout.overlay === 'recieptSummary' ? <RecieptSummary/> :
             gasContext.layout.overlay === 'cart' ? <Cart/> :<Help/>}
             
             

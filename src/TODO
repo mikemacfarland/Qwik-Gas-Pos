@@ -1,87 +1,67 @@
 @TODOs
 
 --ALL
-    ✔ check input behaviour across app, make sure its all the same @done(23-01-09 13:51)
+    ✔ qty for items can go negative - fix this @done(23-01-19 15:11)
     ☐ @TESTING create tests for input,button and link elements on build
-    ✔ add page for transaction history @done(23-01-17 14:17)
-    ✔ update readme @done(23-01-17 14:16)
-    ✔ button for edit cart @done(23-01-17 23:28)
+    ☐ remove all extra .toFixed() and parseInt() and set types at root when values get set
 
 --Context
-    ✔ create cart context to push items to as a array instead of mapping total to qtys this will fix the food item size issue in cart @done(23-01-17 23:28)
 
 --Alerts
-    ✔ create small alert that pops up for useful user information. eeeez @done(23-01-10 13:38)
-
+    ☐ styling for alerts on different size screens - text wraps on smaller screens 
 --Header
-    ✔ help button to open overlay with admin contact info @done(23-01-09 15:06)
 
 --Overlay
-    ✔ help page as an overlay @done(23-01-09 15:05)
-    ✔ give contact info of super user/admin @done(23-01-09 15:05)
-    ✔ style edit cart overlay @done(23-01-18 13:47)
+    ☐ fix issue with no pump selected on view cart
     ☐ add functionailty to cart overlay - edit items - delete items
     --Payment
-        ✔ when payment complete or cancelled clear pumps selection @done(23-01-10 19:03)
 
 --Styling
-    ✔ add js for turning dark mode on and off @done(23-01-11 15:56)
-    ✔ add :active styling to buttons @done(23-01-17 23:35)
-    ✔ add transitions to buttons .3s @done(23-01-11 22:10)
-    ☐ add transitions and animations to events and alerts
+    ☐ styling for larger screen - settings width too wide
+    ☐ check dark mode styling for whole app
+    ☐ check light mode styling for whole app
+    ✔ set overlays to fixed widths @done(23-01-19 15:04)
+    ✔ re-style overlays @done(23-01-19 15:04)
+        ✔ payment @done(23-01-19 15:03)
+        ✘ signini @cancelled(23-01-19 15:03)
+        ✘ sync @cancelled(23-01-19 15:03)
+        ✘ useralert @cancelled(23-01-19 15:04)
+
+    ✘ add transitions and animations to events and alerts @cancelled(23-01-19 15:10)
 
 --Aditional Page/form
-    ☐ user sign in
-    ☐ User Alert dialogue 
+    ✘ user sign in @cancelled(23-01-19 15:10)
+    ✘ User Alert dialogue @cancelled(23-01-19 15:10)
 
 --Food page
-    ✔ make items add to cart style with qty select @done(23-01-18 13:48)
-    ✔ food items to be rung up individually from sizes - right now if you ring up 3 md coffees and change the item to sm to ring up another, it will change the total @done(23-01-17 23:26)
-    ☐ edit items in food item dialogue - use overlay with same style as cart overlay
-    ✔ add icon to fooditem to denote if multiple sizes are picked @done(23-01-17 23:26)
-    ✔ make payment buttons a reusable component @done(23-01-10 20:24)
-    ✔ name filter for creating items - uniform input behaviour with app @done(23-01-09 21:42)
-    ☐ have x button positioned absolute fill up food container and then click to delete when edit is on
-    ☐ only show edit button if user is admin? or require admin code to add and delete items
-    ✔ fix food input to only go to 20 @done(23-01-08 23:18)
-    ✔ fix food drink item price selection issues when creating items @done(23-01-09 21:42)
+    ✔ clear items when clear button is pressed and when cart is checked out @done(23-01-19 15:10)
+    ✔ food items can go negative.. fix @done(23-01-19 14:57)
+    ✔ grey out edit items button for now @done(23-01-19 15:03)
+    ✘ edit items in food item dialogue - use overlay with same style as cart overlay @cancelled(23-01-19 14:57)
+    ✘ only show edit button if user is admin? or require admin code to add and delete items @cancelled(23-01-19 15:03)
+   
+--Components
+    ☐ refactor buttons into reusable components (styled buttons)
 
 --Database
     ✘ add netlify database? - use localstorage for now @cancelled(23-01-16 10:31)
     ✔ add localstorage for orders @done(23-01-18 14:37)
 
 --Gas page
-    ☐ add red circle or user notify for gas items when pump isnt selected
-    ☐ make items add to cart style with qty select
-    ✔ fix problem with gas going negative @done(23-01-08 23:07)
-    ✔ change input for gas items to only go to 200 @done(23-01-08 23:07)
-    ✔ input for food items to only go to 20 @done(23-01-09 12:11)
-    ✔ make selection of gas pump mandatory for adding gas when pressing confirm button @done(23-01-10 16:12)
-    ✔ add gas pumps to gastype context @done(23-01-10 16:13)
-    ✔ make payment screen only apear when valid selections of food and gas are made @done(23-01-10 18:56)
-    ✔ make payment buttons a reusable component @done(23-01-10 20:24)
-    ☐ add dropdown for timeline on bar chart
-        ☐ add month and week selection
-        ☐ maybe add year selection or multiple year selection
+    ✘ add red circle or user notify for gas items when pump isnt selected @cancelled(23-01-19 15:12)
+    ✔ make items add to cart style with qty select @done(23-01-19 15:12)
+    ☐ modify bar chart to have more data and selection of data
 
 --Transaction Page
-    ☐ date filter for transactions
-    ☐ filter gas only
-    ☐ filter food only
-    ☐ other filters?
+    ✔ click on transaction = open overlay to view details of transaction @done(23-01-19 15:12)
+    ☐ filters for transactions
 
 --Index
-    ☐ add timer for sync to update
-    ✔ make help and sync smaller for md-lg layout @done(23-01-10 20:44)
+    ✘ add timer for sync to update @cancelled(23-01-19 15:12)
     
 -- Settings
-    ✔ Dark mode @done(23-01-11 15:09)
-    ☐ setting for gas tank sizes
-    ✔ make settings inputs a reusable component to refactor @done(23-01-09 12:10)
-    ✔ change inputs to 0 when focused and change back to default value if nothing is input @done(23-01-09 13:23) 
-    ☐ Delete or add Users -- for admins only
-    ✔ dark mode in localstorage @done(23-01-16 10:29)
-    ✔ Give User Permissions @done(23-01-09 13:22)
-    ✔ gas max qty setting @done(23-01-08 23:11)
-    ✔ food max qty setting @done(23-01-08 23:11)
+    ✔ setting for gas tank sizes @done(23-01-19 15:27)
+    ☐ add logic for setting gas tank sizes and gas stock
+    ✘ Delete or add Users -- for admins only @cancelled(23-01-19 15:13)
+
     

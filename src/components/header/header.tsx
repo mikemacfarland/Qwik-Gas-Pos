@@ -19,26 +19,27 @@ export default component$(() => {
   }
 
   return (
-    <header class='flex flex-row flex-wrap lg:flex-nowrap lg:flex-col lg:h-full items-center'>
-        <h1 class='align-middle font-bold text-4xl text-center  lg:mb-6 md:mr-auto'>Gas Pos System</h1>
-      <ul class='lg:w-full flex md:flex-row lg:flex-col'>
-        <li class='h-14 lg:mb-8 mr-4 lg:mr-0'>
-          <AnchorItem content='Fuel' class={checkPath('/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<GasSvg class='fill-inherit h-4 w-4 ml-2'/>} linkto='/'/>
+    <header class='flex flex-row flex-wrap lg:flex-nowrap lg:flex-col lg:h-full items-center space-y-4 mb-4'>
+        <h1 class='order-1 w-full align-middle font-bold text-4xl text-center  md:mr-auto'>Gas Pos System</h1>
+
+      <ul class='order-last w-full flex flex-row lg:flex-col justify-between space-x-4 lg:space-x-0 lg:space-y-4'>
+        <li class='h-14 w-1/4 md:w-full'>
+          <AnchorItem content='Fuel' class={checkPath('/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<GasSvg class='fill-inherit h-4 w-4 '/>} linkto='/'/>
         </li>
-        <li class='h-14 lg:mb-8 md:mr-4 lg:mr-0'>
-          <AnchorItem content='Food/Drinks' class={checkPath('/food-drinks/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<FoodSvg class='fill-inherit h-4 w-4 ml-2'/>} linkto='/food-drinks'/>
+        <li class='h-14 w-1/4 md:w-full'>
+          <AnchorItem content='Food/Drinks' class={checkPath('/food-drinks/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<FoodSvg class='fill-inherit h-4 w-4 '/>} linkto='/food-drinks'/>
         </li>
-        <li class='h-14 lg:mb-8 md:mr-4 lg:mr-0'>
-          <AnchorItem content='Reciepts' class={checkPath('/reciepts/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<MoneySvg class='fill-inherit h-4 w-4 ml-2'/>} linkto='/reciepts'/>
+        <li class='h-14 w-1/4 md:w-full'>
+          <AnchorItem content='Reciepts' class={checkPath('/reciepts/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<MoneySvg class='fill-inherit h-4 w-4 '/>} linkto='/reciepts'/>
         </li>
-        <li class='h-14 lg:mb-8'>
-          <AnchorItem content='Settings' class={checkPath('/settings/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<Settings class='fill-inherit h-4 w-4 ml-2'/>} linkto='/settings'/>
+        <li class='h-14 w-1/4 md:w-full'>
+          <AnchorItem content='Settings' class={checkPath('/settings/')  ? 'bg-mid-green text-secondary-color fill-secondary-color' : ' bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<Settings class='fill-inherit h-4 w-4 '/>} linkto='/settings'/>
         </li>
       </ul>
-      <div class='text-sm flex flex-row md:justify-start lg:justify-between  items-center h-content md:mr-auto md:w-1/2 lg:w-full mb-4 lg:mb-8 '>
+      <div class='order-2 justify-center text-sm flex flex-row  lg:justify-between  items-center h-content md:mr-auto  w-full mb-4 lg:mb-8 '>
         {/* help button */}
         <button onClick$={()=>gasContext.layout.overlay = 'help'}
-        class='flex flex-col md:mr-4 justify-center items-center h-14 w-14 lg:h-16 lg:w-16 border-2  border-slate-300 rounded-2xl bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'> 
+        class='flex flex-col mr-4 justify-center items-center h-14 w-14 lg:h-16 lg:w-16 border-2  border-slate-300 rounded-2xl bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'> 
           <HelpSvg/>
           <p>Help</p> 
         </button>
@@ -51,9 +52,7 @@ export default component$(() => {
           </div>
         </div>
       </div>
-      {/* <div class='h-14 w-content lg:w-full'>
-        <AnchorItem content='Cashier - name' class={checkPath('/user/')  ? 'bg-mid-green text-white fill-white' : 'text-black bg-secondary-color  transition-colors duration-300 dark:bg-slate-400'} icon={<User class='ml-4 w-4 h-4 fill-inherit'/>} linkto='/user'/>
-      </div> */}
+      
     </header>
   );
   

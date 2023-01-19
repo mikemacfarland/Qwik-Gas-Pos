@@ -166,11 +166,11 @@ interface gasItemProps{
     })
 
   return(
-    <div class={`flex flex-row justify-left items-center md:mx-4 lg:mx-8 lg:text-sm h-20 p-4 border-2  rounded-xl overflow-y ${props.class}`}>
-          <GasSvg class={`md:hidden lg:block h-12 ${props.fill} `}/>
+    <div class={`flex flex-row justify-left items-center mx-4 xl:mx-8 lg:text-sm h-20 p-4 border-2  rounded-xl overflow-y ${props.class}`}>
+          <GasSvg class={`hidden lg:block h-12 ${props.fill} `}/>
           <div class='flex flex-col w-1/4 lg:ml-7 mr-auto'>
-            <p class='font-bold md:text-2xl xl:text-3xl'>{props.gasType.octane}</p>
-            <p class='text-slate-400'>{(props.gasType.name).toUpperCase()}</p>
+            <p class='font-bold text-2xl xl:text-3xl'>{props.gasType.octane}</p>
+            <p class='text-slate-400 dark:text-secondary-color'>{(props.gasType.name).toUpperCase()}</p>
           </div>
           <p class='mr-4 text-xl font-bold'>{props.gasType.price}$</p>
 
@@ -186,7 +186,7 @@ interface gasItemProps{
           </div>
 
           <div class='flex flex-row items-center'>
-            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2  rounded-xl border-mid-green   dark:border-secondary-color text-mid-green transition-colors duration-300 dark:text-secondary-color'>-</button>
+            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2  rounded-xl border-mid-green  hover:bg-mid-green dark:border-secondary-color text-mid-green transition-colors duration-300 dark:text-secondary-color'>-</button>
             <input onChange$={$((e:e)=>{changeQty(e)})}
             onFocus$={(e:e)=>{changeQty(e)}}
             onFocusout$={(e:e)=>{changeQty(e)}}

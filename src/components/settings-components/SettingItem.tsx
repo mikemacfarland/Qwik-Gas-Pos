@@ -20,9 +20,9 @@ export default component$((props:settingsItemProps)=>{
     })
 
     return(
-        <div class={`flex flex-row justify-start w-1/3 ${props.class}`}>
+        <div class={`flex flex-row justify-start w-content space-x-4 ${props.class}`}>
             {/* @TODO needs event listener can use the same onchange if you add condition to accept a booolean*/}
-            <label class='mr-auto' for={htmlFor}>{props.name}</label>
+            <label class='whitespace-nowrap mr-auto' for={htmlFor}>{props.name}</label>
             {typeof(props.type) === 'boolean' ? 
             <input class='settingsCheckbox w-14 ' onChange$={props.onChange} type='checkbox' checked={props.type === true ? true : false} id={htmlFor}/> :
             <input onChange$={props.onChange} onKeyup$={props.onKeyDown} 

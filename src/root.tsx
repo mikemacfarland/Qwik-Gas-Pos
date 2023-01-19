@@ -32,6 +32,7 @@ interface GasStore{
   orders:{
     cart: Array<{name:string,qty:number,price:number,type:string}>
     history: Array<{date:string,total:string,items:Array<{}>,id:string}>
+    oldOrder:[]
   }
   total: number
   merchTotal: number
@@ -97,7 +98,7 @@ const GasStore = useStore({
     settings:{
       darkMode: false,
       noOfPumps: 4,
-      taxRate: 7,
+      taxRate: 7.2,
       maxFoodQty: 20,
       maxGasQty: 200,
       gasCapacity: 15000
@@ -117,7 +118,8 @@ const GasStore = useStore({
     // cart and history for orders
     orders:{
       cart:[],
-      history: []
+      history: [],
+      oldOrder: []
     },
     total:0,
     tax:0,
