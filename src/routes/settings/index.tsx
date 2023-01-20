@@ -12,7 +12,6 @@ export default component$(() => {
     gasContext.gasTypes.forEach(type=>{
       if(type.stock > gasContext.settings.gasCapacity){
         e.target.value = gasContext.settings.gasCapacity
-        
       }
     })
 

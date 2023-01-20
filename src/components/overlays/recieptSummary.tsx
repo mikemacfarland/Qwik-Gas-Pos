@@ -41,29 +41,29 @@ export default component$(()=>{
                 </ul>
             </div>
                 {gasContext.orders.oldOrder ? 
-                <ul class='flex flex-col justify-between space-y-2 w-1/2 my-8 mx-auto border-2 p-2 rounded-lg'>
+                <ul class='flex flex-col justify-between space-y-2 w-1/2 my-8 mx-auto border-2 p-2 rounded-lg font-bold'>
                     <li class='flex flex-row justify-between'>
-                        <p>Gas</p>
+                        <p >Gas</p>
                         {/* @TODO this should be set inside the oldorder data when a transaction is complete */}
                         <p>{(gasContext.orders.oldOrder.total - gasContext.orders.oldOrder.foodTotal - gasContext.orders.oldOrder.tax).toFixed(2)}</p>
                     </li>
                     <li class='flex flex-row justify-between'>
-                        <p>Food</p>
+                        <p >Food</p>
                         <p>{gasContext.orders.oldOrder.foodTotal}</p>
                     </li>
                     <li class='flex flex-row justify-between'>
-                        <p>Tax</p>
+                        <p >Tax</p>
                         <p>{gasContext.orders.oldOrder.tax}</p>
                     </li>
                     <li class='flex flex-row justify-between'>
-                        <p>Total</p>
+                        <p >Total</p>
                         <p>{gasContext.orders.oldOrder.total}</p>
                     </li>
                 </ul> :
                 <p>No order data!</p>
                 }
             <div class='flex flex-row justify-between'>
-                <button onClick$={()=>gasContext.layout.overlay = ''} class='w-1/3 block text-mid-green dark:text-secondary-color border-mid-green hover:bg-mid-green transition-colors duration-300 dark:border-secondary-color border-2 h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
+                <button onClick$={()=>gasContext.layout.overlay = ''} class='w-1/3 block text-mid-green hover:text-secondary-color dark:text-secondary-color border-mid-green hover:bg-mid-green transition-colors duration-300 dark:border-secondary-color border-2 h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
             </div>
         </div>
     )

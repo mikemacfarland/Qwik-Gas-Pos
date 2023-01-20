@@ -24,7 +24,7 @@ export default component$(()=>{
                     </li>
                 </ul>
             </div>
-            <button onClick$={()=>gasContext.layout.overlay = ''} class='block text-mid-green  border-mid-green  transition-colors duration-300 hover:bg-mid-green dark:text-secondary-color dark:border-secondary-color border-2  h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
+            <button onClick$={()=>gasContext.layout.overlay = ''} class='block text-mid-green  border-mid-green  transition-colors duration-300 hover:bg-mid-green hover:text-secondary-color dark:text-secondary-color dark:border-secondary-color border-2  h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
         </div>
     )
 })

@@ -109,7 +109,7 @@ export default component$((props:foodItemProps)=>{
             return(
                 props.foodItem.sizes.map((size)=>{
                 return(
-                    <button onClick$={(e)=>changeSize(e)} class={`relative w-10 h-10 border-2 border-mid-green dark:border-secondary-color rounded-xl mr-2 hover:bg-mid-green ${props.foodItem.sizes[foodItemStore.idx].name ===  size.name ? 'bg-mid-green text-secondary-color border-mid-green border-2 dark:border-mid-green' : 'bg-secondary-color dark:bg-slate-400 '} hover:text-white transition-colors duration-300`}>
+                    <button onClick$={(e)=>changeSize(e)} class={`relative w-10 h-10 border-2 border-mid-green dark:border-secondary-color rounded-xl mr-2 hover:text-secondary-color hover:bg-mid-green ${props.foodItem.sizes[foodItemStore.idx].name ===  size.name ? 'bg-mid-green text-secondary-color border-mid-green border-2 dark:border-mid-green' : 'bg-secondary-color dark:bg-slate-400 '} hover:text-white transition-colors duration-300`}>
                     {size.name}
                     <div class={`${size.qty > 0 ? 'visible' : 'hidden'} absolute bg-unl-yellow w-2 h-2 -top-0.5 -right-0.5 rounded-full`}>{}</div>
                     </button>
@@ -129,7 +129,7 @@ export default component$((props:foodItemProps)=>{
                         props.foodItem.sizes ? createSizes(true) : createSizes(false)
                         }
                     </div>
-                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2  border-mid-green  dark:border-secondary-color rounded-xl text-mid-green hover:bg-mid-green transition-colors duration-300 dark:text-secondary-color '>-</button>
+                    <button onClick$={(e)=>changeQty(e)} class='w-10 h-10 border-2  border-mid-green  dark:border-secondary-color rounded-xl text-mid-green hover:text-secondary-color hover:bg-mid-green transition-colors duration-300 dark:text-secondary-color '>-</button>
                     <input onFocus$={(e)=>inputFocus(e)}
                         onKeyUp$={(e)=>{changeQty(e)}} 
                         onChange$={(e)=>changeQty(e)}

@@ -143,13 +143,13 @@ export default component$(() => {
               </li>
               {foodStore.types.map((type)=>{
                 return(
-                <li onClick$={$(()=>{foodStore.newItem.type = type, foodStore.dropdown = false})} class='flex items-center indent-2 hover:bg-mid-green transition-color duration-300 h-8'>{type}</li>
+                <li onClick$={$(()=>{foodStore.newItem.type = type, foodStore.dropdown = false})} class='flex items-center indent-2 hover:bg-mid-green hover:text-secondary-color transition-color duration-300 h-8'>{type}</li>
                 )
               })}
             </ul>
           </div>
           
-          <button onClick$={()=>{foodStore.createItem = false,foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}}} class='h-10 w-10 border-2  border-mid-green text-mid-green rounded-xl dark:border-secondary-color  transition-colors duration-300 dark:text-secondary-color '>x</button>
+          <button onClick$={()=>{foodStore.createItem = false,foodStore.newItem = {name:'',type:'',price:0,qty:0,sizes:[{name:'Sm',price:0},{name:'Md',price:0},{name:'Lg',price:0}]}}} class='h-10 w-10 border-2  border-mid-green text-mid-green rounded-xl dark:border-secondary-color hover:bg-mid-green hover:text-secondary-color transition-colors duration-300 dark:text-secondary-color '>x</button>
           <button onClick$={()=>createItem()} class='h-10 w-10  ml-2 bg-mid-green text-secondary-color rounded-xl'>+</button>
         </div>
 

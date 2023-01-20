@@ -1,4 +1,4 @@
-import { component$, useContextProvider, createContext, useStore, useStyles$ ,useClientEffect$,$} from '@builder.io/qwik';
+import { component$, useContextProvider, createContext, useStore, useStyles$ ,useClientEffect$,} from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 import globalStyles from './global.css?inline';
@@ -106,7 +106,7 @@ const GasStore = useStore({
     layout:{
       alert:'',
       overlay:'',
-      message: null
+      message: ''
     },
     payment:{
       card:true,

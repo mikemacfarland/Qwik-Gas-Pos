@@ -52,7 +52,7 @@ export default component$(()=>{
                 </ul>
             </div>
             <div class='flex flex-row justify-between'>
-                <button onClick$={()=>gasContext.layout.overlay = ''} class='w-1/3 block text-mid-green dark:text-secondary-color border-mid-green  transition-colors duration-300 hover:bg-mid-green dark:border-secondary-color border-2 h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
+                <button onClick$={()=>gasContext.layout.overlay = ''} class='w-1/3 block text-mid-green hover:text-secondary-color dark:text-secondary-color border-mid-green  transition-colors duration-300 hover:bg-mid-green dark:border-secondary-color border-2 h-14 px-5 rounded-xl mx-auto mt-6'>Close</button>
                 <button onClick$={()=>gasContext.orders.cart.length > 0 ? gasContext.layout.overlay = 'payment' : gasContext.layout.overlay = 'cart'} class='w-1/3 block text-secondary-color bg-mid-green border-2 border-mid-green transition-colors duration-300 h-14 px-5 rounded-xl mx-auto mt-6'>Checkout</button>
             </div>
         </div>

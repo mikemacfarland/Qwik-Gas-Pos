@@ -1,6 +1,7 @@
 @TODOs
 
 --ALL
+    ✔ update to v16.2 @done(23-01-19 19:23)
     ✔ qty for items can go negative - fix this @done(23-01-19 15:11)
     ☐ @TESTING create tests for input,button and link elements on build
     ☐ remove all extra .toFixed() and parseInt() and set types at root when values get set
@@ -18,8 +19,8 @@
 
 --Styling
     ☐ styling for larger screen - settings width too wide
-    ☐ check dark mode styling for whole app
-    ☐ check light mode styling for whole app
+    ✔ check dark mode styling for whole app @done(23-01-19 19:23)
+    ✔ check light mode styling for whole app @done(23-01-19 19:23)
     ✔ set overlays to fixed widths @done(23-01-19 15:04)
     ✔ re-style overlays @done(23-01-19 15:04)
         ✔ payment @done(23-01-19 15:03)
@@ -61,7 +62,8 @@
     
 -- Settings
     ✔ setting for gas tank sizes @done(23-01-19 15:27)
-    ☐ add logic for setting gas tank sizes and gas stock
+    ✔ add logic for setting gas tank sizes and gas stock @done(23-01-19 19:23)
+    ☐ fix logic for setting gas tank sizes and stock - not always setting correctly
     ✘ Delete or add Users -- for admins only @cancelled(23-01-19 15:13)
 
     

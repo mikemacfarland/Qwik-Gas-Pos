@@ -1,4 +1,4 @@
-import { component$,$,useContext, useStore } from "@builder.io/qwik"
+import { component$,$,useContext, useStore,} from "@builder.io/qwik"
 import { GasSvg } from "../icons/gasPump"
 import { DownSvg } from '../icons/down'
 import { GasContext } from "~/root"
@@ -28,15 +28,15 @@ interface gasItemProps{
       gasPumps.push([i+1])
     }
 
-    const gasTotal = $(()=>{
-      const newGasTotal = gasContext.gasTypes.map((type)=>{
-        return (type.price * type.qty)
-      }).reduce((a,b)=>{
-        return parseFloat((a + b).toFixed(2))
-      })
+    // const gasTotal = $(()=>{
+    //   const newGasTotal = gasContext.gasTypes.map((type)=>{
+    //     return (type.price * type.qty)
+    //   }).reduce((a,b)=>{
+    //     return parseFloat((a + b).toFixed(2))
+    //   })
 
-      gasContext.total = newGasTotal
-    })
+    //   gasContext.total = newGasTotal
+    // })
 
     const updateTotals = $(()=>{ 
       const arrReduce = (arr)=>{
@@ -186,7 +186,7 @@ interface gasItemProps{
           </div>
 
           <div class='flex flex-row items-center'>
-            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2  rounded-xl border-mid-green  hover:bg-mid-green dark:border-secondary-color text-mid-green transition-colors duration-300 dark:text-secondary-color'>-</button>
+            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2  rounded-xl border-mid-green  hover:bg-mid-green hover:text-secondary-color dark:border-secondary-color text-mid-green transition-colors duration-300 dark:text-secondary-color'>-</button>
             <input onChange$={$((e:e)=>{changeQty(e)})}
             onFocus$={(e:e)=>{changeQty(e)}}
             onFocusout$={(e:e)=>{changeQty(e)}}
