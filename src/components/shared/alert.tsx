@@ -1,9 +1,8 @@
-import { component$,useContext } from "@builder.io/qwik";
+import { component$,useContext} from "@builder.io/qwik";
 import { GasContext } from "~/root";
 import { AlertSvg } from "../icons/alert";
 
 export default component$(()=>{
-    
     const gasContext = useContext(GasContext)
 
     return(

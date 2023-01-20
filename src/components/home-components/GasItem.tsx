@@ -1,4 +1,4 @@
-import { component$,$,useContext, useStore } from "@builder.io/qwik"
+import { component$,$,useContext, useStore,} from "@builder.io/qwik"
 import { GasSvg } from "../icons/gasPump"
 import { DownSvg } from '../icons/down'
 import { GasContext } from "~/root"
@@ -16,7 +16,6 @@ interface gasItemProps{
       dropdown: false,
     })
 
-
     const setAlert = $((msg)=>{
       gasContext.layout.alert = msg
       setTimeout(()=>{
@@ -29,16 +28,63 @@ interface gasItemProps{
       gasPumps.push([i+1])
     }
 
-    
-    const gasTotal = $(()=>{
-      const newGasTotal = gasContext.gasTypes.map((type)=>{
-        return (type.price * type.qty)
-      }).reduce((a,b)=>{
-        return parseFloat((a + b).toFixed(2))
-      })
+    // const gasTotal = $(()=>{
+    //   const newGasTotal = gasContext.gasTypes.map((type)=>{
+    //     return (type.price * type.qty)
+    //   }).reduce((a,b)=>{
+    //     return parseFloat((a + b).toFixed(2))
+    //   })
 
-      gasContext.total = newGasTotal
+    //   gasContext.total = newGasTotal
+    // })
+
+    const updateTotals = $(()=>{ 
+      const arrReduce = (arr)=>{
+          const totalAll = arr.map((item)=>{
+              return (item.price * item.qty)
+          }).reduce((item,a)=>{
+              return item + a
+          })
+          return totalAll
+      }
+
+      if(gasContext.orders.cart.length > 0 ){
+          const gasItems = []
+          const foodItems = []
+          gasContext.orders.cart.forEach((item)=>{
+              item.type === 'gas' ? gasItems.push(item) : foodItems.push(item)
+          })
+
+          foodItems.length > 0 ? gasContext.tax = arrReduce(foodItems) * (gasContext.settings.taxRate / 100) : gasContext.tax = 0
+          gasItems.length > 0 ? gasContext.total = arrReduce(gasItems) : gasContext.total = 0
+          foodItems.length > 0 ? gasContext.merchTotal = arrReduce(foodItems) : gasContext.merchTotal = 0
+          
+      }
     })
+
+    const updateCart = $(()=>{
+      gasContext.orders.cart = []
+      gasContext.foodTypes.map((foodItem)=>{
+          if(foodItem.qty && foodItem.qty > 0){
+              gasContext.orders.cart.push(foodItem)
+          }
+          if(foodItem.sizes){
+              foodItem.sizes.map((size)=>{
+                  if(size.qty > 0){
+                      const sizedItemName = `${size.name} ${foodItem.name}`
+                      gasContext.orders.cart.push({name:sizedItemName,qty:size.qty,price:size.price})
+                  }
+              })
+          }
+      })
+      gasContext.gasTypes.map((gasItem)=>{
+          if(gasItem.qty > 0){
+              const newName = gasItem.name.charAt(0).toUpperCase() + gasItem.name.substring(1)
+              gasContext.orders.cart.push({name:newName,qty:gasItem.qty,price:gasItem.price,type:'gas'})
+          }
+      })
+      updateTotals()
+  })
 
     interface e{
       target:any
@@ -88,17 +134,13 @@ interface gasItemProps{
       if(e.target.innerText === '-'){
         props.gasType.qty > 0 ? props.gasType.qty-- : props.gasType.qty === 0
       }
-      gasTotal()
+      updateCart()
     })
 
     const pumpDropDown = $(()=>{
       gasItemStore.dropdown ? gasItemStore.dropdown = false :
       gasItemStore.dropdown = true
     })
-
-
-
-
 
     const selectPump = $((e:e)=>{
       const selectedPump = parseInt(e.target.innerText)
@@ -124,11 +166,11 @@ interface gasItemProps{
     })
 
   return(
-    <div class={`flex flex-row justify-left items-center md:mx-4 lg:mx-8 lg:text-sm h-20 p-4 border-2  rounded-xl overflow-y ${props.class}`}>
-          <GasSvg class={`md:hidden lg:block h-12 ${props.fill} `}/>
+    <div class={`flex flex-row justify-left items-center mx-4 xl:mx-8 lg:text-sm h-20 p-4 border-2  rounded-xl overflow-y ${props.class}`}>
+          <GasSvg class={`hidden lg:block h-12 ${props.fill} `}/>
           <div class='flex flex-col w-1/4 lg:ml-7 mr-auto'>
-            <p class='font-bold md:text-2xl xl:text-3xl'>{props.gasType.octane}</p>
-            <p class='text-slate-400'>{(props.gasType.name).toUpperCase()}</p>
+            <p class='font-bold text-2xl xl:text-3xl'>{props.gasType.octane}</p>
+            <p class='text-slate-400 dark:text-secondary-color'>{(props.gasType.name).toUpperCase()}</p>
           </div>
           <p class='mr-4 text-xl font-bold'>{props.gasType.price}$</p>
 
@@ -144,7 +186,7 @@ interface gasItemProps{
           </div>
 
           <div class='flex flex-row items-center'>
-            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2  rounded-xl border-mid-green   dark:border-secondary-color text-mid-green transition-colors duration-300 dark:text-secondary-color'>-</button>
+            <button onClick$={$((e:e)=>changeQty(e))} class='flex w-10 h-10 justify-center items-center border-2  rounded-xl border-mid-green  hover:bg-mid-green hover:text-secondary-color dark:border-secondary-color text-mid-green transition-colors duration-300 dark:text-secondary-color'>-</button>
             <input onChange$={$((e:e)=>{changeQty(e)})}
             onFocus$={(e:e)=>{changeQty(e)}}
             onFocusout$={(e:e)=>{changeQty(e)}}

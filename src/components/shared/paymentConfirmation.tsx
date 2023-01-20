@@ -52,19 +52,27 @@ export default component$(()=>{
   })
 
   const clearTotal = $(()=>{
-    gasContext.foodTypes.forEach(type=>{type.qty = 0}), gasContext.total = 0, gasContext.merchTotal = 0, gasContext.discount = 0
+    gasContext.foodTypes.forEach(type=>{
+      if(type.sizes){
+        type.sizes.forEach(size=>size.qty = 0)
+      }
+      if(type.qty){
+        type.qty = 0
+      }
+    }), 
     gasContext.gasTypes.forEach(type=>{
       type.qty = 0
       type.pump = 0
     })
+    gasContext.total = 0, gasContext.merchTotal = 0, gasContext.discount = 0
   })
 
 return(
-  <div class='flex flex-row justify-between md:mx-4 lg:mx-8 m-8'>
-    <button onClick$={$(()=>checkPumps())} class='flex h-10 mr-4 w-full justify-center items-center border-2  bg-mid-green rounded-xl border-mid-green  transition-colors duration-300 dark:border-secondary-color text-white' >Confirm</button>
-          <button onClick$={$(()=>clearTotal())} class='flex h-10 ml-4 w-full justify-center items-center border-2  rounded-xl border-mid-green  transition-colors duration-300 dark:border-secondary-color text-mid-green  transition-colors duration-300 dark:text-white'>
-      <ClearSvg class='w-4 h-4 fill-mid-green  transition-colors duration-300 dark:fill-secondary-color'
-    />
+  <div class='flex flex-row justify-between mx-8 lg:mx-8 xl:mx-12 m-8'>
+    <button onClick$={$(()=>checkPumps())} class='flex h-10 mr-4 w-full justify-center items-center border-2  bg-mid-green rounded-xl border-mid-green  transition-colors duration-300  text-white' >Confirm</button>
+    {/* @TODO this piece of shit wont style the first child (svg) */}
+    <button onClick$={$(()=>clearTotal())} class='flex h-10 ml-4 w-full justify-center items-center border-2 hover:bg-mid-green first:bg-red-400 hover:text-secondary-color  rounded-xl border-mid-green dark:border-secondary-color text-mid-green  transition-colors duration-300 dark:text-white'>
+      <ClearSvg class='w-4 h-4 fill-mid-green transition-colors duration-300 dark:fill-secondary-color'/>
       <p class='ml-2'>Clear</p>
     </button>
   </div>

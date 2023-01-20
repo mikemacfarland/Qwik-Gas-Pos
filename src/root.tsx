@@ -1,4 +1,4 @@
-import { component$, useContextProvider, createContext, useStore, useStyles$} from '@builder.io/qwik';
+import { component$, useContextProvider, createContext, useStore, useStyles$ ,useClientEffect$,} from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 import globalStyles from './global.css?inline';
@@ -15,7 +15,7 @@ interface GasStore{
     maxFoodQty: number
     gasCapacity: number
   }
-  foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number}>}>
+  foodTypes: Array<{name:string,type:string,price:number,qty:number,sizes:Array<{name:string,price:number,qty:number}>}>
   layout:{
     alert:string
     overlay:string
@@ -30,11 +30,13 @@ interface GasStore{
     admin:boolean
   }
   orders:{
-    cart: Array<{price:number,name:string}> 
-    history: Array<{order:Array<{date:string,items:Array<{price:number,name:string}>,id:number}>}>
+    cart: Array<{name:string,qty:number,price:number,type:string}>
+    history: Array<{date:string,total:string,items:Array<{}>,id:string}>
+    oldOrder:[]
   }
   total: number
   merchTotal: number
+  tax:number
   discount: number
 }
 
@@ -89,14 +91,14 @@ const GasStore = useStore({
       {name:'Pizza Slice', type:'Pizza', price:2.49, qty:0},
       {name:'Big Diesel Sausage', type:'Hot Dog',price:4.99,qty:0},
       {name:'Gas Mc-Double', type:'Burger',price:6.79,qty:0},
-      {name:'Coffee', type:'Coffee',price:.99,qty:0,sizes:[{price:.99,name:'Sm'},{price:1.29,name:'Md'},{price:1.89,name:'Lg'}]},
-      {name:'Tea', type:'Coffee',price:1.09,qty:0,sizes:[{price:1.09,name:'Sm'},{price:1.89,name:'Md'},{price:2.09,name:'Lg'}]},
-      {name:'Fountain Drink', type:'Soda',price:1.39,qty:0,sizes:[{price:1.39,name:'Sm'},{price:1.99,name:'Md'},{price:2.29,name:'Lg'}]}
+      {name:'Coffee', type:'Coffee',sizes:[{price:.99,name:'Sm',qty:0},{price:1.29,name:'Md',qty:0},{price:1.89,name:'Lg',qty:0}]},
+      {name:'Tea', type:'Coffee',sizes:[{price:1.09,name:'Sm',qty:0},{price:1.89,name:'Md',qty:0},{price:2.09,name:'Lg',qty:0}]},
+      {name:'Fountain Drink', type:'Soda',sizes:[{price:1.39,name:'Sm',qty:0},{price:1.99,name:'Md',qty:0},{price:2.29,name:'Lg',qty:0}]}
     ],
     settings:{
       darkMode: false,
       noOfPumps: 4,
-      taxRate: 7,
+      taxRate: 7.2,
       maxFoodQty: 20,
       maxGasQty: 200,
       gasCapacity: 15000
@@ -104,7 +106,7 @@ const GasStore = useStore({
     layout:{
       alert:'',
       overlay:'',
-      message: null
+      message: ''
     },
     payment:{
       card:true,
@@ -115,16 +117,32 @@ const GasStore = useStore({
     },
     // cart and history for orders
     orders:{
-      cart:[{price:0,name:'Tea'}], 
-      history: [{date:'04-21-2022',items:[{price:0,name:'Tea'}],id:'needtogenerateid'}]
+      cart:[],
+      history: [],
+      oldOrder: []
     },
     total:0,
+    tax:0,
     merchTotal:0,
     discount:0,
 },{recursive:true})
 
   useContextProvider(
     GasContext,GasStore)
+
+    useClientEffect$(() => {
+      const darkmode = localStorage.darkMode
+      const orderHistory = localStorage.orderHistory
+      if(darkmode === 'true'){
+          GasStore.settings.darkMode = true
+          document.querySelector('html')?.classList.add('dark')
+          }
+      if(darkmode === 'false'){
+          document.querySelector('html')?.classList.remove('dark')
+          GasStore.settings.darkMode = false
+          }
+      orderHistory ? GasStore.orders.history = JSON.parse(orderHistory) : GasStore.orders.history = []
+    },{eagerness: 'load'});
 
   return (
     <QwikCityProvider>
